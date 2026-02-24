@@ -1,17 +1,30 @@
 ---
 import '../styles/global.css';
-const { content } = Astro.props;
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "MiraCode - Desarrollo de Software de Alta Calidad" } = Astro.props;
 ---
 
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<title>{content.title}</title>
+		<meta name="generator" content={Astro.generator} />
+		
+		<title>{title}</title>
+		<meta name="description" content={description} />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 	</head>
-	<body>
+	<body class="min-h-screen bg-background text-foreground font-['Inter',sans-serif] selection:bg-primary/20 selection:text-primary">
 		<slot />
 	</body>
 </html>

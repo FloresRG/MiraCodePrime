@@ -1,26 +1,18 @@
 ---
-import '../styles/global.css';
-// Component Imports
-import Button from '../components/Button.astro';
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
+import Main from '../layouts/main.astro';
+import { Navbar } from '@/components/Navbar';
+import { Hero } from '@/components/Hero';
+import { Services } from '@/components/Services';
+import { ContactForm } from '@/components/ContactForm';
+import { Footer } from '@/components/Footer';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
-	</head>
-
-	<body>
-		<div class="grid place-items-center h-screen content-center">
-			<Button>Tailwind Button in Astro!</Button>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
-		</div>
-	</body>
-</html>
+<Main title="MiraCode | Innovación en Desarrollo de Software">
+    <Navbar client:load />
+	<main>
+		<Hero client:load />
+		<Services client:visible />
+		<ContactForm client:visible />
+	</main>
+    <Footer />
+</Main>
