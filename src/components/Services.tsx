@@ -14,7 +14,7 @@ export const Services = () => {
   return (
     <section
       id="services"
-      className="py-20 md:py-32 bg-background relative overflow-hidden"
+      className="py-8 md:py-8 bg-background relative overflow-hidden"
     >
       {/* Background decoration */}
       <div className="absolute top-1/2 left-0 -z-10 h-[400px] w-[400px] -translate-y-1/2 rounded-full bg-primary/5 blur-[100px]" />
