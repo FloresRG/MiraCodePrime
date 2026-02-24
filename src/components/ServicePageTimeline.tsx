@@ -66,10 +66,10 @@ export const ServicePageTimeline = ({ service }: { service: Service }) => {
 
             {/* Content */}
             <div className="flex-1 pt-1">
-              <h3 className="text-xl font-bold text-slate-900 mb-2">
+              <h3 className="text-xl font-bold text-foreground mb-2">
                 {step.title}
               </h3>
-              <p className="text-slate-600 leading-relaxed text-lg font-medium">
+              <p className="text-muted-foreground leading-relaxed text-lg font-medium">
                 {step.description}
               </p>
             </div>
