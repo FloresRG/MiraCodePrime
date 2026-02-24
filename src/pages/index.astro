@@ -1,18 +1,20 @@
 ---
-import Main from '../layouts/main.astro';
-import { Navbar } from '@/components/Navbar';
-import { Hero } from '@/components/Hero';
-import { Services } from '@/components/Services';
-import { ContactForm } from '@/components/ContactForm';
-import { Footer } from '@/components/Footer';
+import Main from "../layouts/main.astro";
+import { Navbar } from "@/components/Navbar";
+import { Hero } from "@/components/Hero";
+import { FeaturedProjects } from "@/components/FeaturedProjects";
+import { Services } from "@/components/Services";
+import { ContactForm } from "@/components/ContactForm";
+import { Footer } from "@/components/Footer";
 ---
 
 <Main title="MiraCode | Innovación en Desarrollo de Software">
-    <Navbar client:load />
-	<main>
-		<Hero client:load />
-		<Services client:visible />
-		<ContactForm client:visible />
-	</main>
-    <Footer />
+  <Navbar client:load />
+  <main>
+    <Hero client:load />
+    <FeaturedProjects client:visible />
+    <Services client:visible />
+    <ContactForm client:visible />
+  </main>
+  <Footer />
 </Main>
