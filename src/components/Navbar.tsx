@@ -1,74 +1,145 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Code2 } from "lucide-react";
+import { Menu, X, Code2 } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import logoImg from "@/assets/logo.png";
 
 export const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: "Servicios", href: "/#services" },
+    { name: "Portafolio", href: "/#portfolio" },
+    { name: "Proyectos", href: "/proyectos" },
+    { name: "Sobre Nosotros", href: "/#about" },
+    { name: "Contacto", href: "/#contact" },
+  ];
+
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/60 backdrop-blur-xl"
+      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+        scrolled
+          ? "border-b border-border/40 bg-background/80 backdrop-blur-xl py-2"
+          : "bg-transparent py-4"
+      }`}
     >
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6">
-        <a href="/" className="flex items-center gap-2 group">
-          <div className="bg-primary/10 p-1.5 rounded-lg group-hover:scale-110 transition-transform">
-            <Code2 className="size-6 text-primary" />
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="flex h-16 items-center justify-between">
+          {/* Logo Section */}
+          <div className="flex-1 flex items-center">
+            <a href="/" className="flex items-center gap-3 group">
+              <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-sm border border-primary/20 p-1">
+                <img
+                  src={logoImg.src}
+                  alt="Logo"
+                  className="size-full object-contain"
+                />
+              </div>
+              <span className="text-2xl font-black tracking-tighter text-foreground group-hover:text-primary transition-colors">
+                MiraCode
+              </span>
+            </a>
           </div>
-          <span className="text-xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors">
-            MiraCode
-          </span>
-        </a>
 
-        <div className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
-          <a href="/#services" className="hover:text-primary transition-colors">
-            Servicios
-          </a>
-          <a
-            href="/#portfolio"
-            className="hover:text-primary transition-colors"
-          >
-            Portafolio
-          </a>
-          <a href="/#about" className="hover:text-primary transition-colors">
-            Sobre Nosotros
-          </a>
+          {/* Desktop Navigation - Centered */}
+          <div className="hidden md:flex flex-[2] justify-center items-center gap-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-sm font-bold text-muted-foreground hover:text-primary transition-colors relative group"
+              >
+                {link.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
+              </a>
+            ))}
+          </div>
 
-          <div className="h-6 w-px bg-border/60 mx-2" />
+          {/* Actions Section */}
+          <div className="flex-1 flex items-center justify-end gap-4">
+            <div className="hidden md:block">
+              <ThemeToggle />
+            </div>
 
-          <ThemeToggle />
+            <a href="/#contact" className="hidden md:block">
+              <Button
+                variant="default"
+                size="sm"
+                className="rounded-xl px-6 font-bold shadow-lg shadow-primary/20 hover:scale-105 transition-transform"
+              >
+                Empezar Proyecto
+              </Button>
+            </a>
 
-          <a href="/#contact">
-            <Button
-              variant="default"
-              size="sm"
-              className="rounded-full px-6 font-semibold"
-            >
-              Contacto
-            </Button>
-          </a>
-        </div>
-
-        <div className="md:hidden">
-          {/* Mobile menu could go here, but keeping it simple for now as per request */}
-          <Button variant="ghost" size="icon">
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16m-7 6h7"
-              />
-            </svg>
-          </Button>
+            {/* Mobile Actions */}
+            <div className="md:hidden flex items-center gap-2">
+              <ThemeToggle />
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsOpen(!isOpen)}
+                className="rounded-xl hover:bg-primary/10"
+              >
+                {isOpen ? (
+                  <X className="size-6" />
+                ) : (
+                  <Menu className="size-6" />
+                )}
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* Mobile Menu Drawer */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden border-t border-border/40 bg-background/95 backdrop-blur-xl overflow-hidden"
+          >
+            <div className="container mx-auto px-4 py-8 flex flex-col gap-6">
+              {navLinks.map((link, idx) => (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: idx * 0.1 }}
+                  onClick={() => setIsOpen(false)}
+                  className="text-2xl font-black text-foreground hover:text-primary transition-colors"
+                >
+                  {link.name}
+                </motion.a>
+              ))}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="pt-4 border-t border-border/40"
+              >
+                <a href="/#contact" onClick={() => setIsOpen(false)}>
+                  <Button className="w-full h-14 text-lg font-bold rounded-2xl">
+                    Solicitar Cotización
+                  </Button>
+                </a>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 };

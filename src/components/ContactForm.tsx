@@ -22,14 +22,13 @@ export const ContactForm = () => {
             <Badge variant="outline" className="mb-4">
               Contacto
             </Badge>
-            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl mb-6">
-              ¿Tienes un proyecto en mente? <br />
+            <h2 className="text-5xl font-black tracking-tighter sm:text-7xl mb-8 text-foreground leading-none">
+              ¿Tienes un proyecto? <br />
               <span className="text-primary">Hablemos ahora</span>
             </h2>
-            <p className="text-muted-foreground text-lg mb-8">
-              Estamos listos para escucharte y ayudarte a dar el siguiente paso
-              en la evolución digital de tu empresa. Completa el formulario y
-              nos pondremos en contacto contigo en menos de 24 horas.
+            <p className="text-lg md:text-2xl text-muted-foreground mb-12 font-medium leading-relaxed">
+              Estamos listos para transformar tu visión en realidad. Escríbenos
+              y recibirás una respuesta en menos de 24 horas.
             </p>
 
             <div className="space-y-6">
@@ -58,9 +57,12 @@ export const ContactForm = () => {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-card/50 border border-border/40 p-10 rounded-[2.5rem] backdrop-blur-md shadow-2xl shadow-primary/5"
+            className="bg-card/50 border border-border/40 p-6 md:p-12 rounded-3xl md:rounded-[3rem] backdrop-blur-md shadow-2xl shadow-primary/5"
           >
-            <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
+            <form
+              className="space-y-6 md:space-y-10"
+              onSubmit={(e) => e.preventDefault()}
+            >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="name">Nombre</Label>

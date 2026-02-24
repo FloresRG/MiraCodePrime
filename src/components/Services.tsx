@@ -12,20 +12,28 @@ import { services } from "@/data/services";
 
 export const Services = () => {
   return (
-    <section id="services" className="py-24 bg-secondary/30">
+    <section
+      id="services"
+      className="py-20 md:py-32 bg-background relative overflow-hidden"
+    >
+      {/* Background decoration */}
+      <div className="absolute top-1/2 left-0 -z-10 h-[400px] w-[400px] -translate-y-1/2 rounded-full bg-primary/5 blur-[100px]" />
+
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <Badge variant="outline" className="mb-4">
-            Nuestros Servicios
-          </Badge>
-          <h2 className="text-3xl font-bold tracking-tight sm:text-5xl mb-6">
-            Soluciones integrales para cada <br />
-            <span className="text-primary">necesidad tecnológica</span>
-          </h2>
-          <p className="text-muted-foreground text-lg">
-            Cubrimos todo el ciclo de vida del desarrollo de software, desde la
-            concepción hasta el despliegue y mantenimiento.
-          </p>
+        <div className="text-center mb-16 md:mb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-5xl font-black tracking-tighter sm:text-7xl mb-6 text-foreground">
+              Nuestros Servicios
+            </h2>
+            <p className="text-lg md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-medium">
+              Soluciones tecnológicas de vanguardia diseñadas para impulsar la
+              eficiencia y el crecimiento de tu empresa.
+            </p>
+          </motion.div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -41,17 +49,17 @@ export const Services = () => {
                 href={`/servicios/${service.slug}`}
                 className="block h-full cursor-pointer"
               >
-                <Card className="h-full border-border/40 bg-card/40 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 group">
-                  <CardHeader>
-                    <div className="size-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:rotate-6 transition-all duration-300 shadow-sm">
-                      <service.icon className="size-7 text-primary group-hover:text-primary-foreground transition-colors" />
+                <Card className="h-full border-border/40 bg-card/40 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 group rounded-3xl overflow-hidden">
+                  <CardHeader className="p-8">
+                    <div className="size-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:rotate-6 transition-all duration-300 shadow-sm">
+                      <service.icon className="size-8 text-primary group-hover:text-primary-foreground transition-colors" />
                     </div>
-                    <CardTitle className="text-2xl font-bold text-foreground">
+                    <CardTitle className="text-2xl md:text-3xl font-black text-foreground tracking-tight">
                       {service.title}
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-muted-foreground mb-8 text-base leading-relaxed line-clamp-3 font-medium">
+                  <CardContent className="px-8 pb-8">
+                    <CardDescription className="text-muted-foreground mb-8 text-lg leading-relaxed line-clamp-3 font-medium">
                       {service.description}
                     </CardDescription>
                     <div className="flex flex-wrap gap-2 pt-2">
