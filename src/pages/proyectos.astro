@@ -1,13 +1,47 @@
 ---
+// src/pages/index.astro
 import Main from '../layouts/main.astro';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
+import ImageTextSection from '@/components/ImageTextSection.astro';
+
+// Importa imágenes desde assets (Astro las optimiza automáticamente)
+import heroImage from '@/assets/dashboard.png';
+import dashboardImage from '@/assets/dashboard.png';
 ---
 
 <Main title="MiraCode | Innovación en Desarrollo de Software">
-    <Navbar client:load />
-	<main>
+  <Navbar client:load />
+  
+  <main class="flex flex-col gap-8">
+    
+    {/* Bloque 1: Imagen izquierda + badge + features */}
+    <ImageTextSection 
+      image={heroImage}
+      title="Transformamos ideas en software escalable"
+      description="Desarrollamos aplicaciones web y móviles con arquitectura moderna, pensando en rendimiento, seguridad y crecimiento a largo plazo."
+      imagePosition="left"
+      badge="Novedad: IA integrada"
+      features={[
+        "Arquitectura serverless y edge-ready",
+        "CI/CD automatizado con pruebas E2E",
+        "Monitoreo en tiempo real con alertas proactivas"
+      ]}
+      ctaPrimary={{ label: 'Empezar ahora', href: '/contacto', triggerConfetti: true }}
+      ctaSecondary={{ label: 'Ver casos de éxito', href: '/casos' }}
+    />
 
-	</main>
-    <Footer />
+    {/* Bloque 2: Imagen derecha + estilo minimalista */}
+    <ImageTextSection 
+      image={dashboardImage}
+      title="Analítica inteligente para decisiones estratégicas"
+      description="Visualiza métricas clave, genera reportes automáticos y anticipa tendencias con nuestros dashboards interactivos."
+      imagePosition="right"
+      ctaPrimary={{ label: 'Probar demo', href: '/demo', triggerConfetti: false }}
+      ctaSecondary={{ label: 'Documentación', href: '/docs' }}
+    />
+
+  </main>
+
+  <Footer />
 </Main>
