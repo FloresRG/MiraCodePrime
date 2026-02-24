@@ -1,0 +1,107 @@
+---
+import Main from "../../layouts/main.astro";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
+import { ServicePageTimeline } from "@/components/ServicePageTimeline";
+import { services } from "@/data/services";
+import { MoveLeft } from "lucide-react";
+
+export async function getStaticPaths() {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+---
+
+<Main title={`${service.title} | MiraCode Services`}>
+  <Navbar client:load />
+
+  <main class="pt-20">
+    {/* Hero Header Section */}
+    <div class="relative h-[60vh] w-full overflow-hidden">
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/20 z-10"
+      >
+      </div>
+      <img
+        src={service.image}
+        alt={service.title}
+        class="size-full object-cover"
+      />
+
+      <div
+        class="absolute inset-x-0 bottom-0 z-20 container mx-auto px-4 pb-16"
+      >
+        <a
+          href="/#services"
+          class="inline-flex items-center gap-2 text-primary/70 hover:text-primary mb-8 transition-colors group font-semibold"
+        >
+          <MoveLeft
+            className="size-5 group-hover:-translate-x-1 transition-transform"
+          />
+          <span>Volver a Servicios</span>
+        </a>
+
+        <div class="flex items-center gap-4 mb-6">
+          <div
+            class="size-14 rounded-2xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20"
+          >
+            {
+              service.icon &&
+                (() => {
+                  const Icon = service.icon;
+                  return <Icon className="size-8 text-white" />;
+                })()
+            }
+          </div>
+          <span
+            class="text-sm font-bold tracking-[0.2em] uppercase text-primary"
+          >
+            Servicio Especializado
+          </span>
+        </div>
+
+        <h1
+          class="text-5xl md:text-7xl font-extrabold text-slate-900 mb-6 drop-shadow-sm"
+        >
+          {service.title}
+        </h1>
+        <p class="text-xl text-slate-600 max-w-2xl leading-relaxed font-medium">
+          {service.description}
+        </p>
+      </div>
+    </div>
+
+    {/* Content Section */}
+    <section class="py-20 bg-background relative overflow-hidden">
+      <div
+        class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"
+      >
+      </div>
+
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-20">
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+            Nuestro Proceso
+          </h2>
+          <p class="text-muted-foreground">
+            Transparencia y excelencia en cada etapa de ejecución.
+          </p>
+        </div>
+
+        <ServicePageTimeline service={service} client:load />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Main>
+
+<style>
+  main {
+    min-height: 100vh;
+  }
+</style>
