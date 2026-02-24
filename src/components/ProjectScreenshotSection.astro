@@ -1,0 +1,133 @@
+---
+// src/components/ProjectScreenshotSection.astro
+// Igual en espíritu que ImageTextSection.astro pero pensado para
+// mostrar capturas de pantalla de sistemas en la página de detalle de proyecto.
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  title: string;
+  description: string;
+  image: ImageMetadata;
+  imagePosition?: 'left' | 'right';
+  badge?: string;
+  index?: number;
+}
+
+const {
+  title,
+  description,
+  image,
+  imagePosition = 'left',
+  badge,
+  index = 0,
+} = Astro.props;
+
+const isRight = imagePosition === 'right';
+---
+
+<section
+  class="relative w-full py-16 md:py-24 overflow-hidden section-reveal opacity-0 translate-y-10"
+  style={`transition-delay: ${index * 80}ms`}
+>
+  <!-- Decoración de fondo alterna lado por sección -->
+  <div class="absolute inset-0 -z-10 pointer-events-none">
+    <div
+      class={`absolute ${isRight ? '-right-40' : '-left-40'} top-1/2 -translate-y-1/2 w-72 h-72 bg-primary/8 rounded-full blur-3xl`}
+    ></div>
+  </div>
+
+  <div class="container mx-auto px-4 md:px-6">
+    <div
+      class={`grid gap-10 lg:gap-16 items-center lg:grid-cols-2 ${isRight ? 'lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1' : ''}`}
+    >
+      <!-- ── IMAGEN ── -->
+      <div class="relative group">
+        <!-- Glow -->
+        <div class="absolute -inset-1 bg-gradient-to-r from-primary via-blue-500 to-cyan-400 rounded-2xl blur opacity-15 group-hover:opacity-30 transition-opacity duration-500"></div>
+
+        <!-- Frame tipo "ventana de app" -->
+        <div class="relative overflow-hidden rounded-2xl border border-border/60 bg-card/50 backdrop-blur-sm shadow-2xl shadow-primary/5">
+          <!-- Barra de título de ventana (decorativa) -->
+          <div class="flex items-center gap-1.5 px-4 py-2.5 bg-muted/40 border-b border-border/40">
+            <div class="w-2.5 h-2.5 rounded-full bg-red-400/70"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-yellow-400/70"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-green-400/70"></div>
+            {badge && (
+              <span class="ml-auto text-[10px] text-muted-foreground font-mono uppercase tracking-widest opacity-60">
+                {badge}
+              </span>
+            )}
+          </div>
+
+          <!-- Screenshot real -->
+          <div class="aspect-[16/10] overflow-hidden bg-muted/20">
+            <img
+              src={image.src}
+              alt={title}
+              width={image.width}
+              height={image.height}
+              loading="lazy"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 will-change-transform"
+            />
+          </div>
+        </div>
+
+        <!-- Dot flotante decorativo -->
+        <div class="absolute -bottom-4 -right-4 w-14 h-14 bg-primary/15 rounded-full blur-xl animate-pulse" style="animation-duration:3.5s"></div>
+      </div>
+
+      <!-- ── TEXTO ── -->
+      <div class="flex flex-col justify-center gap-5">
+        {badge && (
+          <span class="inline-flex items-center gap-2 self-start px-3 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary border border-primary/20">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="12" x="3" y="4" rx="2"/><line x1="2" x2="22" y1="20" y2="20"/></svg>
+            {badge}
+          </span>
+        )}
+
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">
+          <span class="bg-gradient-to-r from-foreground via-foreground to-muted-foreground bg-clip-text text-transparent">
+            {title}
+          </span>
+        </h2>
+
+        <p class="text-muted-foreground text-base md:text-lg leading-relaxed max-w-lg">
+          {description}
+        </p>
+
+        <!-- Numeración de sección -->
+        <div class="flex items-center gap-3 text-muted-foreground/40 text-xs font-mono mt-2 select-none">
+          <div class="h-px w-8 bg-current"></div>
+          <span>SCREEN {String(index + 1).padStart(2, '0')}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Reveal on scroll — compartido con el resto de la página de detalle
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target as HTMLElement;
+        el.classList.remove('opacity-0', 'translate-y-10');
+        el.classList.add('opacity-100', 'translate-y-0');
+        io.unobserve(el);
+      });
+    },
+    { threshold: 0.08, rootMargin: '-30px' }
+  );
+
+  document.querySelectorAll('.section-reveal').forEach(el => io.observe(el));
+</script>
+
+<style>
+  .section-reveal {
+    transition: opacity 0.7s cubic-bezier(.22,1,.36,1), transform 0.7s cubic-bezier(.22,1,.36,1);
+  }
+  .section-reveal.opacity-100 { opacity: 1 !important; }
+  .section-reveal.translate-y-0 { transform: translateY(0) !important; }
+  .bg-clip-text { -webkit-background-clip: text; background-clip: text; }
+</style>
