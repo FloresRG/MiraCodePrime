@@ -41,22 +41,24 @@ export const Services = () => {
                 href={`/servicios/${service.slug}`}
                 className="block h-full cursor-pointer"
               >
-                <Card className="h-full border-white/10 bg-background/50 backdrop-blur-sm hover:border-primary/50 transition-colors group">
+                <Card className="h-full border-border/40 bg-card/40 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 group">
                   <CardHeader>
-                    <div className="size-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                      <service.icon className="size-6 text-primary" />
+                    <div className="size-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:rotate-6 transition-all duration-300 shadow-sm">
+                      <service.icon className="size-7 text-primary group-hover:text-primary-foreground transition-colors" />
                     </div>
-                    <CardTitle className="text-xl">{service.title}</CardTitle>
+                    <CardTitle className="text-2xl font-bold text-foreground">
+                      {service.title}
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <CardDescription className="text-muted-foreground mb-6 text-base line-clamp-3">
+                    <CardDescription className="text-muted-foreground mb-8 text-base leading-relaxed line-clamp-3 font-medium">
                       {service.description}
                     </CardDescription>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 pt-2">
                       {service.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="text-xs font-medium px-2 py-1 rounded-md bg-white/5 text-muted-foreground font-mono"
+                          className="px-3 py-1.5 text-xs font-bold rounded-full bg-secondary text-secondary-foreground border border-border/40 font-mono shadow-sm"
                         >
                           {tag}
                         </span>

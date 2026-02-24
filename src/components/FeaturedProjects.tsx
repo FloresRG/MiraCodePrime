@@ -4,66 +4,84 @@ import { cn } from "@/lib/utils";
 
 const projects = [
   {
+    id: "admus-produccion",
     name: "Admus - Gestión Empresarial",
     image: "/src/assets/admus.png",
   },
   {
-    name: "Miranda - E-commerce",
+    id: "importadora-miranda",
+    name: "Miranda - ERP Importaciones",
     image: "/src/assets/loginmiranda.png",
   },
   {
-    name: "MiraCode Web",
-    image: "/src/assets/logomiracode.webp",
+    id: "shop-miranda",
+    name: "Shop Miranda - E-commerce",
+    image: "/src/assets/logo.png",
   },
   {
-    name: "Sistema de Pruebas",
+    id: "pedidos-whatsapp",
+    name: "Bot Pedidos WhatsApp",
     image: "/src/assets/prueba.png",
   },
   {
-    name: "Logo Branding",
-    image: "/src/assets/logo.png",
+    id: "ecommerce-admin",
+    name: "Admin Panel E-comm",
+    image: "/src/assets/logomiracode.webp",
   },
 ];
 
-const ProjectCard = ({ name, image }: { name: string; image: string }) => {
+const ProjectCard = ({
+  id,
+  name,
+  image,
+}: {
+  id: string;
+  name: string;
+  image: string;
+}) => {
   return (
-    <div
-      className={cn(
-        "relative w-[350px] md:w-[500px] cursor-pointer overflow-hidden rounded-2xl border p-2 transition-all duration-300 group",
-        // light styles
-        "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-primary/[.05] hover:border-primary/50",
-        // dark styles
-        "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-primary/[.10] dark:hover:border-primary/50",
-        "hover:shadow-[0_0_30px_-5px_rgba(var(--primary),0.3)]",
-      )}
-    >
-      <div className="flex flex-col gap-4">
-        <div className="overflow-hidden rounded-xl h-54 md:h-76">
-          <img
-            src={image}
-            alt={name}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        </div>
-        <div className="flex flex-col px-4 pb-4">
-          <figcaption className="text-xl font-bold dark:text-white transition-colors group-hover:text-primary">
-            {name}
-          </figcaption>
-          <p className="text-sm font-medium text-muted-foreground">
-            Proyecto Destacado • Ver Detalles
-          </p>
+    <a href={`/proyectos/${id}`} className="block">
+      <div
+        className={cn(
+          "relative w-[350px] md:w-[500px] cursor-pointer overflow-hidden rounded-2xl border p-2 transition-all duration-300 group",
+          // light styles
+          "border-border/40 bg-card/40 hover:bg-primary/[0.03] hover:border-primary/50",
+          // dark styles
+          "hover:shadow-[0_0_40px_-10px_rgba(var(--primary),0.2)]",
+        )}
+      >
+        <div className="flex flex-col gap-4">
+          <div className="overflow-hidden rounded-xl h-54 md:h-76">
+            <img
+              src={image}
+              alt={name}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          </div>
+          <div className="flex flex-col px-4 pb-4">
+            <figcaption className="text-xl font-bold text-foreground transition-colors group-hover:text-primary">
+              {name}
+            </figcaption>
+            <p className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+              <span className="size-1.5 rounded-full bg-primary" />
+              Proyecto Destacado • Ver Detalles
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 
 export const FeaturedProjects = () => {
   return (
-    <section className="py-12 bg-background relative overflow-hidden">
+    <section
+      id="portfolio"
+      className="py-12 bg-background relative overflow-hidden"
+    >
       <div className="container mx-auto px-4 mb-12">
         <div className="text-center">
-          <h2 className="text-4xl font-extrabold tracking-tight sm:text-6xl mb-6">
+          <h2 className="text-4xl font-extrabold tracking-tight sm:text-6xl mb-6 text-foreground">
             Proyectos Destacados
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -73,10 +91,10 @@ export const FeaturedProjects = () => {
         </div>
       </div>
 
-      <div className="relative flex h-[300px] md:h-[400px] w-full flex-col items-center justify-center overflow-hidden">
-        <Marquee pauseOnHover className="[--duration:30s] [--gap:2rem]">
+      <div className="relative flex h-[350px] md:h-[450px] w-full flex-col items-center justify-center overflow-hidden">
+        <Marquee pauseOnHover className="[--duration:40s] [--gap:2.5rem]">
           {projects.map((project) => (
-            <ProjectCard key={project.name} {...project} />
+            <ProjectCard key={project.id} {...project} />
           ))}
         </Marquee>
         <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>

@@ -48,16 +48,16 @@ export const Companies = () => {
           {companyLogos.map((company) => (
             <div
               key={company.name}
-              className="flex items-center gap-4 transition-all duration-300 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 cursor-pointer group"
+              className="flex items-center gap-5 transition-all duration-500 grayscale opacity-40 dark:opacity-30 hover:grayscale-0 hover:opacity-100 cursor-pointer group"
             >
-              <div className="size-12 rounded-xl bg-primary/10 flex items-center justify-center p-2 group-hover:bg-primary/20 transition-colors">
+              <div className="size-14 rounded-2xl bg-secondary flex items-center justify-center p-3 group-hover:bg-primary/10 transition-colors border border-border/40">
                 <img
                   src={company.logo}
                   alt={company.name}
-                  className="size-8 object-contain"
+                  className="size-10 object-contain"
                 />
               </div>
-              <span className="text-xl font-bold text-muted-foreground group-hover:text-foreground transition-colors">
+              <span className="text-2xl font-black text-muted-foreground group-hover:text-foreground transition-colors tracking-tight">
                 {company.name}
               </span>
             </div>
