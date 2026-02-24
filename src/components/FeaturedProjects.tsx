@@ -60,7 +60,7 @@ const ProjectCard = ({ name, image }: { name: string; image: string }) => {
 
 export const FeaturedProjects = () => {
   return (
-    <section className="py-24 bg-background relative overflow-hidden">
+    <section className="py-12 bg-background relative overflow-hidden">
       <div className="container mx-auto px-4 mb-12">
         <div className="text-center">
           <h2 className="text-4xl font-extrabold tracking-tight sm:text-6xl mb-6">
@@ -73,7 +73,7 @@ export const FeaturedProjects = () => {
         </div>
       </div>
 
-      <div className="relative flex h-[500px] md:h-[700px] w-full flex-col items-center justify-center overflow-hidden">
+      <div className="relative flex h-[300px] md:h-[400px] w-full flex-col items-center justify-center overflow-hidden">
         <Marquee pauseOnHover className="[--duration:30s] [--gap:2rem]">
           {projects.map((project) => (
             <ProjectCard key={project.name} {...project} />

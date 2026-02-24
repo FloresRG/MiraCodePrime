@@ -95,36 +95,6 @@ export const Hero = () => {
             </Button>
           </div>
         </motion.div>
-
-        {/* Stats / Features Micro-grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="mt-20 grid grid-cols-1 gap-8 sm:grid-cols-3 max-w-4xl mx-auto relative z-10"
-        >
-          <div className="flex flex-col items-center gap-2 p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
-            <Code2 className="size-8 text-primary mb-2" />
-            <h3 className="font-bold text-xl">+50 Proyectos</h3>
-            <p className="text-sm text-muted-foreground text-center">
-              Desarrollados con las últimas tecnologías del mercado.
-            </p>
-          </div>
-          <div className="flex flex-col items-center gap-2 p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
-            <Rocket className="size-8 text-accent mb-2" />
-            <h3 className="font-bold text-xl">Escalabilidad</h3>
-            <p className="text-sm text-muted-foreground text-center">
-              Sistemas diseñados para crecer junto con tu empresa.
-            </p>
-          </div>
-          <div className="flex flex-col items-center gap-2 p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
-            <Shield className="size-8 text-primary mb-2" />
-            <h3 className="font-bold text-xl">Seguridad</h3>
-            <p className="text-sm text-muted-foreground text-center">
-              Protección de datos y robustez en cada implementación.
-            </p>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
