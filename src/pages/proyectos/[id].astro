@@ -35,7 +35,7 @@ const sectionImages = project.sections.map(() => dashImg);
 
   <!-- ── HERO: IMAGEN GIGANTE ("LA CARA") ────────────────────── -->
   <section
-    class="relative w-full h-[85vh] min-h-[600px] flex items-end justify-center overflow-hidden bg-slate-950"
+    class="relative w-full h-[85vh] min-h-[600px] flex items-end justify-center overflow-hidden bg-slate-950 mt-24"
   >
     <!-- Imagen de fondo que ocupa todo el Hero -->
     <div class="absolute inset-0 z-0">
@@ -46,15 +46,6 @@ const sectionImages = project.sections.map(() => dashImg);
         height={coverImage.height}
         class="w-full h-full object-cover opacity-50 scale-105 animate-image-reveal"
       />
-      <!-- Gradientes encima de la imagen para legibilidad y estética -->
-      <div
-        class={`absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent z-10`}
-      >
-      </div>
-      <div
-        class={`absolute inset-0 bg-gradient-to-b ${project.color} opacity-20 z-10 mix-blend-overlay`}
-      >
-      </div>
     </div>
 
     <!-- Contenido del Hero (Abajo) -->

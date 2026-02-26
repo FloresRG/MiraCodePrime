@@ -3,6 +3,30 @@ import Marquee from "@/components/ui/marquee";
 import { cn } from "@/lib/utils";
 import { SectionHeader } from "./SectionHeader";
 
+import { CoverFlow, type CoverFlowItem } from "@/components/ui/coverflow";
+const hero: CoverFlowItem[] = [
+  { id: 1, image: "src/assets/admus.png", title: "Sanemi Sanemi" },
+  { id: 2, image: "src/assets/admus.png", title: "Obanai Iguro" },
+  { id: 3, image: "src/assets/admus.png", title: "Mitsuri Kanroji" },
+  { id: 4, image: "src/assets/admus.png", title: "Giyu Tomioka" },
+  { id: 5, image: "src/assets/admus.png", title: "Shinobu Kocho" },
+  { id: 6, image: "src/assets/admus.png", title: "Sanemi Sanemi" },
+  { id: 7, image: "src/assets/admus.png", title: "Obanai Iguro" },
+  { id: 8, image: "src/assets/admus.png", title: "Mitsuri Kanroji" },
+  { id: 9, image: "src/assets/admus.png", title: "Giyu Tomioka" },
+  { id: 10, image: "src/assets/admus.png", title: "Shinobu Kocho" },
+  { id: 11, image: "src/assets/admus.png", title: "Sanemi Sanemi" },
+  { id: 12, image: "src/assets/admus.png", title: "Obanai Iguro" },
+  { id: 13, image: "src/assets/admus.png", title: "Mitsuri Kanroji" },
+  { id: 14, image: "src/assets/admus.png", title: "Giyu Tomioka" },
+  { id: 15, image: "src/assets/admus.png", title: "Shinobu Kocho" },
+  { id: 16, image: "src/assets/admus.png", title: "Sanemi Sanemi" },
+  { id: 17, image: "src/assets/admus.png", title: "Obanai Iguro" },
+  { id: 18, image: "src/assets/admus.png", title: "Mitsuri Kanroji" },
+  { id: 19, image: "src/assets/admus.png", title: "Giyu Tomioka" },
+  { id: 20, image: "src/assets/admus.png", title: "Shinobu Kocho" },
+];
+
 const projects = [
   {
     id: "admus-produccion",
@@ -76,7 +100,10 @@ const ProjectCard = ({
 
 export const FeaturedProjects = () => {
   return (
-    <section id="portfolio" className="pt-20 pb-10 bg-background relative overflow-hidden">
+    <section
+      id="portfolio"
+      className="pt-20 pb-10 bg-background relative overflow-hidden"
+    >
       {/* Nuevo Header Pro */}
       <SectionHeader
         badge="Portafolio"
@@ -85,15 +112,28 @@ export const FeaturedProjects = () => {
       />
 
       <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-        <Marquee pauseOnHover className="[--duration:50s] [--gap:1.5rem] sm:[--gap:3rem]">
+        <Marquee
+          pauseOnHover
+          className="[--duration:50s] [--gap:1.5rem] sm:[--gap:3rem]"
+        >
           {projects.map((project) => (
             <ProjectCard key={project.id} {...project} />
           ))}
         </Marquee>
-        
+
         {/* Degradados laterales para el Marquee */}
         <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
         <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
+      </div>
+      <div className="w-full h-[700px]">
+        {" "}
+        {/* Contenedor padre con altura suficiente */}
+        <CoverFlow
+          items={hero}
+          itemWidth={900}
+          itemHeight={500}
+          centerGap={550}
+        />
       </div>
     </section>
   );
