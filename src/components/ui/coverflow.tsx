@@ -45,7 +45,7 @@ export function CoverFlow({
   enableReflection = true,
   enableClickToSnap = true,
   enableScroll = true,
-  scrollThreshold = 60, // Bajado para mayor sensibilidad
+  scrollThreshold = 60,
   autoplay = true,
   autoplayInterval = 5000,
   className,
@@ -57,6 +57,9 @@ export function CoverFlow({
   const [isHovered, setIsHovered] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   
+  // Ref para controlar el bloqueo de scroll rápido
+  const isScrollingRef = useRef(false);
+
   const [dims, setDims] = useState({
     width: itemWidth,
     height: itemHeight,
@@ -64,7 +67,6 @@ export function CoverFlow({
     spacing: stackSpacing
   });
 
-  // --- LÓGICA RESPONSIVA ---
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
@@ -99,7 +101,6 @@ export function CoverFlow({
 
   const jumpToIndex = useCallback(
     (index: number) => {
-      // Loop: si llega al final vuelve al inicio, y viceversa
       let target = index;
       if (index >= items.length) target = 0;
       if (index < 0) target = items.length - 1;
@@ -110,18 +111,15 @@ export function CoverFlow({
     [items.length, scrollX],
   );
 
-  // --- AUTOPLAY ---
   useEffect(() => {
     if (!autoplay || isDragging || isHovered) return;
-
     const interval = setInterval(() => {
       jumpToIndex(activeIndex + 1);
     }, autoplayInterval);
-
     return () => clearInterval(interval);
   }, [autoplay, activeIndex, isDragging, isHovered, jumpToIndex, autoplayInterval]);
 
-  // --- SCROLL OPTIMIZADO ---
+  // --- SCROLL PROTEGIDO (UNO A LA VEZ) ---
   useEffect(() => {
     const container = containerRef.current;
     if (!container || !enableScroll) return;
@@ -129,11 +127,16 @@ export function CoverFlow({
     let wheelAccumulator = 0;
 
     const handleWheel = (e: WheelEvent) => {
-      // Priorizar scroll horizontal del mouse o shift+wheel
+      // Si ya se está ejecutando un cambio de tarjeta, ignorar el resto del scroll
+      if (isScrollingRef.current) {
+        e.preventDefault();
+        return;
+      }
+
       const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
       
+      // Permitir scroll vertical normal si no hay shift presionado
       if (Math.abs(e.deltaY) > Math.abs(e.deltaX) && !e.shiftKey) {
-          // Si el scroll es puramente vertical y no se pulsa shift, permitimos scroll de página
           return;
       }
 
@@ -141,9 +144,17 @@ export function CoverFlow({
       wheelAccumulator += delta;
 
       if (Math.abs(wheelAccumulator) > scrollThreshold) {
+        isScrollingRef.current = true; // Bloqueamos
+
         if (wheelAccumulator > 0) jumpToIndex(activeIndex + 1);
         else jumpToIndex(activeIndex - 1);
+        
         wheelAccumulator = 0;
+
+        // Desbloqueamos después de 250ms para permitir el siguiente "paso"
+        setTimeout(() => {
+          isScrollingRef.current = false;
+        }, 250);
       }
     };
 
@@ -151,7 +162,6 @@ export function CoverFlow({
     return () => container.removeEventListener("wheel", handleWheel);
   }, [enableScroll, activeIndex, jumpToIndex, scrollThreshold]);
 
-  // --- DRAG ---
   const onDragStart = () => setIsDragging(true);
   const onDrag = (_: any, info: PanInfo) => {
     const deltaIndex = -info.delta.x / (dims.gap * 0.8);
@@ -229,6 +239,7 @@ export function CoverFlow({
   );
 }
 
+// El componente CoverFlowItemCard se mantiene igual...
 function CoverFlowItemCard({
   item,
   index,
@@ -243,11 +254,11 @@ function CoverFlowItemCard({
   enableClickToSnap,
   isDragging,
   onClick,
-}: CardProps) {
-  const position = useTransform(scrollX, (value) => index - value);
-  const zIndex = useTransform(position, (pos) => 1000 - Math.abs(pos) * 10);
+}: any) {
+  const position = useTransform(scrollX, (value: number) => index - value);
+  const zIndex = useTransform(position, (pos: number) => 1000 - Math.abs(pos) * 10);
 
-  const t = useTransform(position, (pos) => {
+  const t = useTransform(position, (pos: number) => {
     const absPos = Math.abs(pos);
     let rY = pos < -0.5 ? rotation : pos > 0.5 ? -rotation : -pos * (rotation * 2);
     
@@ -263,7 +274,7 @@ function CoverFlowItemCard({
   const rotateY = useTransform(t, (v) => v.rotateY);
   const x = useTransform(t, (v) => v.x);
   const z = useTransform(t, (v) => v.z);
-  const brightness = useTransform(position, (pos) => (Math.abs(pos) < 0.5 ? 1 : 0.5));
+  const brightness = useTransform(position, (pos: number) => (Math.abs(pos) < 0.5 ? 1 : 0.5));
 
   return (
     <motion.div
