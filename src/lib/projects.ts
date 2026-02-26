@@ -7,6 +7,7 @@ export interface Project {
     fullDesc: string;
     tags: string[];
     color: string;
+    image: string;
     features: string[];
     /** Secciones de detalle en [id].astro */
     sections: {
@@ -14,6 +15,7 @@ export interface Project {
         description: string;
         imagePosition: 'left' | 'right';
         badge?: string;
+        image?: string;
     }[];
 }
 
@@ -26,6 +28,7 @@ export const projects: Project[] = [
         fullDesc: 'ERP completo para Importadora Miranda que centraliza el ciclo completo de la empresa: gestión de productos importados, control de stock, módulo de cuadernos de venta para el equipo de distribución en campo, liquidaciones y reportes por zona y departamento.',
         tags: ['Laravel', 'Inertia.js', 'React', 'MySQL'],
         color: 'from-orange-500 to-amber-600',
+        image: '/src/assets/admus.png',
         features: [
             'Control de inventario por categoría y proveedor',
             'Cuadernos digitales de venta con flujo de aprobación',
@@ -45,6 +48,7 @@ export const projects: Project[] = [
         fullDesc: 'Plataforma de ventas online conectada al ERP de Miranda. Los clientes navegan el catálogo, agregan productos al carrito, pagan vía QR o transferencia y reciben confirmación automática. Los pedidos quedan visibles para el equipo logístico en tiempo real.',
         tags: ['Next.js', 'Laravel API', 'QR Pay', 'Tailwind'],
         color: 'from-blue-500 to-indigo-600',
+        image: '/src/assets/admus.png',
         features: [
             'Catálogo con búsqueda y filtros en tiempo real',
             'Carrito persistente y checkout multi-paso',
@@ -64,6 +68,7 @@ export const projects: Project[] = [
         fullDesc: 'Plataforma a medida para Admus Produccions que gestiona el ciclo completo de cada producción: desde la captación del cliente y presupuesto inicial, hasta la planificación del equipo técnico, control de gastos y entrega final con historial de revisiones.',
         tags: ['Laravel', 'Livewire', 'Alpine.js', 'MySQL'],
         color: 'from-purple-600 to-violet-700',
+        image: '/src/assets/admus.png',
         features: [
             'Gestión de proyectos con timeline editable',
             'Asignación de equipo técnico y roles',
@@ -83,6 +88,7 @@ export const projects: Project[] = [
         fullDesc: 'Herramienta de planificación visual para el equipo de Admus. Permite ver la disponibilidad de equipos, cámaras, locaciones y personal en un mismo calendario interactivo. Incluye sistema de reservas con notificaciones y exportación a Google Calendar.',
         tags: ['React', 'FullCalendar', 'Node.js', 'PostgreSQL'],
         color: 'from-teal-500 to-emerald-600',
+        image: '/src/assets/admus.png',
         features: [
             'Vista mensual, semanal y diaria del calendario',
             'Reserva de equipos, locaciones y personal',
@@ -102,6 +108,7 @@ export const projects: Project[] = [
         fullDesc: 'El bot integra la API de WhatsApp Business con el sistema de inventario. El cliente hace su pedido en lenguaje natural, el bot confirma disponibilidad y precio, procesa el pago QR y notifica al área de despacho con el detalle del pedido. Sin intervención humana.',
         tags: ['Node.js', 'WhatsApp API', 'OpenAI', 'Redis'],
         color: 'from-green-500 to-emerald-600',
+        image: '/src/assets/admus.png',
         features: [
             'Toma de pedidos en lenguaje natural por WhatsApp',
             'Consulta de stock en tiempo real al inventario',
@@ -121,6 +128,7 @@ export const projects: Project[] = [
         fullDesc: 'Solución full-stack de e-commerce con tienda pública optimizada para conversión y un panel de administración completo. El admin gestiona catálogo, procesa pedidos, controla stock, configura descuentos y ve reportes de ventas en tiempo real.',
         tags: ['Next.js', 'Laravel API', 'Stripe', 'PostgreSQL'],
         color: 'from-rose-500 to-pink-600',
+        image: '/src/assets/admus.png',
         features: [
             'Tienda pública con SEO optimizado y carga rápida',
             'Panel admin: productos, categorías, stock y precios',
@@ -140,6 +148,7 @@ export const projects: Project[] = [
         fullDesc: 'Implementación y personalización de Nextcloud en servidor propio del cliente. Incluye configuración de usuarios y roles, integración con Active Directory, apps de colaboración (OnlyOffice, Talk, Calendar), SSL y backups automáticos.',
         tags: ['Nextcloud', 'Docker', 'Nginx', 'Linux'],
         color: 'from-sky-500 to-blue-600',
+        image: '/src/assets/admus.png',
         features: [
             'Almacenamiento ilimitado en servidor propio',
             'Edición colaborativa de documentos en tiempo real',
@@ -159,6 +168,7 @@ export const projects: Project[] = [
         fullDesc: 'Sistema completo de gift cards digitales: el cliente compra una tarjeta de regalo online, recibe el código por email/WhatsApp, y el beneficiario lo canjea en tienda física o virtual. El panel admin muestra el estado de cada código en tiempo real.',
         tags: ['Laravel', 'React', 'QR Code', 'Stripe'],
         color: 'from-yellow-500 to-orange-500',
+        image: '/src/assets/admus.png',
         features: [
             'Generación de códigos únicos con QR integrado',
             'Venta online y envío automático por email/WhatsApp',
@@ -178,6 +188,7 @@ export const projects: Project[] = [
         fullDesc: 'Solución única que lee las notificaciones push de los bancos (Banesco, Mercantil, BDV y otros) desde el celular del cajero, extrae monto, banco, referencia y cédula con OCR, los cruza con los pedidos pendientes y confirma el pago automáticamente.',
         tags: ['Android', 'OCR', 'Laravel', 'WebSocket'],
         color: 'from-cyan-500 to-teal-600',
+        image: '/src/assets/admus.png',
         features: [
             'Lectura automática de notificaciones bancarias (push)',
             'Extracción de datos con OCR y procesamiento NLP',
@@ -197,6 +208,7 @@ export const projects: Project[] = [
         fullDesc: 'Sistema integral para restaurantes que digitaliza el proceso completo: los comensales reservan mesa online, el maître confirma y asigna, los mozos cargan comandas desde tablet y la cocina las ve en pantalla. El admin ve métricas de mesas, consumo y caja.',
         tags: ['Laravel', 'React', 'WebSocket', 'MySQL'],
         color: 'from-red-500 to-rose-600',
+        image: '/src/assets/admus.png',
         features: [
             'Reservas online con confirmación automática',
             'Gestión de mesas y salones con plano interactivo',
@@ -216,6 +228,7 @@ export const projects: Project[] = [
         fullDesc: 'Nexus Farma centraliza la gestión de la farmacia: inventario de medicamentos con alerta de vencimientos y stock mínimo, punto de venta táctil optimizado, control de laboratorios, historial de clientes y analítica de ventas por categoría y período.',
         tags: ['Laravel', 'React', 'Inertia.js', 'MySQL'],
         color: 'from-violet-600 to-indigo-700',
+        image: '/src/assets/admus.png',
         features: [
             'Inventario de medicamentos con alertas de vencimiento',
             'POS táctil con búsqueda por nombre o código',

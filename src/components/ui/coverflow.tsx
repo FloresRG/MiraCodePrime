@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, useImperativeHandle, forwardRef } from "react";
 import {
   motion,
   useMotionValue,
@@ -7,6 +7,7 @@ import {
   type PanInfo,
   MotionValue,
 } from "motion/react";
+import { cn } from "@/lib/utils";
 
 export interface CoverFlowItem {
   id: string | number;
@@ -34,7 +35,13 @@ export interface CoverFlowProps {
   onIndexChange?: (index: number) => void;
 }
 
-export function CoverFlow({
+export interface CoverFlowRef {
+  next: () => void;
+  prev: () => void;
+  jumpToIndex: (index: number) => void;
+}
+
+export const CoverFlow = forwardRef<CoverFlowRef, CoverFlowProps>(({
   items,
   itemWidth = 800,
   itemHeight = 450,
@@ -51,13 +58,12 @@ export function CoverFlow({
   className,
   onItemClick,
   onIndexChange,
-}: CoverFlowProps) {
+}, ref) => {
   const [activeIndex, setActiveIndex] = useState(initialIndex);
   const [isDragging, setIsDragging] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  
-  // Ref para controlar el bloqueo de scroll rápido
+
   const isScrollingRef = useRef(false);
 
   const [dims, setDims] = useState({
@@ -72,11 +78,12 @@ export function CoverFlow({
       const width = window.innerWidth;
       if (width < 768) {
         const mobileW = width * 0.85;
+        const mobileH = mobileW * (10 / 16);
         setDims({
           width: mobileW,
-          height: mobileW * (9 / 16),
-          gap: width * 0.4,
-          spacing: 50
+          height: mobileH,
+          gap: width * 0.35,
+          spacing: 40
         });
       } else {
         setDims({
@@ -94,9 +101,9 @@ export function CoverFlow({
 
   const scrollX = useMotionValue(initialIndex);
   const springX = useSpring(scrollX, {
-    stiffness: 150,
-    damping: 30,
-    mass: 1,
+    stiffness: 120,
+    damping: 24,
+    mass: 0.8,
   });
 
   const jumpToIndex = useCallback(
@@ -104,12 +111,19 @@ export function CoverFlow({
       let target = index;
       if (index >= items.length) target = 0;
       if (index < 0) target = items.length - 1;
-      
+
       setActiveIndex(target);
+      onIndexChange?.(target);
       scrollX.set(target);
     },
-    [items.length, scrollX],
+    [items.length, scrollX, onIndexChange],
   );
+
+  useImperativeHandle(ref, () => ({
+    next: () => jumpToIndex(activeIndex + 1),
+    prev: () => jumpToIndex(activeIndex - 1),
+    jumpToIndex,
+  }), [activeIndex, jumpToIndex]);
 
   useEffect(() => {
     if (!autoplay || isDragging || isHovered) return;
@@ -119,7 +133,6 @@ export function CoverFlow({
     return () => clearInterval(interval);
   }, [autoplay, activeIndex, isDragging, isHovered, jumpToIndex, autoplayInterval]);
 
-  // --- SCROLL PROTEGIDO (UNO A LA VEZ) ---
   useEffect(() => {
     const container = containerRef.current;
     if (!container || !enableScroll) return;
@@ -127,34 +140,28 @@ export function CoverFlow({
     let wheelAccumulator = 0;
 
     const handleWheel = (e: WheelEvent) => {
-      // Si ya se está ejecutando un cambio de tarjeta, ignorar el resto del scroll
       if (isScrollingRef.current) {
         e.preventDefault();
         return;
       }
 
       const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-      
-      // Permitir scroll vertical normal si no hay shift presionado
+
       if (Math.abs(e.deltaY) > Math.abs(e.deltaX) && !e.shiftKey) {
-          return;
+        return;
       }
 
       e.preventDefault();
       wheelAccumulator += delta;
 
       if (Math.abs(wheelAccumulator) > scrollThreshold) {
-        isScrollingRef.current = true; // Bloqueamos
-
+        isScrollingRef.current = true;
         if (wheelAccumulator > 0) jumpToIndex(activeIndex + 1);
         else jumpToIndex(activeIndex - 1);
-        
         wheelAccumulator = 0;
-
-        // Desbloqueamos después de 250ms para permitir el siguiente "paso"
         setTimeout(() => {
           isScrollingRef.current = false;
-        }, 250);
+        }, 300);
       }
     };
 
@@ -180,9 +187,11 @@ export function CoverFlow({
       ref={containerRef}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative w-full h-full flex flex-col justify-center items-center overflow-hidden bg-transparent focus:outline-none touch-none ${
-        isDragging ? "cursor-grabbing" : "cursor-grab"
-      } ${className ?? ""}`}
+      className={cn(
+        "relative w-full h-full flex flex-col justify-center items-center overflow-hidden bg-transparent focus:outline-none touch-none transition-all duration-300",
+        isDragging ? "cursor-grabbing" : "cursor-grab",
+        className
+      )}
       style={{ perspective: 2000 }}
       tabIndex={0}
       drag="x"
@@ -217,29 +226,10 @@ export function CoverFlow({
           />
         ))}
       </div>
-
-      <div className="absolute bottom-8 left-0 right-0 flex flex-col items-center justify-center pointer-events-none z-40">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          key={activeIndex}
-          className="text-center px-4"
-        >
-          <h3 className="text-xl md:text-2xl font-semibold text-foreground drop-shadow-md">
-            {items[activeIndex]?.title}
-          </h3>
-          {items[activeIndex]?.subtitle && (
-            <p className="text-foreground/60 text-xs md:text-sm mt-1 font-medium">
-              {items[activeIndex]?.subtitle}
-            </p>
-          )}
-        </motion.div>
-      </div>
     </motion.div>
   );
-}
+});
 
-// El componente CoverFlowItemCard se mantiene igual...
 function CoverFlowItemCard({
   item,
   index,
@@ -256,78 +246,97 @@ function CoverFlowItemCard({
   onClick,
 }: any) {
   const position = useTransform(scrollX, (value: number) => index - value);
-  const zIndex = useTransform(position, (pos: number) => 1000 - Math.abs(pos) * 10);
+  const zIndex = useTransform(position, (pos: number) => 1000 - Math.floor(Math.abs(pos) * 10));
 
   const t = useTransform(position, (pos: number) => {
     const absPos = Math.abs(pos);
     let rY = pos < -0.5 ? rotation : pos > 0.5 ? -rotation : -pos * (rotation * 2);
-    
+
     let x = 0;
     const stackIndex = Math.max(0, absPos - 1);
     if (pos < 0) x = absPos < 1 ? pos * centerGap : -centerGap - stackIndex * stackSpacing;
     else x = absPos < 1 ? pos * centerGap : centerGap + stackIndex * stackSpacing;
 
-    const z = absPos > 0.5 ? -200 : Math.abs(pos) * -400;
+    const z = absPos > 0.5 ? -300 : Math.abs(pos) * -500;
     return { rotateY: rY, x, z };
   });
 
   const rotateY = useTransform(t, (v) => v.rotateY);
   const x = useTransform(t, (v) => v.x);
   const z = useTransform(t, (v) => v.z);
-  const brightness = useTransform(position, (pos: number) => (Math.abs(pos) < 0.5 ? 1 : 0.5));
+
+  const filter = useTransform(position, (pos: number) => {
+    const b = Math.abs(pos) < 0.5 ? 1 : 0.7;
+    const s = Math.abs(pos) < 0.5 ? 1 : 0.8;
+    return `brightness(${b}) saturate(${s})`;
+  });
 
   return (
     <motion.div
-      className={`absolute top-1/2 left-1/2 preserve-3d will-change-transform ${
+      className={cn(
+        "absolute top-1/2 left-1/2 preserve-3d will-change-transform rounded-2xl overflow-hidden",
         isDragging ? "cursor-grabbing" : (isActive || enableClickToSnap ? "cursor-pointer" : "cursor-grab")
-      }`}
+      )}
       style={{
         width,
         height,
         marginTop: -height / 2,
         marginLeft: -width / 2,
         x, z, rotateY, zIndex,
-        filter: useTransform(brightness, (b) => `brightness(${b})`),
+        filter: filter,
         pointerEvents: "auto",
       }}
       onClick={onClick}
+      whileHover={isActive ? { scale: 1.02 } : {}}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
-      <div className="relative w-full h-full rounded-xl shadow-2xl bg-black overflow-hidden border border-white/10">
+      <div className="relative w-full h-full rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-card border border-white/10 group overflow-hidden">
         <img
           src={item.image}
           alt={item.title}
-          className="w-full h-full object-cover select-none pointer-events-none"
+          className="w-full h-full object-cover select-none transition-transform duration-700 group-hover:scale-110"
           draggable={false}
         />
+        {/* Shadow Overlay */}
+        <div className={cn(
+          "absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-500",
+          isActive ? "opacity-30" : "opacity-60"
+        )} />
+
+        {/* Project Label */}
+        <div className={cn(
+          "absolute bottom-0 left-0 right-0 p-6 flex flex-col items-center justify-center transition-all duration-500",
+          isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        )}>
+          <span className="text-white text-2xl md:text-3xl font-black tracking-tighter uppercase text-center drop-shadow-lg">
+            {item.title}
+          </span>
+          <span className="text-primary text-xs md:text-sm font-bold tracking-[0.2em] uppercase mt-1 animate-pulse">
+            Ver Proyecto
+          </span>
+        </div>
+
+        {/* Side card hints */}
+        {!isActive && (
+          <div className="absolute inset-0 flex items-center justify-center p-4">
+            <span className="text-white/60 text-sm font-bold tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity text-center">
+              {item.title}
+            </span>
+          </div>
+        )}
       </div>
 
       {enableReflection && (
         <div
           className="absolute left-0 right-0 overflow-hidden pointer-events-none"
-          style={{ top: "100%", width, height: height * 0.35, marginTop: "2px" }}
+          style={{ top: "100%", width, height: height * 0.35, marginTop: "8px" }}
         >
-          <div className="relative w-full h-full opacity-30" style={{ transform: "scaleY(-1)" }}>
-            <img src={item.image} alt="" className="w-full h-full object-cover blur-[1px]" />
-            <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-transparent" />
+          <div className="relative w-full h-full opacity-20" style={{ transform: "scaleY(-1)" }}>
+            <img src={item.image} alt="" className="w-full h-full object-cover blur-[2px]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-background via-background/60 to-transparent" />
           </div>
         </div>
       )}
     </motion.div>
   );
-}
-
-interface CardProps {
-  item: CoverFlowItem;
-  index: number;
-  scrollX: MotionValue<number>;
-  width: number;
-  height: number;
-  stackSpacing: number;
-  centerGap: number;
-  rotation: number;
-  isActive: boolean;
-  enableReflection: boolean;
-  enableClickToSnap: boolean;
-  isDragging: boolean;
-  onClick: () => void;
 }

@@ -9,7 +9,7 @@ interface Props {
   title: string;
   description: string;
   badge?: string;
-  image: ImageMetadata;
+  image: string;
   index: number;
   total: number;
 }
@@ -94,10 +94,8 @@ const isLast = index === total - 1;
         </div>
 
         <img
-          src={image.src}
+          src={image}
           alt={title}
-          width={image.width}
-          height={image.height}
           loading="lazy"
           class="w-full object-cover aspect-[16/10] sm:aspect-[16/9] transition-transform duration-700 group-hover:scale-105"
         />

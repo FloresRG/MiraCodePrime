@@ -18,13 +18,12 @@ const project = getProject(id!);
 
 if (!project) return Astro.redirect("/404");
 
-// Imagen placeholder
-import dashImg from "@/assets/dashboard.png";
+// Imagen placeholder - mantenemos el import de logo para el hero
 import logoImg from "@/assets/logo.png";
 
-// Fallback temporal usando la misma imagen
-const coverImage = dashImg;
-const sectionImages = project.sections.map(() => dashImg);
+// Usamos la imagen del proyecto definida en data
+const coverImage = project.image;
+const sectionImages = project.sections.map(s => s.image || project.image);
 ---
 
 <Main title={`${project.title} | MiraCode`}>
@@ -40,10 +39,8 @@ const sectionImages = project.sections.map(() => dashImg);
     <!-- Imagen de fondo que ocupa todo el Hero -->
     <div class="absolute inset-0 z-0">
       <img
-        src={coverImage.src}
+        src={coverImage}
         alt={`${project.title} Cover`}
-        width={coverImage.width}
-        height={coverImage.height}
         class="w-full h-full object-cover opacity-50 scale-105 animate-image-reveal"
       />
     </div>
