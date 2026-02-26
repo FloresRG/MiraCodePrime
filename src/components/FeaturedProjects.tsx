@@ -1,6 +1,7 @@
 import React from "react";
 import Marquee from "@/components/ui/marquee";
 import { cn } from "@/lib/utils";
+import { SectionHeader } from "./SectionHeader";
 
 const projects = [
   {
@@ -75,33 +76,24 @@ const ProjectCard = ({
 
 export const FeaturedProjects = () => {
   return (
-    <section
-      id="portfolio"
-      className="py-20 md:py-32 bg-background relative overflow-hidden"
-    >
-      <div className="container mx-auto px-4 mb-14 md:mb-24">
-        <div className="text-center">
-          <h2 className="text-5xl font-black tracking-[calc(-0.05em)] sm:text-8xl mb-8 text-foreground leading-none">
-            Proyectos Destacados
-          </h2>
-          <p className="text-lg md:text-3xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-medium px-4">
-            Una selección de soluciones digitales de alto impacto diseñadas para
-            transformar negocios.
-          </p>
-        </div>
-      </div>
+    <section id="portfolio" className="pt-20 pb-10 bg-background relative overflow-hidden">
+      {/* Nuevo Header Pro */}
+      <SectionHeader
+        badge="Portafolio"
+        title="Proyectos Destacados"
+        subtitle="Soluciones digitales reales diseñadas con precisión técnica y enfoque estratégico para elevar el valor de nuestros clientes."
+      />
 
-      <div className="relative flex h-[350px] md:h-[550px] w-full flex-col items-center justify-center overflow-hidden">
-        <Marquee
-          pauseOnHover
-          className="[--duration:50s] [--gap:1.5rem] sm:[--gap:3rem]"
-        >
+      <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
+        <Marquee pauseOnHover className="[--duration:50s] [--gap:1.5rem] sm:[--gap:3rem]">
           {projects.map((project) => (
             <ProjectCard key={project.id} {...project} />
           ))}
         </Marquee>
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background z-10"></div>
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background z-10"></div>
+        
+        {/* Degradados laterales para el Marquee */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
       </div>
     </section>
   );

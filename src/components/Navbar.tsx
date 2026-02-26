@@ -25,8 +25,6 @@ export const Navbar = () => {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
       className={`fixed top-0 z-50 w-full transition-all duration-300 ${
         scrolled
           ? "border-b border-border/40 bg-background/80 backdrop-blur-xl py-2"
