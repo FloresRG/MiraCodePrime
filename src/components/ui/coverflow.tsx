@@ -27,6 +27,8 @@ export interface CoverFlowProps {
   enableClickToSnap?: boolean;
   enableScroll?: boolean;
   scrollThreshold?: number;
+  autoplay?: boolean;
+  autoplayInterval?: number;
   className?: string;
   onItemClick?: (item: CoverFlowItem, index: number) => void;
   onIndexChange?: (index: number) => void;
@@ -43,16 +45,18 @@ export function CoverFlow({
   enableReflection = true,
   enableClickToSnap = true,
   enableScroll = true,
-  scrollThreshold = 100,
+  scrollThreshold = 60, // Bajado para mayor sensibilidad
+  autoplay = true,
+  autoplayInterval = 5000,
   className,
   onItemClick,
   onIndexChange,
 }: CoverFlowProps) {
   const [activeIndex, setActiveIndex] = useState(initialIndex);
   const [isDragging, setIsDragging] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // --- LÓGICA RESPONSIVA ---
   const [dims, setDims] = useState({
     width: itemWidth,
     height: itemHeight,
@@ -60,18 +64,19 @@ export function CoverFlow({
     spacing: stackSpacing
   });
 
+  // --- LÓGICA RESPONSIVA ---
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      if (width < 768) { // Móvil
+      if (width < 768) {
         const mobileW = width * 0.85;
         setDims({
           width: mobileW,
-          height: mobileW * (9 / 16), // Mantiene proporción 16:9
+          height: mobileW * (9 / 16),
           gap: width * 0.4,
           spacing: 50
         });
-      } else { // Desktop
+      } else {
         setDims({
           width: itemWidth,
           height: itemHeight,
@@ -80,15 +85,11 @@ export function CoverFlow({
         });
       }
     };
-
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [itemWidth, itemHeight, centerGap, stackSpacing]);
-  // -------------------------
 
-  const enableScrollRef = useRef(enableScroll);
-  const scrollThresholdRef = useRef(scrollThreshold);
   const scrollX = useMotionValue(initialIndex);
   const springX = useSpring(scrollX, {
     stiffness: 150,
@@ -96,92 +97,84 @@ export function CoverFlow({
     mass: 1,
   });
 
-  useEffect(() => {
-    if (initialIndex !== activeIndex) {
-      setActiveIndex(initialIndex);
-      scrollX.set(initialIndex);
-    }
-  }, [initialIndex, activeIndex, scrollX]);
-
-  useEffect(() => {
-    onIndexChange?.(activeIndex);
-  }, [activeIndex, onIndexChange]);
-
-  useEffect(() => {
-    enableScrollRef.current = enableScroll;
-    scrollThresholdRef.current = scrollThreshold;
-  }, [enableScroll, scrollThreshold]);
-
   const jumpToIndex = useCallback(
     (index: number) => {
-      const clamped = Math.min(Math.max(index, 0), items.length - 1);
-      setActiveIndex(clamped);
-      scrollX.set(clamped);
+      // Loop: si llega al final vuelve al inicio, y viceversa
+      let target = index;
+      if (index >= items.length) target = 0;
+      if (index < 0) target = items.length - 1;
+      
+      setActiveIndex(target);
+      scrollX.set(target);
     },
     [items.length, scrollX],
   );
 
+  // --- AUTOPLAY ---
+  useEffect(() => {
+    if (!autoplay || isDragging || isHovered) return;
+
+    const interval = setInterval(() => {
+      jumpToIndex(activeIndex + 1);
+    }, autoplayInterval);
+
+    return () => clearInterval(interval);
+  }, [autoplay, activeIndex, isDragging, isHovered, jumpToIndex, autoplayInterval]);
+
+  // --- SCROLL OPTIMIZADO ---
   useEffect(() => {
     const container = containerRef.current;
-    if (!container) return;
+    if (!container || !enableScroll) return;
 
     let wheelAccumulator = 0;
-    let lastWheelTime = Date.now();
 
     const handleWheel = (e: WheelEvent) => {
-      if (!enableScrollRef.current) return;
-      const isVerticalScroll = Math.abs(e.deltaY) > Math.abs(e.deltaX);
-      if (isVerticalScroll) return;
+      // Priorizar scroll horizontal del mouse o shift+wheel
+      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX) && !e.shiftKey) {
+          // Si el scroll es puramente vertical y no se pulsa shift, permitimos scroll de página
+          return;
+      }
 
       e.preventDefault();
-      const now = Date.now();
-      if (now - lastWheelTime > 200) wheelAccumulator = 0;
-      lastWheelTime = now;
-      wheelAccumulator += e.deltaX;
+      wheelAccumulator += delta;
 
-      if (Math.abs(wheelAccumulator) > scrollThresholdRef.current) {
-        const currentIndex = Math.round(scrollX.get());
-        jumpToIndex(wheelAccumulator > 0 ? currentIndex + 1 : currentIndex - 1);
+      if (Math.abs(wheelAccumulator) > scrollThreshold) {
+        if (wheelAccumulator > 0) jumpToIndex(activeIndex + 1);
+        else jumpToIndex(activeIndex - 1);
         wheelAccumulator = 0;
       }
     };
 
     container.addEventListener("wheel", handleWheel, { passive: false });
     return () => container.removeEventListener("wheel", handleWheel);
-  }, [jumpToIndex, scrollX]);
+  }, [enableScroll, activeIndex, jumpToIndex, scrollThreshold]);
 
+  // --- DRAG ---
   const onDragStart = () => setIsDragging(true);
-
   const onDrag = (_: any, info: PanInfo) => {
-    // Sensibilidad dinámica basada en el gap actual
     const deltaIndex = -info.delta.x / (dims.gap * 0.8);
-    scrollX.set(springX.get() + deltaIndex);
+    scrollX.set(scrollX.get() + deltaIndex);
   };
-
   const onDragEnd = (_: any, info: PanInfo) => {
     setIsDragging(false);
-    const projected = springX.get() - info.velocity.x * 0.002;
-    const targetIndex = Math.round(projected);
+    const velocity = info.velocity.x;
+    const current = scrollX.get();
+    const targetIndex = Math.round(current - velocity * 0.001);
     jumpToIndex(targetIndex);
   };
-
-  const onKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
-      if (e.key === "ArrowLeft") jumpToIndex(activeIndex - 1);
-      if (e.key === "ArrowRight") jumpToIndex(activeIndex + 1);
-    },
-    [activeIndex, jumpToIndex],
-  );
 
   return (
     <motion.div
       ref={containerRef}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       className={`relative w-full h-full flex flex-col justify-center items-center overflow-hidden bg-transparent focus:outline-none touch-none ${
         isDragging ? "cursor-grabbing" : "cursor-grab"
       } ${className ?? ""}`}
       style={{ perspective: 2000 }}
       tabIndex={0}
-      onKeyDown={onKeyDown}
       drag="x"
       dragConstraints={{ left: 0, right: 0 }}
       onDragStart={onDragStart}
@@ -236,7 +229,6 @@ export function CoverFlow({
   );
 }
 
-// --- CARD COMPONENT ---
 function CoverFlowItemCard({
   item,
   index,

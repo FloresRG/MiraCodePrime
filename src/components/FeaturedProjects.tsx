@@ -125,7 +125,7 @@ export const FeaturedProjects = () => {
         <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
         <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
       </div>
-      <div className="w-full h-52 md:h-[750px] border-b border-border/40 relative bg-background">
+      <div className="w-full h-72 md:h-[750px] border-b border-border/40 relative bg-background">
         <CoverFlow
           items={hero}
           itemWidth={900}
