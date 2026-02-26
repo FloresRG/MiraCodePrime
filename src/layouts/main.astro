@@ -23,12 +23,9 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap" rel="stylesheet">
 
     <script is:inline>
       const theme = (() => {
@@ -53,7 +50,7 @@ const {
     </script>
   </head>
   <body
-    class="min-h-screen bg-background text-foreground font-['Outfit',sans-serif] selection:bg-primary/20 selection:text-primary transition-colors duration-500"
+    class="min-h-screen bg-background text-foreground font-['Tektur',sans-serif] selection:bg-primary/20 selection:text-primary transition-colors duration-500"
   >
     <slot />
   </body>

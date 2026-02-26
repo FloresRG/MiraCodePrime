@@ -82,8 +82,8 @@ export const CoverFlow = forwardRef<CoverFlowRef, CoverFlowProps>(({
         setDims({
           width: mobileW,
           height: mobileH,
-          gap: width * 0.35,
-          spacing: 40
+          gap: width * 0.25,
+          spacing: 20
         });
       } else {
         setDims({
@@ -297,17 +297,14 @@ function CoverFlowItemCard({
           className="w-full h-full object-cover select-none transition-transform duration-700 group-hover:scale-110"
           draggable={false}
         />
-        {/* Shadow Overlay */}
+        {/* Shadow Overlay - Refined for clarity */}
         <div className={cn(
-          "absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-500",
-          isActive ? "opacity-30" : "opacity-60"
+          "absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-40 transition-opacity duration-500",
+          isActive ? "opacity-20" : "opacity-60"
         )} />
 
-        {/* Project Label */}
-        <div className={cn(
-          "absolute bottom-0 left-0 right-0 p-6 flex flex-col items-center justify-center transition-all duration-500",
-          isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-        )}>
+        {/* Project Label - Hidden because it's now below the image */}
+        <div className="hidden">
           <span className="text-white text-2xl md:text-3xl font-black tracking-tighter uppercase text-center drop-shadow-lg">
             {item.title}
           </span>

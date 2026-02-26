@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { SectionHeader } from "./SectionHeader";
 import { projects } from "@/lib/projects";
 import { CoverFlow, type CoverFlowItem, type CoverFlowRef } from "@/components/ui/coverflow";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -34,7 +34,7 @@ export const FeaturedProjects = () => {
   return (
     <section
       id="portfolio"
-      className="pt-24 pb-20 bg-background relative overflow-hidden"
+      className="pt-24 bg-background relative overflow-hidden"
     >
       {/* Background Decorative Elements */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none overflow-hidden">
@@ -48,16 +48,16 @@ export const FeaturedProjects = () => {
         subtitle="Soluciones digitales reales diseñadas con precisión técnica y enfoque estratégico para elevar el valor de nuestros clientes."
       />
 
-      {/* CoverFlow Container */}
-      <div className="relative w-full h-[450px] md:h-[650px] mt-12 group/nav">
+      {/* CoverFlow Container - Height reduced to minimize bottom gap */}
+      <div className="relative w-full h-[320px] md:h-[520px] group/nav">
         <CoverFlow
           ref={coverFlowRef}
           items={coverFlowItems}
           initialIndex={0}
           itemWidth={800}
           itemHeight={450}
-          centerGap={450}
-          stackSpacing={120}
+          centerGap={400}
+          stackSpacing={100}
           autoplay={true}
           autoplayInterval={6000}
           onIndexChange={(index) => setActiveIndex(index)}
@@ -86,30 +86,38 @@ export const FeaturedProjects = () => {
         </div>
       </div>
 
+      {/* Project Title Below Image - Minimal Spacing */}
+      <div className="max-w-4xl mx-auto px-6 mt-1 pointer-events-none">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={projects[activeIndex].id}
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -5 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="text-center"
+          >
+            <h3 className="text-2xl md:text-4xl font-black text-foreground uppercase tracking-tighter leading-tight drop-shadow-lg">
+              {projects[activeIndex].title}
+            </h3>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
       {/* Simple Navigation Dots */}
-      <div className="max-w-5xl mx-auto px-6 mt-4">
+      <div className="max-w-5xl mx-auto px-6 pb-20">
         <div className="flex justify-center flex-wrap gap-2">
           {projects.map((p, i) => (
             <button
               key={p.id}
               onClick={() => coverFlowRef.current?.jumpToIndex(i)}
               className={cn(
-                "h-1.5 transition-all duration-500 rounded-full",
-                i === activeIndex ? "w-10 bg-primary" : "w-4 bg-primary/20 hover:bg-primary/40"
+                "h-2 transition-all duration-500 rounded-full",
+                i === activeIndex ? "w-12 bg-primary" : "w-3 bg-primary/20 hover:bg-primary/40"
               )}
               aria-label={`Ir al proyecto ${p.title}`}
             />
           ))}
-        </div>
-
-        {/* Active Project Title (Fallback/Mobile visibility) */}
-        <div className="mt-8 text-center md:hidden">
-          <h3 className="text-2xl font-black text-foreground uppercase tracking-tighter">
-            {projects[activeIndex].title}
-          </h3>
-          <p className="text-primary text-xs font-bold tracking-widest mt-1 uppercase">
-            {projects[activeIndex].category}
-          </p>
         </div>
       </div>
     </section>

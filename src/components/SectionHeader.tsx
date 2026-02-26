@@ -17,7 +17,7 @@ export const SectionHeader = ({
   className 
 }: SectionHeaderProps) => {
   return (
-    <div className={cn("container mx-auto px-4 mb-16 md:mb-28", className)}>
+    <div className={cn("container mx-auto px-4 ", className)}>
       <div className="relative flex flex-col items-center text-center">
         
         {/* Badge Animado */}
