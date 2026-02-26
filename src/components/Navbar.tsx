@@ -25,25 +25,24 @@ export const Navbar = () => {
 
   return (
     <motion.nav
-      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
-        scrolled
-          ? "border-b border-border/40 bg-background/80 backdrop-blur-xl py-2"
+      className={`fixed top-0 z-50 w-full transition-all duration-500 ${scrolled
+          ? "border-b border-white/10 bg-background/60 backdrop-blur-2xl py-2 shadow-[0_8px_32px_rgba(0,0,0,0.12)]"
           : "bg-transparent py-4"
-      }`}
+        }`}
     >
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex h-16 items-center justify-between">
           {/* Logo Section */}
           <div className="flex-1 flex items-center">
             <a href="/" className="flex items-center gap-3 group">
-              <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-sm border border-primary/20 p-1">
+              <div className="size-11 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:scale-110 transition-all duration-500 shadow-xl border border-white/10 p-1.5 backdrop-blur-sm">
                 <img
                   src={logoImg.src}
                   alt="Logo"
                   className="size-full object-contain"
                 />
               </div>
-              <span className="text-2xl font-black tracking-tighter text-foreground group-hover:text-primary transition-colors">
+              <span className="text-2xl font-black tracking-tighter text-foreground group-hover:text-primary transition-all duration-300">
                 MiraCode
               </span>
             </a>

@@ -35,78 +35,74 @@ const sectionImages = project.sections.map(() => dashImg);
 
   <!-- ── HERO: IMAGEN GIGANTE ("LA CARA") ────────────────────── -->
   <section
-    class="relative w-full h-[85vh] min-h-[600px] flex items-end justify-center overflow-hidden bg-slate-950 mt-24"
+    class="relative w-full h-[85vh] min-h-[700px] flex items-end justify-center overflow-hidden bg-background mt-20"
   >
     <!-- Imagen de fondo que ocupa todo el Hero -->
     <div class="absolute inset-0 z-0">
       <img
-        src={coverImage.src}
+        src={coverImage}
         alt={`${project.title} Cover`}
-        width={coverImage.width}
-        height={coverImage.height}
-        class="w-full h-full object-cover opacity-50 scale-105 animate-image-reveal"
+        class="w-full h-full object-cover scale-105 animate-image-reveal brightness-[0.5] saturate-[1.2]"
       />
+      <!-- Mesh Gradient Overlay -->
+      <div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-accent/10"></div>
+      <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-background to-transparent"></div>
     </div>
 
-    <!-- Nota ubicada arriba a la derecha con fondo azul marino transparente -->
-    <div class="absolute top-20 right-6 md:right-10 z-30 w-80 max-w-[90%]">
-      <div class="rounded-2xl p-6 bg-blue-950/70 backdrop-blur-2xl border border-blue-400/20 shadow-2xl shadow-blue-950/50 hover:shadow-blue-500/20 transition-all duration-300 hover:border-blue-400/30 hover:-translate-y-1">
-        <div class="flex items-center gap-2 mb-3">
-          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-400/20 text-blue-200 border border-blue-400/30">
-            {project.category}
-          </span>
-        </div>
-        <h1 class="text-2xl md:text-3xl font-bold text-white leading-tight tracking-tight">
-          {project.title}
-        </h1>
-        <p class="mt-2 text-sm text-blue-200/70 font-medium leading-relaxed">{project.shortDesc}</p>
-        
-        <!-- Botones CTA movidos aquí, debajo de la nota -->
-        <div class="flex flex-col sm:flex-row gap-3 mt-5">
-          <a
-            href="#detalles"
-            class="inline-flex items-center justify-center gap-2 h-10 px-6 rounded-xl bg-blue-400 text-blue-950 font-semibold text-sm hover:bg-blue-300 transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-400/25"
-          >
-            Explorar sistema
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="animate-bounce"
-              ><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg
-            >
-          </a>
-          <a
-            href="/#contact"
-            class="inline-flex items-center justify-center gap-2 h-10 px-6 rounded-xl border border-blue-400/30 bg-blue-400/10 backdrop-blur-sm text-blue-100 font-semibold text-sm hover:bg-blue-400/20 hover:border-blue-400/50 transition-all duration-300"
-          >
-            Quiero algo igual
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Contenido del Hero (Abajo) -->
+    <!-- Contenido del Hero -->
     <div
-      class="container relative z-20 mx-auto px-4 md:px-6 pb-16 md:pb-24 flex flex-col items-center text-center animate-fade-up"
+      class="container relative z-20 mx-auto px-6 pb-20 md:pb-32 flex flex-col items-center text-center animate-fade-up"
     >
-    
-      <!-- Logo decorativo -->
-      <div
-        class="mb-8 opacity-20 hover:opacity-100 transition-opacity duration-700"
+      <div class="flex flex-wrap gap-2 justify-center mb-8">
+        <span
+          class="inline-flex items-center px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.3em] bg-primary/20 text-primary border border-primary/30 backdrop-blur-md shadow-2xl shadow-primary/20"
+        >
+          {project.category}
+        </span>
+      </div>
+
+      <h1
+        class="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-black tracking-tighter text-foreground mb-8 leading-[0.8] drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
       >
-        <img
-          src={logoImg.src}
-          alt="Logo"
-          class="size-20 md:size-32 object-contain"
-        />
-        
+        {project.title.split(' ').map((word, i) => (
+           <span class={i % 2 !== 0 ? "text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-blue-400" : ""}>
+             {word}{' '}
+           </span>
+        ))}
+      </h1>
+
+      <p
+        class="max-w-3xl text-xl md:text-3xl font-medium text-muted-foreground leading-relaxed mb-12 drop-shadow-lg"
+      >
+        {project.shortDesc}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-6 justify-center w-full sm:w-auto">
+        <a
+          href="#detalles"
+          class="inline-flex items-center justify-center gap-3 h-16 px-12 rounded-2xl bg-primary text-primary-foreground font-bold text-lg hover:scale-105 transition-all duration-300 shadow-[0_20px_50px_-15px_rgba(var(--primary-rgb),0.5)]"
+        >
+          Explorar sistema
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg
+          >
+        </a>
+        <a
+          href="/#contact"
+          class="inline-flex items-center justify-center gap-3 h-16 px-12 rounded-2xl border-2 border-primary/20 bg-background/20 backdrop-blur-md text-foreground font-bold text-lg hover:bg-background/40 transition-all duration-300 hover:border-primary/50"
+        >
+          Solicitar cotización
+        </a>
       </div>
     </div>
   </section>

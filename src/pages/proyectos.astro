@@ -13,7 +13,7 @@ import dashImg from '@/assets/dashboard.png';
   <Navbar client:load />
 
   <!-- ── HERO ─────────────────────────────────────────────── -->
-  <section class="relative pt-28 pb-10 md:pt-36 md:pb-16 overflow-hidden">
+  <section class="relative pt-24 overflow-hidden">
     <div class="absolute inset-0 -z-10 pointer-events-none">
       <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-gradient-to-b from-primary/20 via-blue-500/10 to-transparent rounded-full blur-3xl"></div>
     </div>
@@ -41,15 +41,15 @@ import dashImg from '@/assets/dashboard.png';
   </section>
 
   <!-- ── LISTADO DE PROYECTOS (ImageTextSection para cada uno) ── -->
-  <main class="flex flex-col gap-0 pb-16">
+  <main class="flex flex-col  ">
     {projects.map((p, index) => (
       <ImageTextSection
-        image={dashImg} // Cuando tengas las reales, podés pasarlas aquí, por ej: p.cover
+        image={dashImg}
         title={p.title}
         description={p.shortDesc}
         imagePosition={index % 2 === 0 ? 'left' : 'right'}
         badge={p.category}
-        features={p.features.slice(0, 3)} // Mostramos las 3 principales en la lista
+        features={p.features.slice(0, 3)} 
         ctaPrimary={{
           label: 'Ver capturas y detalles',
           href: `/proyectos/${p.id}`,

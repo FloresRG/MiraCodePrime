@@ -83,28 +83,41 @@ export const Hero = () => {
             {/* Logo + Nombre */}
             <div className="flex items-center gap-4 md:gap-5">
               <div className="relative">
-                <div className="size-12 md:size-20 rounded-xl md:rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-2xl shadow-primary/30">
-                  <Rocket className="size-6 md:size-10 text-white" />
+                <div className="size-14 md:size-24 rounded-[2rem] bg-gradient-to-tr from-primary via-accent to-primary flex items-center justify-center shadow-[0_0_50px_rgba(var(--primary-rgb),0.3)] border border-white/20 relative overflow-hidden group">
+                  <motion.div
+                    animate={{
+                      rotate: [0, 10, -10, 0],
+                      scale: [1, 1.1, 0.9, 1]
+                    }}
+                    transition={{ duration: 4, repeat: Infinity }}
+                  >
+                    <Rocket className="size-7 md:size-12 text-primary-foreground drop-shadow-lg" />
+                  </motion.div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 </div>
-                <div className="absolute -inset-2 bg-primary/20 blur-xl rounded-full" />
+                <div className="absolute -inset-4 bg-primary/30 blur-3xl rounded-full opacity-50 group-hover:opacity-80 transition-opacity" />
               </div>
 
-              <h1 className="text-3xl md:text-6xl font-black tracking-tighter text-foreground">
+              <h1 className="text-4xl md:text-7xl font-black tracking-tighter text-foreground leading-none">
                 Mira
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+                <span className="text-transparent bg-clip-text bg-gradient-to-br from-primary via-accent to-primary animate-gradient-x drop-shadow-[0_0_20px_rgba(var(--primary-rgb),0.2)]">
                   Code
                 </span>
               </h1>
             </div>
 
             {/* Frase Principal */}
-            <div className="space-y-4">
-              <h2 className="text-5xl md:text-7xl lg:text-8xl font-black leading-[0.9] tracking-tighter">
-                Mirando hacia <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary animate-gradient-x">
+            <div className="space-y-6 relative">
+              <h2 className="text-6xl md:text-8xl lg:text-[10rem] font-black leading-[0.8] tracking-tighter -ml-1">
+                Mirando <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-blue-400 animate-gradient-x relative">
                   el futuro
+                  <div className="absolute -inset-x-20 inset-y-0 bg-primary/10 blur-[120px] -z-10 rounded-full" />
                 </span>
               </h2>
+              <p className="text-xl md:text-2xl text-muted-foreground font-medium max-w-xl leading-relaxed">
+                Transformando ideas en experiencias digitales <span className="text-primary font-bold">excepcionales</span> con tecnología de vanguardia.
+              </p>
             </div>
 
             {/* CTA opcional para móvil para llenar espacio visual */}

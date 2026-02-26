@@ -32,12 +32,12 @@ export const ServicePageTimeline = ({ service }: { service: Service }) => {
           >
             {/* Vertical Line */}
             {index !== service.steps.length - 1 && (
-              <div className="absolute left-[84px] top-10 bottom-[-48px] w-0.5 bg-gray-200 dark:bg-white/10" />
+              <div className="absolute left-[84px] top-10 bottom-[-48px] w-0.5 bg-border/20" />
             )}
 
             {/* Date */}
             <div className="w-20 pt-2 text-right">
-              <span className="text-sm font-bold text-muted-foreground font-mono">
+              <span className="text-sm font-black text-primary/40 font-mono tracking-tighter">
                 {step.date}
               </span>
             </div>
@@ -46,20 +46,20 @@ export const ServicePageTimeline = ({ service }: { service: Service }) => {
             <div className="relative z-10">
               <div
                 className={cn(
-                  "size-12 rounded-full flex items-center justify-center shadow-lg transition-transform group-hover:scale-110",
+                  "size-12 rounded-2xl flex items-center justify-center shadow-2xl transition-all duration-500 group-hover:scale-110 border border-white/10 p-0.5",
                   step.status === "completed"
-                    ? "bg-green-500"
+                    ? "bg-green-500/80 text-white shadow-green-500/20"
                     : step.status === "in-progress"
-                      ? "bg-primary"
-                      : "bg-gray-300 dark:bg-white/10",
+                      ? "bg-gradient-to-br from-primary to-accent text-primary-foreground shadow-primary/30"
+                      : "bg-muted/50 dark:bg-card border-border/30",
                 )}
               >
                 {step.status === "completed" ? (
-                  <Check className="size-6 text-white" />
+                  <Check className="size-5" />
                 ) : step.status === "in-progress" ? (
-                  <Play className="size-6 text-white fill-current" />
+                  <Play className="size-5 fill-current ml-0.5" />
                 ) : (
-                  <Clock className="size-6 text-muted-foreground" />
+                  <Clock className="size-5 text-muted-foreground" />
                 )}
               </div>
             </div>
