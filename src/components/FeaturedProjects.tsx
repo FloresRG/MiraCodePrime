@@ -125,21 +125,21 @@ export const FeaturedProjects = () => {
         <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
         <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
       </div>
-   <div className="w-full h-52 md:h-[750px] border-b border-border/40 relative bg-background">
-  <CoverFlow
-    items={hero}
-    itemWidth={900}
-    itemHeight={500}
-    centerGap={550}
-    initialIndex={5}
-    enableScroll={true}
-    scrollThreshold={60} 
-    // Bajé el stackSpacing a 60 como pusiste, 
-    // esto hará que las fotos de los lados se vean muy compactas.
-    stackSpacing={60} 
-    enableReflection={true}
-  />
-</div>
+      <div className="w-full h-52 md:h-[750px] border-b border-border/40 relative bg-background">
+        <CoverFlow
+          items={hero}
+          itemWidth={900}
+          itemHeight={500}
+          centerGap={550}
+          initialIndex={5}
+          enableScroll={true}
+          scrollThreshold={60}
+          // Bajé el stackSpacing a 60 como pusiste,
+          // esto hará que las fotos de los lados se vean muy compactas.
+          stackSpacing={60}
+          enableReflection={true}
+        />
+      </div>
     </section>
   );
 };
