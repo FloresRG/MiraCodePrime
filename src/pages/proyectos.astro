@@ -41,22 +41,24 @@ import dashImg from '@/assets/dashboard.png';
   </section>
 
   <!-- ── LISTADO DE PROYECTOS (ImageTextSection para cada uno) ── -->
-  <main class="flex flex-col  ">
+  <main class="flex flex-col">
     {projects.map((p, index) => (
-      <ImageTextSection
-        image={dashImg}
-        title={p.title}
-        description={p.shortDesc}
-        imagePosition={index % 2 === 0 ? 'left' : 'right'}
-        badge={p.category}
-        features={p.features.slice(0, 3)} 
-        ctaPrimary={{
-          label: 'Ver capturas y detalles',
-          href: `/proyectos/${p.id}`,
-          triggerConfetti: false
-        }}
-        ctaSecondary={undefined}
-      />
+      <div class={`md:py-12`}>
+        <ImageTextSection
+          image={dashImg}
+          title={p.title}
+          description={p.shortDesc}
+          imagePosition={index % 2 === 0 ? 'left' : 'right'}
+          badge={p.category}
+          features={p.features.slice(0, 3)} 
+          ctaPrimary={{
+            label: 'Ver capturas y detalles',
+            href: `/proyectos/${p.id}`,
+            triggerConfetti: false
+          }}
+          ctaSecondary={undefined}
+        />
+      </div>
     ))}
   </main>
 

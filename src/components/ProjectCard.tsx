@@ -75,7 +75,7 @@ const ProjectCard = ({
       className={cn(
         "relative w-full pt-4 overflow-hidden",
         "bg-gradient-to-b from-background via-background to-muted/30",
-        className
+        className,
       )}
     >
       {/* Efecto decorativo de fondo */}
@@ -87,7 +87,7 @@ const ProjectCard = ({
 
       <div className="container mx-auto px-4 md:px-6">
         {/* Desktop Layout */}
-        <div className="hidden md:grid gap-8 lg:gap-14 items-center lg:grid-cols-2">
+        <div className="hidden md:grid gap-8 lg:gap-14 items-center lg:grid-cols-2 ">
           {/* Imagen - Desktop */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -96,18 +96,18 @@ const ProjectCard = ({
             viewport={{ once: true }}
             className={cn(
               "relative group cursor-pointer",
-              isRight && "lg:order-2"
+              isRight && "lg:order-2",
             )}
             onClick={() =>
               handleCTAClick(
                 ctaPrimary.href,
-                ctaPrimary.triggerConfetti || false
+                ctaPrimary.triggerConfetti || false,
               )
             }
           >
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary via-blue-500 to-cyan-500 rounded-2xl blur opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
+            <div className="absolute -inset-1 bg-gradient-to-r from-primary via-blue-500 to-cyan-500 rounded-2xl blur opacity-20 group-hover:opacity-40 transition-opacity duration-500 " />
 
-            <div className="relative overflow-hidden rounded-2xl border bg-card/50 backdrop-blur-sm shadow-2xl shadow-primary/5 aspect-[4/3] w-full max-w-lg lg:max-w-none">
+            <div className="relative overflow-hidden rounded-2xl border bg-card/50 backdrop-blur-sm shadow-2xl shadow-primary/5 aspect-[4/3] w-full max-w-lg lg:max-w-none ">
               <img
                 src={image}
                 alt={altText}
@@ -151,7 +151,10 @@ const ProjectCard = ({
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0 }}
             viewport={{ once: true }}
-            className={cn("flex flex-col justify-center space-y-6", isRight && "lg:order-1")}
+            className={cn(
+              "flex flex-col justify-center space-y-6",
+              isRight && "lg:order-1",
+            )}
           >
             <div>
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
@@ -203,7 +206,9 @@ const ProjectCard = ({
                       <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                       <path d="m9 11 3 3L22 4" />
                     </svg>
-                    <span className="text-sm text-foreground/90">{feature}</span>
+                    <span className="text-sm text-foreground/90">
+                      {feature}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -215,7 +220,7 @@ const ProjectCard = ({
                   onClick={() =>
                     handleCTAClick(
                       ctaPrimary.href,
-                      ctaPrimary.triggerConfetti || false
+                      ctaPrimary.triggerConfetti || false,
                     )
                   }
                   className={cn(
@@ -224,7 +229,7 @@ const ProjectCard = ({
                     "shadow-lg shadow-primary/25 hover:shadow-primary/40",
                     "transition-all duration-300 hover:-translate-y-0.5",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2",
-                    "overflow-hidden relative"
+                    "overflow-hidden relative",
                   )}
                 >
                   <span className="absolute inset-0 -translate-x-full group-hover:animate-shine bg-gradient-to-r from-transparent via-white/20 to-transparent" />
@@ -259,7 +264,7 @@ const ProjectCard = ({
                     "text-foreground font-medium text-sm",
                     "shadow-sm hover:bg-accent/50 hover:text-accent-foreground",
                     "transition-all duration-300 hover:-translate-y-0.5",
-                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                   )}
                 >
                   {ctaSecondary.label}
@@ -291,12 +296,12 @@ const ProjectCard = ({
           className="md:hidden"
         >
           {/* Imagen Mobile */}
-          <div 
+          <div
             className="relative group mb-6 rounded-2xl overflow-hidden cursor-pointer"
             onClick={() =>
               handleCTAClick(
                 ctaPrimary.href,
-                ctaPrimary.triggerConfetti || false
+                ctaPrimary.triggerConfetti || false,
               )
             }
           >
@@ -346,7 +351,7 @@ const ProjectCard = ({
             <ChevronDown
               className={cn(
                 "w-5 h-5 text-primary flex-shrink-0 transition-transform duration-300",
-                isExpanded && "rotate-180"
+                isExpanded && "rotate-180",
               )}
             />
           </button>
@@ -424,7 +429,7 @@ const ProjectCard = ({
                         onClick={() =>
                           handleCTAClick(
                             ctaPrimary.href,
-                            ctaPrimary.triggerConfetti || false
+                            ctaPrimary.triggerConfetti || false,
                           )
                         }
                         className={cn(
@@ -432,7 +437,7 @@ const ProjectCard = ({
                           "bg-primary text-primary-foreground font-medium text-xs sm:text-sm",
                           "shadow-lg shadow-primary/25 hover:shadow-primary/40",
                           "transition-all duration-300 hover:-translate-y-0.5",
-                          "overflow-hidden relative"
+                          "overflow-hidden relative",
                         )}
                       >
                         <span className="absolute inset-0 -translate-x-full group-hover:animate-shine bg-gradient-to-r from-transparent via-white/20 to-transparent" />
@@ -466,7 +471,7 @@ const ProjectCard = ({
                           "border border-input bg-background/50 backdrop-blur-sm",
                           "text-foreground font-medium text-xs sm:text-sm",
                           "shadow-sm hover:bg-accent/50",
-                          "transition-all duration-300 hover:-translate-y-0.5"
+                          "transition-all duration-300 hover:-translate-y-0.5",
                         )}
                       >
                         {ctaSecondary.label}
