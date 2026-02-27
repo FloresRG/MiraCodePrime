@@ -8,6 +8,7 @@ export interface Project {
     tags: string[];
     color: string;
     image: string;
+    video?: string;
     features: string[];
     /** Secciones de detalle en [id].astro */
     sections: {
@@ -29,6 +30,7 @@ export const projects: Project[] = [
         tags: ['Laravel', 'Inertia.js', 'React', 'MySQL'],
         color: 'from-orange-500 to-amber-600',
         image: '/src/assets/admus.png',
+        video: '/src/assets/videos/mirandavideo.mp4',
         features: [
             'Control de inventario por categoría y proveedor',
             'Cuadernos digitales de venta con flujo de aprobación',
@@ -49,6 +51,7 @@ export const projects: Project[] = [
         tags: ['Next.js', 'Laravel API', 'QR Pay', 'Tailwind'],
         color: 'from-blue-500 to-indigo-600',
         image: '/src/assets/sistemas/shopmiranda.png',
+        video: '/src/assets/videos/shopvideo.mp4',
         features: [
             'Catálogo con búsqueda y filtros en tiempo real',
             'Carrito persistente y checkout multi-paso',
@@ -69,6 +72,7 @@ export const projects: Project[] = [
         tags: ['Laravel', 'Livewire', 'Alpine.js', 'MySQL'],
         color: 'from-purple-600 to-violet-700',
         image: '/src/assets/sistemas/admus.png',
+        video: '/src/assets/videos/admusvideo.mp4',
         features: [
             'Gestión de proyectos con timeline editable',
             'Asignación de equipo técnico y roles',
@@ -89,6 +93,7 @@ export const projects: Project[] = [
         tags: ['React', 'FullCalendar', 'Node.js', 'PostgreSQL'],
         color: 'from-teal-500 to-emerald-600',
         image: '/src/assets/sistemas/calendario.png',
+        video: '/src/assets/videos/caledariovideo.mp4',
         features: [
             'Vista mensual, semanal y diaria del calendario',
             'Reserva de equipos, locaciones y personal',
@@ -109,6 +114,7 @@ export const projects: Project[] = [
         tags: ['Node.js', 'WhatsApp API', 'OpenAI', 'Redis'],
         color: 'from-green-500 to-emerald-600',
         image: '/src/assets/sistemas/whatsapp.png',
+        video: '/src/assets/videos/admusvideo.mp4',
         features: [
             'Toma de pedidos en lenguaje natural por WhatsApp',
             'Consulta de stock en tiempo real al inventario',
@@ -129,6 +135,7 @@ export const projects: Project[] = [
         tags: ['Next.js', 'Laravel API', 'Stripe', 'PostgreSQL'],
         color: 'from-rose-500 to-pink-600',
         image: '/src/assets/sistemas/ventas.png',
+        video: '/src/assets/videos/admusvideo.mp4',
         features: [
             'Tienda pública con SEO optimizado y carga rápida',
             'Panel admin: productos, categorías, stock y precios',
@@ -149,6 +156,7 @@ export const projects: Project[] = [
         tags: ['Nextcloud', 'Docker', 'Nginx', 'Linux'],
         color: 'from-sky-500 to-blue-600',
         image: '/src/assets/sistemas/cloud.png',
+        video: '/src/assets/videos/clouvideo.mp4',
         features: [
             'Almacenamiento ilimitado en servidor propio',
             'Edición colaborativa de documentos en tiempo real',
@@ -169,6 +177,7 @@ export const projects: Project[] = [
         tags: ['Laravel', 'React', 'QR Code', 'Stripe'],
         color: 'from-yellow-500 to-orange-500',
         image: '/src/assets/sistemas/giftcard.png',
+        video: '/src/assets/videos/admusvideo.mp4',
         features: [
             'Generación de códigos únicos con QR integrado',
             'Venta online y envío automático por email/WhatsApp',
@@ -189,6 +198,7 @@ export const projects: Project[] = [
         tags: ['Android', 'OCR', 'Laravel', 'WebSocket'],
         color: 'from-cyan-500 to-teal-600',
         image: '/src/assets/sistemas/ventas.png',
+        video: '/src/assets/videos/admusvideo.mp4',
         features: [
             'Lectura automática de notificaciones bancarias (push)',
             'Extracción de datos con OCR y procesamiento NLP',
@@ -209,6 +219,7 @@ export const projects: Project[] = [
         tags: ['Laravel', 'React', 'WebSocket', 'MySQL'],
         color: 'from-red-500 to-rose-600',
         image: '/src/assets/sistemas/restaurante.png',
+        video: '/src/assets/videos/restaurantevideo.mp4',
         features: [
             'Reservas online con confirmación automática',
             'Gestión de mesas y salones con plano interactivo',
@@ -229,6 +240,7 @@ export const projects: Project[] = [
         tags: ['Laravel', 'React', 'Inertia.js', 'MySQL'],
         color: 'from-violet-600 to-indigo-700',
         image: '/src/assets/sistemas/restaurante.png',
+        video: '/src/assets/videos/restaurantevideo.mp4',
         features: [
             'Inventario de medicamentos con alertas de vencimiento',
             'POS táctil con búsqueda por nombre o código',

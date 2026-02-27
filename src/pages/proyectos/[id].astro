@@ -22,7 +22,8 @@ if (!project) return Astro.redirect("/404");
 // Imagen placeholder para el logo si no hay uno específico
 import logoImg from "@/assets/logo.png";
 
-const coverImage = project.image;
+// Preferir video si existe, sino usar imagen como fallback
+const coverVideo = project.video ?? project.image;
 ---
 
 <Main title={`${project.title} | MiraCode`}>
@@ -35,13 +36,44 @@ const coverImage = project.image;
   <section
     class="relative w-full h-[85vh] min-h-[700px] flex items-end justify-center overflow-hidden bg-background mt-20"
   >
-    <!-- Imagen de fondo que ocupa todo el Hero -->
+    <!-- Video de fondo que ocupa todo el Hero (si hay video reproducir; si no mostrar imagen) -->
     <div class="absolute inset-0 z-0">
-      <img
-        src={coverImage}
-        alt={`${project.title} Cover`}
-        class="w-full h-full object-cover scale-105 animate-image-reveal brightness-[0.5] saturate-[1.2]"
-      />
+      {project.video ? (
+        <>
+          <video
+            id="project-cover-video"
+            src={project.video}
+            poster={project.image}
+            class="w-full h-full object-cover scale-105 animate-image-reveal brightness-[0.5] saturate-[1.2]"
+            autoplay
+            muted
+            playsinline
+          ></video>
+
+          <!-- Poster que se muestra cuando el video termina o se detiene -->
+          <img
+            id="project-cover-poster"
+            src={project.image}
+            alt={`${project.title} Cover`}
+            class="w-full h-full object-cover scale-105 brightness-[0.5] saturate-[1.2]"
+            style="display: none;"
+          />
+
+          <!-- Botón overlay para detener el video y mostrar el poster -->
+          <button
+            id="btn-stop-video"
+            class="absolute top-4 right-4 z-30 inline-flex items-center gap-2 px-3 py-2 rounded-full bg-background/60 backdrop-blur-md border border-border/40 text-sm text-foreground hover:bg-background/80"
+          >
+            Detener video
+          </button>
+        </>
+      ) : (
+        <img
+          src={project.image}
+          alt={`${project.title} Cover`}
+          class="w-full h-full object-cover scale-105 animate-image-reveal brightness-[0.5] saturate-[1.2]"
+        />
+      )}
     </div>
 
     <!-- Nota flotante sobre la imagen -->
@@ -105,11 +137,27 @@ const coverImage = project.image;
             >
               Solicitar cotización
             </a>
+            {project.video && (
+              <button
+                id="btn-play-video"
+                class="inline-flex items-center justify-center gap-2 h-16 px-6 rounded-2xl border-2 border-primary/20 bg-primary/10 text-primary font-bold text-lg hover:bg-primary/20 transition-all duration-300"
+              >
+                Ver video
+              </button>
+            )}
           </div>
         </div>
       </div>
     </div>
     </div>
+    
+    <!-- Script cliente: control de reproducción del video cover (ejecutado dinámicamente para evitar chequeos TS) -->
+    <script>
+      (function(){
+        const code = "document.addEventListener('DOMContentLoaded', function(){ var video = document.getElementById('project-cover-video'); if(!video) return; var poster = document.getElementById('project-cover-poster'); var playBtn = document.getElementById('btn-play-video'); var stopBtn = document.getElementById('btn-stop-video'); function showPoster(){ try{ video.style.display='none'; if(poster) poster.style.display='block'; if(stopBtn) stopBtn.style.display='none'; }catch(e){} } function showVideo(){ try{ if(poster) poster.style.display='none'; video.style.display='block'; if(stopBtn) stopBtn.style.display='inline-flex'; }catch(e){} } video.addEventListener('ended', showPoster); try{ if(video.play) video.play(); }catch(e){ showPoster(); } if(playBtn) playBtn.addEventListener('click', function(e){ e.preventDefault(); try{ video.currentTime=0; video.muted=true; if(video.play) video.play(); }catch(e){}; showVideo(); }); if(stopBtn) stopBtn.addEventListener('click', function(e){ e.preventDefault(); try{ if(video.pause) video.pause(); }catch(e){}; showPoster(); }); });";
+        new Function(code)();
+      })();
+    </script>
   </section>
 
   <!-- ── DETALLES Y CONTEXTO ────── -->
