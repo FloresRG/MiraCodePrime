@@ -60,9 +60,18 @@ const coverVideo = project.video ?? project.image;
             style="display: none;"
           />
 
-          <!-- Botón overlay para detener el video y mostrar el poster -->
+          <!-- Botones overlay: play / stop placed at the same spot and toggled via JS -->
+          <button
+            id="btn-play-overlay"
+            style="display: none;"
+            class="absolute top-4 right-4 z-30 inline-flex items-center gap-2 px-3 py-2 rounded-full bg-background/80 backdrop-blur-md border border-border/40 text-sm text-foreground hover:bg-background/90"
+          >
+            Ver video
+          </button>
+
           <button
             id="btn-stop-video"
+            style="display: none;"
             class="absolute top-4 right-4 z-30 inline-flex items-center gap-2 px-3 py-2 rounded-full bg-background/60 backdrop-blur-md border border-border/40 text-sm text-foreground hover:bg-background/80"
           >
             Detener video
@@ -80,7 +89,7 @@ const coverVideo = project.video ?? project.image;
     <!-- Nota flotante sobre la imagen -->
     <div class="container relative z-20 mx-auto px-6 pt-[56.25vw] md:pt-0 pb-20 md:pb-200">
       <div id="hero-note" style={project.video ? "display: none;" : ""} class="md:absolute md:top-1/2 md:right-6 md:transform md:-translate-y-1/2 w-full md:max-w-md">
-        <div class="bg-background/80 backdrop-blur-lg p-8 shadow-lg rounded-3xl">
+          <div class="bg-background/80 backdrop-blur-lg p-4 sm:p-8 shadow-lg rounded-3xl">
           <div class="flex flex-wrap gap-2 justify-center mb-8">
             <span
               class="inline-flex items-center px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.3em] bg-primary/20 text-primary border border-primary/30 backdrop-blur-md shadow-2xl shadow-primary/20"
@@ -90,7 +99,7 @@ const coverVideo = project.video ?? project.image;
           </div>
 
           <h1
-            class="text-5xl sm:text-7xl md:text-6xl lg:text-7xl font-black tracking-tighter text-foreground mb-8 leading-[0.8] drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+            class="text-3xl sm:text-7xl md:text-6xl lg:text-7xl font-black tracking-tighter text-foreground mb-8 leading-[0.9] drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
           >
             {project.title.split(' ').map((word, i) => (
               <span
@@ -106,15 +115,15 @@ const coverVideo = project.video ?? project.image;
           </h1>
 
           <p
-            class="max-w-3xl text-lg md:text-xl font-medium text-muted-foreground leading-relaxed mb-12 drop-shadow-lg"
+            class="max-w-3xl text-sm md:text-xl font-medium text-muted-foreground leading-relaxed mb-8 drop-shadow-lg"
           >
             {project.shortDesc}
           </p>
 
-          <div class="flex flex-col sm:flex-row gap-6 justify-center w-full sm:w-auto">
+          <div class="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center w-full sm:w-auto">
             <a
               href="#detalles"
-              class="inline-flex items-center justify-center gap-3 h-16 px-12 rounded-2xl bg-primary text-primary-foreground font-bold text-lg hover:scale-105 transition-all duration-300 shadow-[0_20px_50px_-15px_rgba(var(--primary-rgb),0.5)]"
+              class="inline-flex items-center justify-center gap-3 h-10 sm:h-16 px-4 sm:px-12 rounded-lg sm:rounded-2xl bg-primary text-primary-foreground font-bold text-sm sm:text-lg hover:scale-105 transition-all duration-300 shadow-[0_20px_50px_-15px_rgba(var(--primary-rgb),0.5)]"
             >
               Explorar sistema
               <svg
@@ -134,20 +143,13 @@ const coverVideo = project.video ?? project.image;
             </a>
             <a
               href="/#contact"
-              class="inline-flex items-center justify-center gap-3 h-16 px-12 rounded-2xl border-2 border-primary/20 bg-background/20 backdrop-blur-md text-foreground font-bold text-lg hover:bg-background/40 transition-all duration-300 hover:border-primary/50"
+              class="inline-flex items-center justify-center gap-3 h-10 sm:h-16 px-4 sm:px-12 rounded-lg sm:rounded-2xl border-2 border-primary/20 bg-background/20 backdrop-blur-md text-foreground font-bold text-sm sm:text-lg hover:bg-background/40 transition-all duration-300 hover:border-primary/50"
             >
               Solicitar cotización
             </a>
             {project.video && (
               <>
-                <button
-                  id="btn-play-video"
-                  class="inline-flex items-center justify-center gap-2 h-16 px-6 rounded-2xl border-2 border-primary/20 bg-primary/10 text-primary font-bold text-lg hover:bg-primary/20 transition-all duration-300"
-                >
-                  Ver video
-                </button>
-
-                <!-- Fullscreen removed for mobile UX; tapping the video itself behaves like a player. -->
+                <!-- Play button moved to video overlay for better mobile UX -->
               </>
             )}
           </div>
@@ -159,7 +161,7 @@ const coverVideo = project.video ?? project.image;
     <!-- Script cliente: control de reproducción del video cover (ejecutado dinámicamente para evitar chequeos TS) -->
     <script>
       (function(){
-        const code = "document.addEventListener('DOMContentLoaded', function(){ var video = document.getElementById('project-cover-video'); if(!video) return; var poster = document.getElementById('project-cover-poster'); var playBtn = document.getElementById('btn-play-video'); var stopBtn = document.getElementById('btn-stop-video'); var heroNote = document.getElementById('hero-note'); function showPoster(){ try{ video.style.display='none'; if(poster) poster.style.display='block'; if(stopBtn) stopBtn.style.display='none'; if(heroNote) heroNote.style.display='block'; }catch(e){} } function showVideo(){ try{ if(poster) poster.style.display='none'; video.style.display='block'; if(stopBtn) stopBtn.style.display='inline-flex'; if(heroNote) heroNote.style.display='none'; }catch(e){} } video.addEventListener('ended', showPoster); try{ if(video.play) { video.play(); showVideo(); } }catch(e){ showPoster(); } if(playBtn) playBtn.addEventListener('click', function(e){ e.preventDefault(); try{ video.currentTime=0; video.muted=true; if(video.play) video.play(); }catch(e){}; showVideo(); }); if(stopBtn) stopBtn.addEventListener('click', function(e){ e.preventDefault(); try{ if(video.pause) video.pause(); }catch(e){}; showPoster(); }); });";
+        const code = "document.addEventListener('DOMContentLoaded', function(){ var video = document.getElementById('project-cover-video'); if(!video) return; var poster = document.getElementById('project-cover-poster'); var playOverlay = document.getElementById('btn-play-overlay'); var stopBtn = document.getElementById('btn-stop-video'); var heroNote = document.getElementById('hero-note'); function showPoster(){ try{ video.style.display='none'; if(poster) poster.style.display='block'; if(stopBtn) stopBtn.style.display='none'; if(playOverlay) playOverlay.style.display='inline-flex'; if(heroNote) heroNote.style.display='block'; }catch(e){} } function showVideo(){ try{ if(poster) poster.style.display='none'; video.style.display='block'; if(stopBtn) stopBtn.style.display='inline-flex'; if(playOverlay) playOverlay.style.display='none'; if(heroNote) heroNote.style.display='none'; }catch(e){} } video.addEventListener('ended', showPoster); try{ if(video.play) { var p = video.play(); if(p && p.then) { p.then(function(){ showVideo(); }).catch(function(){ showPoster(); }); } else { showVideo(); } } }catch(e){ showPoster(); } if(playOverlay) playOverlay.addEventListener('click', function(e){ e.preventDefault(); try{ video.currentTime=0; video.muted=true; var p = video.play(); if(p && p.then) { p.catch(function(){}); } }catch(e){}; showVideo(); }); if(stopBtn) stopBtn.addEventListener('click', function(e){ e.preventDefault(); try{ if(video.pause) video.pause(); }catch(e){}; showPoster(); }); });";
         new Function(code)();
       })();
     </script>
