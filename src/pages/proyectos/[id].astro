@@ -18,13 +18,10 @@ const project = getProject(id!);
 
 if (!project) return Astro.redirect("/404");
 
-// Imagen placeholder
-import dashImg from "@/assets/dashboard.png";
+// Imagen placeholder para el logo si no hay uno específico
 import logoImg from "@/assets/logo.png";
 
-// Fallback temporal usando la misma imagen
-const coverImage = dashImg;
-const sectionImages = project.sections.map(() => dashImg);
+const coverImage = project.image;
 ---
 
 <Main title={`${project.title} | MiraCode`}>
@@ -198,7 +195,7 @@ const sectionImages = project.sections.map(() => dashImg);
                 title={section.title}
                 description={section.description}
                 badge={section.badge}
-                image={sectionImages[idx]}
+                image={section.image}
                 index={idx}
                 total={project.sections.length}
               />

@@ -36,8 +36,8 @@ export const projects: Project[] = [
             'Reportes de ventas por zona, departamento y vendedor',
         ],
         sections: [
-            { title: 'Gestión de inventario', description: 'Vista centralizada de productos importados con stock en tiempo real, alertas de stock mínimo y registro de entradas por proveedor.', imagePosition: 'left', badge: 'Inventario' },
-            { title: 'Cuadernos de venta digitales', description: 'Los vendedores registran pedidos desde el celular y los supervisores aprueban en el panel. El admin liquida con exportación a PDF.', imagePosition: 'right', badge: 'Logística' },
+            { title: 'Gestión de inventario', description: 'Vista centralizada de productos importados con stock en tiempo real, alertas de stock mínimo y registro de entradas por proveedor.', imagePosition: 'left', badge: 'Inventario', image: '/src/assets/admus.png' },
+            { title: 'Cuadernos de venta digitales', description: 'Los vendedores registran pedidos desde el celular y los supervisores aprueban en el panel. El admin liquida con exportación a PDF.', imagePosition: 'right', badge: 'Logística', image: '/src/assets/admus.png' },
         ],
     },
     {
@@ -48,7 +48,7 @@ export const projects: Project[] = [
         fullDesc: 'Plataforma de ventas online conectada al ERP de Miranda. Los clientes navegan el catálogo, agregan productos al carrito, pagan vía QR o transferencia y reciben confirmación automática. Los pedidos quedan visibles para el equipo logístico en tiempo real.',
         tags: ['Next.js', 'Laravel API', 'QR Pay', 'Tailwind'],
         color: 'from-blue-500 to-indigo-600',
-        image: '/src/assets/admus.png',
+        image: '/src/assets/sistemas/shopmiranda.png',
         features: [
             'Catálogo con búsqueda y filtros en tiempo real',
             'Carrito persistente y checkout multi-paso',
@@ -56,8 +56,8 @@ export const projects: Project[] = [
             'Historial de pedidos con rastreo de estado',
         ],
         sections: [
-            { title: 'Tienda y catálogo online', description: 'Catálogo filtrable por categoría, marca y precio. Búsqueda instantánea con resultados en tiempo real sin recargar la página.', imagePosition: 'left', badge: 'Catálogo' },
-            { title: 'Checkout y pagos QR', description: 'Proceso de pago simplificado: cliente genera QR, paga desde su banco y el sistema verifica la transacción automáticamente.', imagePosition: 'right', badge: 'Pagos' },
+            { title: 'Tienda y catálogo online', description: 'Catálogo filtrable por categoría, marca y precio. Búsqueda instantánea con resultados en tiempo real sin recargar la página.', imagePosition: 'left', badge: 'Catálogo', image: '/src/assets/admus.png' },
+            { title: 'Checkout y pagos QR', description: 'Proceso de pago simplificado: cliente genera QR, paga desde su banco y el sistema verifica la transacción automáticamente.', imagePosition: 'right', badge: 'Pagos', image: '/src/assets/admus.png' },
         ],
     },
     {
@@ -68,7 +68,7 @@ export const projects: Project[] = [
         fullDesc: 'Plataforma a medida para Admus Produccions que gestiona el ciclo completo de cada producción: desde la captación del cliente y presupuesto inicial, hasta la planificación del equipo técnico, control de gastos y entrega final con historial de revisiones.',
         tags: ['Laravel', 'Livewire', 'Alpine.js', 'MySQL'],
         color: 'from-purple-600 to-violet-700',
-        image: '/src/assets/admus.png',
+        image: '/src/assets/sistemas/admus.png',
         features: [
             'Gestión de proyectos con timeline editable',
             'Asignación de equipo técnico y roles',
@@ -76,8 +76,8 @@ export const projects: Project[] = [
             'Portal de cliente para seguimiento y aprobaciones',
         ],
         sections: [
-            { title: 'Panel de proyectos', description: 'Vista kanban y lista de todos los proyectos activos, con estado, responsable, fecha de entrega y porcentaje de avance.', imagePosition: 'left', badge: 'Proyectos' },
-            { title: 'Control de presupuesto', description: 'Registro de gastos vs presupuesto aprobado por proyecto. Alertas automáticas cuando se supera el 80% del presupuesto.', imagePosition: 'right', badge: 'Finanzas' },
+            { title: 'Panel de proyectos', description: 'Vista kanban y lista de todos los proyectos activos, con estado, responsable, fecha de entrega y porcentaje de avance.', imagePosition: 'left', badge: 'Proyectos', image: '/src/assets/admus.png' },
+            { title: 'Control de presupuesto', description: 'Registro de gastos vs presupuesto aprobado por proyecto. Alertas automáticas cuando se supera el 80% del presupuesto.', imagePosition: 'right', badge: 'Finanzas', image: '/src/assets/admus.png' },
         ],
     },
     {
@@ -88,7 +88,7 @@ export const projects: Project[] = [
         fullDesc: 'Herramienta de planificación visual para el equipo de Admus. Permite ver la disponibilidad de equipos, cámaras, locaciones y personal en un mismo calendario interactivo. Incluye sistema de reservas con notificaciones y exportación a Google Calendar.',
         tags: ['React', 'FullCalendar', 'Node.js', 'PostgreSQL'],
         color: 'from-teal-500 to-emerald-600',
-        image: '/src/assets/admus.png',
+        image: '/src/assets/sistemas/calendario.png',
         features: [
             'Vista mensual, semanal y diaria del calendario',
             'Reserva de equipos, locaciones y personal',
@@ -96,8 +96,8 @@ export const projects: Project[] = [
             'Exportación e integración con Google Calendar',
         ],
         sections: [
-            { title: 'Vista de calendario interactivo', description: 'Drag & drop para mover grabaciones, colores por tipo de producción y vista de disponibilidad de recursos superpuesta.', imagePosition: 'left', badge: 'Calendario' },
-            { title: 'Gestión de recursos', description: 'Panel para ver qué equipos, cámaras y personal están disponibles en cada fecha, evitando conflictos de agenda.', imagePosition: 'right', badge: 'Recursos' },
+            { title: 'Vista de calendario interactivo', description: 'Drag & drop para mover grabaciones, colores por tipo de producción y vista de disponibilidad de recursos superpuesta.', imagePosition: 'left', badge: 'Calendario', image: '/src/assets/admus.png' },
+            { title: 'Gestión de recursos', description: 'Panel para ver qué equipos, cámaras y personal están disponibles en cada fecha, evitando conflictos de agenda.', imagePosition: 'right', badge: 'Recursos', image: '/src/assets/admus.png' },
         ],
     },
     {
@@ -108,7 +108,7 @@ export const projects: Project[] = [
         fullDesc: 'El bot integra la API de WhatsApp Business con el sistema de inventario. El cliente hace su pedido en lenguaje natural, el bot confirma disponibilidad y precio, procesa el pago QR y notifica al área de despacho con el detalle del pedido. Sin intervención humana.',
         tags: ['Node.js', 'WhatsApp API', 'OpenAI', 'Redis'],
         color: 'from-green-500 to-emerald-600',
-        image: '/src/assets/admus.png',
+        image: '/src/assets/sistemas/whatsapp.png',
         features: [
             'Toma de pedidos en lenguaje natural por WhatsApp',
             'Consulta de stock en tiempo real al inventario',
@@ -116,8 +116,8 @@ export const projects: Project[] = [
             'Notificación automática al equipo de despacho',
         ],
         sections: [
-            { title: 'Flujo de conversación inteligente', description: 'El cliente escribe su pedido, el bot interpreta la intención, muestra disponibilidad y precios, y confirma el pedido sin formularios.', imagePosition: 'left', badge: 'NLU / IA' },
-            { title: 'Panel de pedidos recibidos', description: 'El equipo de despacho ve en tiempo real todos los pedidos confirmados por WhatsApp, con estado, dirección y método de pago.', imagePosition: 'right', badge: 'Admin' },
+            { title: 'Flujo de conversación inteligente', description: 'El cliente escribe su pedido, el bot interpreta la intención, muestra disponibilidad y precios, y confirma el pedido sin formularios.', imagePosition: 'left', badge: 'NLU / IA', image: '/src/assets/admus.png' },
+            { title: 'Panel de pedidos recibidos', description: 'El equipo de despacho ve en tiempo real todos los pedidos confirmados por WhatsApp, con estado, dirección y método de pago.', imagePosition: 'right', badge: 'Admin', image: '/src/assets/admus.png' },
         ],
     },
     {
@@ -128,7 +128,7 @@ export const projects: Project[] = [
         fullDesc: 'Solución full-stack de e-commerce con tienda pública optimizada para conversión y un panel de administración completo. El admin gestiona catálogo, procesa pedidos, controla stock, configura descuentos y ve reportes de ventas en tiempo real.',
         tags: ['Next.js', 'Laravel API', 'Stripe', 'PostgreSQL'],
         color: 'from-rose-500 to-pink-600',
-        image: '/src/assets/admus.png',
+        image: '/src/assets/sistemas/ventas.png',
         features: [
             'Tienda pública con SEO optimizado y carga rápida',
             'Panel admin: productos, categorías, stock y precios',
@@ -136,8 +136,8 @@ export const projects: Project[] = [
             'Reportes de ventas, productos top y clientes frecuentes',
         ],
         sections: [
-            { title: 'Tienda pública de alta conversión', description: 'Diseño optimizado para ventas: búsqueda rápida, filtros, wishlist, reseñas y proceso de pago en 3 pasos.', imagePosition: 'left', badge: 'Tienda' },
-            { title: 'Panel de administración', description: 'Dashboard con métricas de ventas del día, gestión completa de catálogo y módulo de clientes con historial de compras.', imagePosition: 'right', badge: 'Admin' },
+            { title: 'Tienda pública de alta conversión', description: 'Diseño optimizado para ventas: búsqueda rápida, filtros, wishlist, reseñas y proceso de pago en 3 pasos.', imagePosition: 'left', badge: 'Tienda', image: '/src/assets/admus.png' },
+            { title: 'Panel de administración', description: 'Dashboard con métricas de ventas del día, gestión completa de catálogo y módulo de clientes con historial de compras.', imagePosition: 'right', badge: 'Admin', image: '/src/assets/admus.png' },
         ],
     },
     {
@@ -148,7 +148,7 @@ export const projects: Project[] = [
         fullDesc: 'Implementación y personalización de Nextcloud en servidor propio del cliente. Incluye configuración de usuarios y roles, integración con Active Directory, apps de colaboración (OnlyOffice, Talk, Calendar), SSL y backups automáticos.',
         tags: ['Nextcloud', 'Docker', 'Nginx', 'Linux'],
         color: 'from-sky-500 to-blue-600',
-        image: '/src/assets/admus.png',
+        image: '/src/assets/sistemas/cloud.png',
         features: [
             'Almacenamiento ilimitado en servidor propio',
             'Edición colaborativa de documentos en tiempo real',
@@ -156,8 +156,8 @@ export const projects: Project[] = [
             'Backups automáticos y cifrado en reposo',
         ],
         sections: [
-            { title: 'Escritorio de nube corporativa', description: 'Interfaz familiar tipo Google Drive pero en servidor propio del cliente. Carpetas compartidas por departamento, permisos granulares y actividad de equipo.', imagePosition: 'left', badge: 'Archivos' },
-            { title: 'Colaboración y comunicación', description: 'Edición de documentos simultánea con OnlyOffice, videoconferencias sin salir de la plataforma y chat de equipo.', imagePosition: 'right', badge: 'Colaboración' },
+            { title: 'Escritorio de nube corporativa', description: 'Interfaz familiar tipo Google Drive pero en servidor propio del cliente. Carpetas compartidas por departamento, permisos granulares y actividad de equipo.', imagePosition: 'left', badge: 'Archivos', image: '/src/assets/admus.png' },
+            { title: 'Colaboración y comunicación', description: 'Edición de documentos simultánea con OnlyOffice, videoconferencias sin salir de la plataforma y chat de equipo.', imagePosition: 'right', badge: 'Colaboración', image: '/src/assets/admus.png' },
         ],
     },
     {
@@ -168,7 +168,7 @@ export const projects: Project[] = [
         fullDesc: 'Sistema completo de gift cards digitales: el cliente compra una tarjeta de regalo online, recibe el código por email/WhatsApp, y el beneficiario lo canjea en tienda física o virtual. El panel admin muestra el estado de cada código en tiempo real.',
         tags: ['Laravel', 'React', 'QR Code', 'Stripe'],
         color: 'from-yellow-500 to-orange-500',
-        image: '/src/assets/admus.png',
+        image: '/src/assets/sistemas/giftcard.png',
         features: [
             'Generación de códigos únicos con QR integrado',
             'Venta online y envío automático por email/WhatsApp',
@@ -176,8 +176,8 @@ export const projects: Project[] = [
             'Panel de control: códigos activos, usados y vencidos',
         ],
         sections: [
-            { title: 'Compra y personalización de GiftCards', description: 'El comprador elige el monto, personaliza el mensaje y paga online. La tarjeta llega al destinatario con código QR y pin de seguridad.', imagePosition: 'left', badge: 'Venta' },
-            { title: 'Panel de validación y reportes', description: 'El admin ve en tiempo real qué códigos están activos, cuándo se canjearon y el valor total de tarjetas pendientes.', imagePosition: 'right', badge: 'Admin' },
+            { title: 'Compra y personalización de GiftCards', description: 'El comprador elige el monto, personaliza el mensaje y paga online. La tarjeta llega al destinatario con código QR y pin de seguridad.', imagePosition: 'left', badge: 'Venta', image: '/src/assets/admus.png' },
+            { title: 'Panel de validación y reportes', description: 'El admin ve en tiempo real qué códigos están activos, cuándo se canjearon y el valor total de tarjetas pendientes.', imagePosition: 'right', badge: 'Admin', image: '/src/assets/admus.png' },
         ],
     },
     {
@@ -188,7 +188,7 @@ export const projects: Project[] = [
         fullDesc: 'Solución única que lee las notificaciones push de los bancos (Banesco, Mercantil, BDV y otros) desde el celular del cajero, extrae monto, banco, referencia y cédula con OCR, los cruza con los pedidos pendientes y confirma el pago automáticamente.',
         tags: ['Android', 'OCR', 'Laravel', 'WebSocket'],
         color: 'from-cyan-500 to-teal-600',
-        image: '/src/assets/admus.png',
+        image: '/src/assets/sistemas/ventas.png',
         features: [
             'Lectura automática de notificaciones bancarias (push)',
             'Extracción de datos con OCR y procesamiento NLP',
@@ -196,8 +196,8 @@ export const projects: Project[] = [
             'Notificación instantánea de confirmación al equipo',
         ],
         sections: [
-            { title: 'Captura de notificaciones bancarias', description: 'App Android que escucha las notificaciones de los bancos instalados en el celular del cajero y las reenvía al servidor en tiempo real.', imagePosition: 'left', badge: 'Captura' },
-            { title: 'Verificación y confirmación automática', description: 'El sistema cruza los datos extraídos (monto, referencia, cédula) con los pedidos en espera y los marca como pagados automáticamente.', imagePosition: 'right', badge: 'Verificación' },
+            { title: 'Captura de notificaciones bancarias', description: 'App Android que escucha las notificaciones de los bancos instalados en el celular del cajero y las reenvía al servidor en tiempo real.', imagePosition: 'left', badge: 'Captura', image: '/src/assets/admus.png' },
+            { title: 'Verificación y confirmación automática', description: 'El sistema cruza los datos extraídos (monto, referencia, cédula) con los pedidos en espera y los marca como pagados automáticamente.', imagePosition: 'right', badge: 'Verificación', image: '/src/assets/admus.png' },
         ],
     },
     {
@@ -208,7 +208,7 @@ export const projects: Project[] = [
         fullDesc: 'Sistema integral para restaurantes que digitaliza el proceso completo: los comensales reservan mesa online, el maître confirma y asigna, los mozos cargan comandas desde tablet y la cocina las ve en pantalla. El admin ve métricas de mesas, consumo y caja.',
         tags: ['Laravel', 'React', 'WebSocket', 'MySQL'],
         color: 'from-red-500 to-rose-600',
-        image: '/src/assets/admus.png',
+        image: '/src/assets/sistemas/restaurante.png',
         features: [
             'Reservas online con confirmación automática',
             'Gestión de mesas y salones con plano interactivo',
@@ -216,8 +216,8 @@ export const projects: Project[] = [
             'Pantalla de cocina con pedidos en tiempo real',
         ],
         sections: [
-            { title: 'Reservas y gestión de mesas', description: 'Los clientes reservan desde la web o Google. El maître ve el plano del restaurante con disponibilidad en tiempo real y asigna mesas.', imagePosition: 'left', badge: 'Reservas' },
-            { title: 'Comandas y cocina digital', description: 'Los mozos cargan pedidos desde tablet, la cocina los ve en pantalla con temporizador. Se eliminan los errores de comandas en papel.', imagePosition: 'right', badge: 'POS' },
+            { title: 'Reservas y gestión de mesas', description: 'Los clientes reservan desde la web o Google. El maître ve el plano del restaurante con disponibilidad en tiempo real y asigna mesas.', imagePosition: 'left', badge: 'Reservas', image: '/src/assets/admus.png' },
+            { title: 'Comandas y cocina digital', description: 'Los mozos cargan pedidos desde tablet, la cocina los ve en pantalla con temporizador. Se eliminan los errores de comandas en papel.', imagePosition: 'right', badge: 'POS', image: '/src/assets/admus.png' },
         ],
     },
     {
@@ -228,7 +228,7 @@ export const projects: Project[] = [
         fullDesc: 'Nexus Farma centraliza la gestión de la farmacia: inventario de medicamentos con alerta de vencimientos y stock mínimo, punto de venta táctil optimizado, control de laboratorios, historial de clientes y analítica de ventas por categoría y período.',
         tags: ['Laravel', 'React', 'Inertia.js', 'MySQL'],
         color: 'from-violet-600 to-indigo-700',
-        image: '/src/assets/admus.png',
+        image: '/src/assets/sistemas/restaurante.png',
         features: [
             'Inventario de medicamentos con alertas de vencimiento',
             'POS táctil con búsqueda por nombre o código',
@@ -236,8 +236,8 @@ export const projects: Project[] = [
             'Reportes de ventas y medicamentos más vendidos',
         ],
         sections: [
-            { title: 'Inventario de medicamentos', description: 'Vista completa del stock con alertas de vencimiento próximo y stock mínimo. Registro de entradas por laboratorio y lote.', imagePosition: 'left', badge: 'Inventario' },
-            { title: 'Punto de venta farmacéutico', description: 'POS optimizado para farmacia: búsqueda instantánea, sustitutos disponibles, múltiples métodos de pago y emisión de comprobante.', imagePosition: 'right', badge: 'POS' },
+            { title: 'Inventario de medicamentos', description: 'Vista completa del stock con alertas de vencimiento próximo y stock mínimo. Registro de entradas por laboratorio y lote.', imagePosition: 'left', badge: 'Inventario', image: '/src/assets/admus.png' },
+            { title: 'Punto de venta farmacéutico', description: 'POS optimizado para farmacia: búsqueda instantánea, sustitutos disponibles, múltiples métodos de pago y emisión de comprobante.', imagePosition: 'right', badge: 'POS', image: '/src/assets/admus.png' },
         ],
     },
 ];

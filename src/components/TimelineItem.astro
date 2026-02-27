@@ -97,12 +97,32 @@ const isLast = index === total - 1;
           src={image}
           alt={title}
           loading="lazy"
-          class="w-full object-cover aspect-[16/10] sm:aspect-[16/9] transition-transform duration-700 group-hover:scale-105"
+          class="w-full object-cover aspect-[16/10] sm:aspect-[16/9] transition-all duration-700 group-hover:scale-105 cursor-zoom-in active:scale-95"
+          onclick="this.parentElement.parentElement.classList.toggle('fixed-full')"
         />
       </div>
     </div>
   </div>
 </div>
+
+<style>
+  .fixed-full {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 9999 !important;
+    background: rgba(0,0,0,0.9) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 2rem !important;
+  }
+  .fixed-full img {
+    max-height: 90vh !important;
+    width: auto !important;
+    object-fit: contain !important;
+    border-radius: 1rem !important;
+  }
+</style>
 
 <script>
   // Animación de aparición (Scroll reveal)
