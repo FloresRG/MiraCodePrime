@@ -34,10 +34,10 @@ const coverVideo = project.video ?? project.image;
 
   <!-- ── HERO: IMAGEN GIGANTE ("LA CARA") ────────────────────── -->
   <section
-    class="relative w-full h-[85vh] min-h-[700px] flex items-end justify-center overflow-hidden bg-background mt-20"
+    class="relative w-full md:h-[85vh] md:min-h-[700px] flex md:items-end items-start justify-center overflow-hidden bg-background mt-20"
   >
     <!-- Video de fondo que ocupa todo el Hero (si hay video reproducir; si no mostrar imagen) -->
-    <div class="absolute inset-0 z-0">
+    <div class="absolute inset-x-0 top-0 z-0 h-[56.25vw] md:inset-0 md:h-full">
       {project.video ? (
         <>
           <video
@@ -46,6 +46,7 @@ const coverVideo = project.video ?? project.image;
             poster={project.image}
             class="w-full h-full object-cover scale-105 animate-image-reveal brightness-[0.5] saturate-[1.2]"
             autoplay
+            controls
             muted
             playsinline
           ></video>
@@ -77,8 +78,8 @@ const coverVideo = project.video ?? project.image;
     </div>
 
     <!-- Nota flotante sobre la imagen -->
-    <div class="container relative z-20 mx-auto px-6 pb-20 md:pb-200">
-      <div class="md:absolute md:top-1/2 md:right-6 md:transform md:-translate-y-1/2 w-full md:max-w-md">
+    <div class="container relative z-20 mx-auto px-6 pt-[56.25vw] md:pt-0 pb-20 md:pb-200">
+      <div id="hero-note" style={project.video ? "display: none;" : ""} class="md:absolute md:top-1/2 md:right-6 md:transform md:-translate-y-1/2 w-full md:max-w-md">
         <div class="bg-background/80 backdrop-blur-lg p-8 shadow-lg rounded-3xl">
           <div class="flex flex-wrap gap-2 justify-center mb-8">
             <span
@@ -138,12 +139,16 @@ const coverVideo = project.video ?? project.image;
               Solicitar cotización
             </a>
             {project.video && (
-              <button
-                id="btn-play-video"
-                class="inline-flex items-center justify-center gap-2 h-16 px-6 rounded-2xl border-2 border-primary/20 bg-primary/10 text-primary font-bold text-lg hover:bg-primary/20 transition-all duration-300"
-              >
-                Ver video
-              </button>
+              <>
+                <button
+                  id="btn-play-video"
+                  class="inline-flex items-center justify-center gap-2 h-16 px-6 rounded-2xl border-2 border-primary/20 bg-primary/10 text-primary font-bold text-lg hover:bg-primary/20 transition-all duration-300"
+                >
+                  Ver video
+                </button>
+
+                <!-- Fullscreen removed for mobile UX; tapping the video itself behaves like a player. -->
+              </>
             )}
           </div>
         </div>
@@ -154,7 +159,7 @@ const coverVideo = project.video ?? project.image;
     <!-- Script cliente: control de reproducción del video cover (ejecutado dinámicamente para evitar chequeos TS) -->
     <script>
       (function(){
-        const code = "document.addEventListener('DOMContentLoaded', function(){ var video = document.getElementById('project-cover-video'); if(!video) return; var poster = document.getElementById('project-cover-poster'); var playBtn = document.getElementById('btn-play-video'); var stopBtn = document.getElementById('btn-stop-video'); function showPoster(){ try{ video.style.display='none'; if(poster) poster.style.display='block'; if(stopBtn) stopBtn.style.display='none'; }catch(e){} } function showVideo(){ try{ if(poster) poster.style.display='none'; video.style.display='block'; if(stopBtn) stopBtn.style.display='inline-flex'; }catch(e){} } video.addEventListener('ended', showPoster); try{ if(video.play) video.play(); }catch(e){ showPoster(); } if(playBtn) playBtn.addEventListener('click', function(e){ e.preventDefault(); try{ video.currentTime=0; video.muted=true; if(video.play) video.play(); }catch(e){}; showVideo(); }); if(stopBtn) stopBtn.addEventListener('click', function(e){ e.preventDefault(); try{ if(video.pause) video.pause(); }catch(e){}; showPoster(); }); });";
+        const code = "document.addEventListener('DOMContentLoaded', function(){ var video = document.getElementById('project-cover-video'); if(!video) return; var poster = document.getElementById('project-cover-poster'); var playBtn = document.getElementById('btn-play-video'); var stopBtn = document.getElementById('btn-stop-video'); var heroNote = document.getElementById('hero-note'); function showPoster(){ try{ video.style.display='none'; if(poster) poster.style.display='block'; if(stopBtn) stopBtn.style.display='none'; if(heroNote) heroNote.style.display='block'; }catch(e){} } function showVideo(){ try{ if(poster) poster.style.display='none'; video.style.display='block'; if(stopBtn) stopBtn.style.display='inline-flex'; if(heroNote) heroNote.style.display='none'; }catch(e){} } video.addEventListener('ended', showPoster); try{ if(video.play) { video.play(); showVideo(); } }catch(e){ showPoster(); } if(playBtn) playBtn.addEventListener('click', function(e){ e.preventDefault(); try{ video.currentTime=0; video.muted=true; if(video.play) video.play(); }catch(e){}; showVideo(); }); if(stopBtn) stopBtn.addEventListener('click', function(e){ e.preventDefault(); try{ if(video.pause) video.pause(); }catch(e){}; showPoster(); }); });";
         new Function(code)();
       })();
     </script>
