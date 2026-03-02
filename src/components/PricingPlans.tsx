@@ -41,7 +41,7 @@ const plans = [
     {
         id: "plan1",
         name: "Starter",
-        price: 50,
+        price: 79.9,
         color: "from-sky-500 to-blue-600",
         glow: "rgba(14,165,233,0.25)",
         border: "border-sky-500/30",
@@ -65,7 +65,7 @@ const plans = [
     {
         id: "plan2",
         name: "Pro",
-        price: 100,
+        price: 119.9,
         color: "from-violet-500 to-purple-600",
         glow: "rgba(139,92,246,0.3)",
         border: "border-violet-500/50",
@@ -89,7 +89,7 @@ const plans = [
     {
         id: "plan3",
         name: "Enterprise",
-        price: 150,
+        price: 169.9,
         color: "from-amber-400 to-orange-500",
         glow: "rgba(251,191,36,0.25)",
         border: "border-amber-500/40",
