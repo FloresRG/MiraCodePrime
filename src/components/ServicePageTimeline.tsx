@@ -83,7 +83,7 @@ export const ServicePageTimeline = ({ service }: { service: Service }) => {
           de {service.title}?
         </p>
         <a
-          href="https://wa.me/59169867332"
+          href="https://wa.me/59169867332?text=Hola%20MiraCode!%20Estoy%20interesado%20en%20contratar%20uno%20de%20sus%20servicios.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F%20%F0%9F%91%8B"
           target="_blank"
           rel="noopener noreferrer"
         >

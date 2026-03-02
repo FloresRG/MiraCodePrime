@@ -22,15 +22,15 @@ export const Navbar = () => {
     { name: "Proyectos", href: "/proyectos" },
     { name: "Sobre Nosotros", href: "/#about" },
     // contacto se abre en WhatsApp por ahora
-    { name: "Contacto", href: "https://wa.me/59169867332" },
+    { name: "Contacto", href: "https://wa.me/59169867332?text=Hola%20MiraCode!%20Me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios%20%F0%9F%91%8B" },
     { name: "1bs", href: "/1bs" },
   ];
 
   return (
     <motion.nav
       className={`fixed top-0 z-50 w-full transition-all duration-500 ${scrolled
-          ? "border-b border-white/10 bg-background/60 backdrop-blur-2xl py-2 shadow-[0_8px_32px_rgba(0,0,0,0.12)]"
-          : "bg-transparent py-4"
+        ? "border-b border-white/10 bg-background/60 backdrop-blur-2xl py-2 shadow-[0_8px_32px_rgba(0,0,0,0.12)]"
+        : "bg-transparent py-4"
         }`}
     >
       <div className="container mx-auto px-4 sm:px-6">
@@ -71,7 +71,7 @@ export const Navbar = () => {
               <ThemeToggle />
             </div>
 
-            <a href="https://wa.me/59169867332" target="_blank" rel="noopener noreferrer" className="hidden md:block">
+            <a href="https://wa.me/59169867332?text=Hola%20MiraCode!%20Me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios%20%F0%9F%91%8B" target="_blank" rel="noopener noreferrer" className="hidden md:block">
               <Button
                 variant="default"
                 size="sm"
@@ -140,7 +140,7 @@ export const Navbar = () => {
                 transition={{ delay: 0.4 }}
                 className="pt-4 border-t border-border/40"
               >
-                <a href="https://wa.me/59169867332" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}>
+                <a href="https://wa.me/59169867332?text=Hola%20MiraCode!%20Me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios%20%F0%9F%91%8B" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}>
                   <Button className="w-full h-14 text-lg font-bold rounded-2xl">
                     Solicitar Cotización
                   </Button>

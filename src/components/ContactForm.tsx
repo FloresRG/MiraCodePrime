@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,7 +7,22 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Mail, MessageSquare, Send, User } from "lucide-react";
 
+const WA_NUMBER = "59169867332";
+const WA_URL = `https://wa.me/${WA_NUMBER}`;
+
 export const ContactForm = () => {
+  const nameRef = useRef<HTMLInputElement>(null);
+  const subjectRef = useRef<HTMLInputElement>(null);
+  const messageRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const name = nameRef.current?.value || "";
+    const subject = subjectRef.current?.value || "";
+    const message = messageRef.current?.value || "";
+    const text = `Hola MiraCode!%0A*Nombre:* ${encodeURIComponent(name)}%0A*Asunto:* ${encodeURIComponent(subject)}%0A*Mensaje:* ${encodeURIComponent(message)}`;
+    window.open(`${WA_URL}?text=${text}`, "_blank", "noopener,noreferrer");
+  };
   return (
     <section id="contact" className="py-24 relative overflow-hidden">
       <div className="absolute top-1/2 left-0 -translate-y-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-primary/10 blur-[120px]" />
@@ -47,7 +62,7 @@ export const ContactForm = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold">WhatsApp</h4>
-                  <p className="text-muted-foreground">+34 600 000 000</p>
+                  <p className="text-muted-foreground">+591 69867332</p>
                 </div>
               </div>
             </div>
@@ -61,7 +76,7 @@ export const ContactForm = () => {
           >
             <form
               className="space-y-6 md:space-y-10"
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={handleSubmit}
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
@@ -69,6 +84,7 @@ export const ContactForm = () => {
                   <div className="relative">
                     <User className="absolute left-3 top-3 size-4 text-muted-foreground" />
                     <Input
+                      ref={nameRef}
                       id="name"
                       placeholder="Tu nombre"
                       className="pl-10"
@@ -91,20 +107,21 @@ export const ContactForm = () => {
 
               <div className="space-y-2">
                 <Label htmlFor="subject">Asunto</Label>
-                <Input id="subject" placeholder="¿En qué podemos ayudarte?" />
+                <Input ref={subjectRef} id="subject" placeholder="¿En qué podemos ayudarte?" />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="message">Mensaje</Label>
                 <Textarea
+                  ref={messageRef}
                   id="message"
                   placeholder="Cuéntanos un poco más sobre tu proyecto..."
                   className="min-h-[120px] resize-none"
                 />
               </div>
 
-              <Button className="w-full h-12 text-lg font-semibold group rounded-xl">
-                Enviar Mensaje
+              <Button type="submit" className="w-full h-12 text-lg font-semibold group rounded-xl">
+                Enviar por WhatsApp
                 <Send className="ml-2 size-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </Button>
             </form>

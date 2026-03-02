@@ -47,7 +47,7 @@ export const Footer = () => {
                     <div>
                         <h4 className="font-bold mb-6">Soporte</h4>
                         <ul className="space-y-4 text-sm text-muted-foreground">
-                            <li><a href="#" className="hover:text-primary transition-colors">Contacto</a></li>
+                            <li><a href="https://wa.me/59169867332?text=Hola%20MiraCode!%20Me%20gustar%C3%ADa%20ponerme%20en%20contacto%20con%20ustedes%20%F0%9F%91%8B" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Contacto</a></li>
                             <li><a href="#" className="hover:text-primary transition-colors">FAQ</a></li>
                             <li><a href="#" className="hover:text-primary transition-colors">Términos</a></li>
                             <li><a href="#" className="hover:text-primary transition-colors">Privacidad</a></li>

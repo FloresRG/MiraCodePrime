@@ -187,8 +187,8 @@ export const PricingPlans = () => {
                             onMouseEnter={() => setHovered(plan.id)}
                             onMouseLeave={() => setHovered(null)}
                             className={`relative rounded-3xl border ${plan.border} ${plan.bg} backdrop-blur-xl p-7 flex flex-col transition-all duration-300 ${plan.popular
-                                    ? "md:scale-[1.04] shadow-[0_0_60px_rgba(139,92,246,0.2)]"
-                                    : ""
+                                ? "md:scale-[1.04] shadow-[0_0_60px_rgba(139,92,246,0.2)]"
+                                : ""
                                 } ${isHovered ? "scale-[1.02]" : ""}`}
                             style={{
                                 boxShadow: isHovered
@@ -243,8 +243,8 @@ export const PricingPlans = () => {
                                         <li
                                             key={feat.id}
                                             className={`flex items-center gap-3 text-sm rounded-xl px-3 py-2 transition-colors ${included
-                                                    ? "text-foreground/85 bg-white/4"
-                                                    : "text-foreground/25"
+                                                ? "text-foreground/85 bg-white/4"
+                                                : "text-foreground/25"
                                                 }`}
                                         >
                                             <FeatIcon className={`size-4 flex-shrink-0 ${included ? "text-foreground/50" : "text-foreground/20"}`} />
@@ -267,7 +267,7 @@ export const PricingPlans = () => {
 
                             {/* CTA button */}
                             <a
-                                href="https://wa.me/59170000000"
+                                href={`https://wa.me/59169867332?text=Hola%20MiraCode!%20Estoy%20interesado%20en%20el%20*Plan%20${encodeURIComponent(plan.name)}%20(${plan.price}%20Bs%2Fmes)*%20%F0%9F%91%8B%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className={`group inline-flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl bg-gradient-to-r ${plan.color} text-white font-bold text-sm transition-all duration-300 hover:opacity-90 hover:scale-[1.02] shadow-lg`}
