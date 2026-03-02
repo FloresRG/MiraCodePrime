@@ -10,43 +10,43 @@ const marqueeImages = [
   "/assets/sistemas/miranda.png",
   "/assets/logo.png",
   "/assets/sistemas/botlive.png",
-   "/assets/sistemas/admus.png",
+  "/assets/sistemas/admus.png",
   "/assets/sistemas/miranda.png",
   "/assets/logo.png",
   "/assets/sistemas/botlive.png",
-    "/assets/sistemas/admus.png",
+  "/assets/sistemas/admus.png",
   "/assets/sistemas/miranda.png",
   "/assets/logo.png",
   "/assets/sistemas/botlive.png",
-    "/assets/sistemas/admus.png",
+  "/assets/sistemas/admus.png",
   "/assets/sistemas/miranda.png",
   "/assets/logo.png",
   "/assets/sistemas/botlive.png",
-    "/assets/sistemas/admus.png",
+  "/assets/sistemas/admus.png",
   "/assets/sistemas/miranda.png",
   "/assets/logo.png",
   "/assets/sistemas/botlive.png",
-    "/assets/sistemas/admus.png",
+  "/assets/sistemas/admus.png",
   "/assets/sistemas/miranda.png",
   "/assets/logo.png",
   "/assets/sistemas/botlive.png",
-    "/assets/sistemas/admus.png",
+  "/assets/sistemas/admus.png",
   "/assets/sistemas/miranda.png",
   "/assets/logo.png",
   "/assets/sistemas/botlive.png",
-    "/assets/sistemas/admus.png",
+  "/assets/sistemas/admus.png",
   "/assets/sistemas/miranda.png",
   "/assets/logo.png",
   "/assets/sistemas/botlive.png",
-    "/assets/sistemas/admus.png",
+  "/assets/sistemas/admus.png",
   "/assets/sistemas/miranda.png",
   "/assets/logo.png",
   "/assets/sistemas/botlive.png",
-    "/assets/sistemas/admus.png",
+  "/assets/sistemas/admus.png",
   "/assets/sistemas/miranda.png",
   "/assets/logo.png",
   "/assets/sistemas/botlive.png",
-    "/assets/sistemas/admus.png",
+  "/assets/sistemas/admus.png",
   "/assets/sistemas/miranda.png",
   "/assets/logo.png",
   "/assets/sistemas/botlive.png",
@@ -83,7 +83,7 @@ export const Hero = () => {
                   <motion.div
                     animate={{
                       rotate: [0, 10, -10, 0],
-                      scale: [1, 1.1, 0.9, 1]
+                      scale: [1, 1.1, 0.9, 1],
                     }}
                     transition={{ duration: 4, repeat: Infinity }}
                   >
@@ -112,7 +112,9 @@ export const Hero = () => {
                 </span>
               </h2>
               <p className="text-xl md:text-2xl text-muted-foreground font-medium max-w-xl leading-relaxed">
-                Transformando ideas en experiencias digitales <span className="text-primary font-bold">excepcionales</span> con tecnología de vanguardia.
+                Transformando ideas en experiencias digitales{" "}
+                <span className="text-primary font-bold">excepcionales</span>{" "}
+                con tecnología de vanguardia.
               </p>
             </div>
 

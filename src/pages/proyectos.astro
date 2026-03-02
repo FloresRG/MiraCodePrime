@@ -4,9 +4,6 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import ImageTextSection from '@/components/ImageTextSection.astro';
 import { projects } from '@/lib/projects';
-
-// Imagen de ejemplo — cuando tengas las reales, reemplazá dashImg en projects.ts o pasá las correctas aquí
-import dashImg from '@/assets/logo.png';
 ---
 
 <Main title="Proyectos | MiraCode — Software a medida">
@@ -45,7 +42,7 @@ import dashImg from '@/assets/logo.png';
     {projects.map((p, index) => (
       <div class={`md:py-12`}>
         <ImageTextSection
-          image={dashImg}
+          image={p.image}
           title={p.title}
           description={p.shortDesc}
           imagePosition={index % 2 === 0 ? 'left' : 'right'}
