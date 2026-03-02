@@ -82,7 +82,11 @@ export const ServicePageTimeline = ({ service }: { service: Service }) => {
           ¿Listo para llevar tu proyecto al siguiente nivel con nuestro servicio
           de {service.title}?
         </p>
-        <a href="/#contact">
+        <a
+          href="https://wa.me/59169867332"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <Button
             size="lg"
             className="rounded-full px-12 h-16 text-xl font-bold hover:scale-105 transition-transform"

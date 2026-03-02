@@ -142,7 +142,9 @@ const coverVideo = project.video ?? project.image;
               </svg>
             </a>
             <a
-              href="/#contact"
+              href="https://wa.me/59169867332"
+              target="_blank"
+              rel="noopener noreferrer"
               class="inline-flex items-center justify-center gap-3 h-10 sm:h-16 px-4 sm:px-12 rounded-lg sm:rounded-2xl border-2 border-primary/20 bg-background/20 backdrop-blur-md text-foreground font-bold text-sm sm:text-lg hover:bg-background/40 transition-all duration-300 hover:border-primary/50"
             >
               Solicitar cotización
@@ -226,6 +228,20 @@ const coverVideo = project.video ?? project.image;
           ))
         }
       </div>
+
+      <!-- Enlace a proyecto desplegado (si existe) -->
+      {project.liveUrl && (
+        <div class="text-center mb-24">
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block px-8 py-4 bg-primary text-primary-foreground font-bold rounded-2xl shadow-lg hover:scale-105 transition-transform"
+          >
+            Ver proyecto desplegado
+          </a>
+        </div>
+      )}
     </div>
   </section>
 
@@ -293,7 +309,9 @@ const coverVideo = project.video ?? project.image;
       </p>
       <div class="flex flex-col sm:flex-row gap-6 justify-center">
         <a
-          href="/#contact"
+          href="https://wa.me/59169867332"
+          target="_blank"
+          rel="noopener noreferrer"
           class="inline-flex items-center justify-center gap-3 h-16 px-12 rounded-2xl bg-primary text-primary-foreground font-bold text-lg shadow-2xl shadow-primary/30 hover:scale-105 transition-all duration-300"
         >
           Iniciar cotización ahora

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Code2 } from "lucide-react";
+import { Menu, X, Code2, ArrowDown } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import logoImg from "@/assets/logo.png";
 
@@ -21,7 +21,9 @@ export const Navbar = () => {
     { name: "Portafolio", href: "/#portfolio" },
     { name: "Proyectos", href: "/proyectos" },
     { name: "Sobre Nosotros", href: "/#about" },
-    { name: "Contacto", href: "/#contact" },
+    // contacto se abre en WhatsApp por ahora
+    { name: "Contacto", href: "https://wa.me/59169867332" },
+    { name: "1bs", href: "/1bs" },
   ];
 
   return (
@@ -69,7 +71,7 @@ export const Navbar = () => {
               <ThemeToggle />
             </div>
 
-            <a href="/#contact" className="hidden md:block">
+            <a href="https://wa.me/59169867332" target="_blank" rel="noopener noreferrer" className="hidden md:block">
               <Button
                 variant="default"
                 size="sm"
@@ -82,6 +84,16 @@ export const Navbar = () => {
             {/* Mobile Actions */}
             <div className="md:hidden flex items-center gap-2">
               <ThemeToggle />
+              {/* mobile quick-scroll arrow, moves one viewport down */}
+              <button
+                onClick={() => {
+                  window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
+                }}
+                className="rounded-full p-2 hover:bg-primary/10"
+                aria-label="Scroll down"
+              >
+                <ArrowDown className="size-6 text-foreground" />
+              </button>
               <Button
                 variant="ghost"
                 size="icon"
@@ -128,7 +140,7 @@ export const Navbar = () => {
                 transition={{ delay: 0.4 }}
                 className="pt-4 border-t border-border/40"
               >
-                <a href="/#contact" onClick={() => setIsOpen(false)}>
+                <a href="https://wa.me/59169867332" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}>
                   <Button className="w-full h-14 text-lg font-bold rounded-2xl">
                     Solicitar Cotización
                   </Button>

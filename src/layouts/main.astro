@@ -29,16 +29,15 @@ const {
 
     <script is:inline>
       const theme = (() => {
+        // prefer stored value; if missing default to dark instead of system
         if (
           typeof localStorage !== "undefined" &&
           localStorage.getItem("theme")
         ) {
           return localStorage.getItem("theme");
         }
-        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-          return "dark";
-        }
-        return "light";
+        // no stored theme -> start in dark mode by default
+        return "dark";
       })();
 
       if (theme === "dark") {

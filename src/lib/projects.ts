@@ -10,6 +10,8 @@ export interface Project {
     image: string;
     video?: string;
     features: string[];
+    /** URL del proyecto desplegado, opcional */
+    liveUrl?: string;
     /** Secciones de detalle en [id].astro */
     sections: {
         title: string;
@@ -31,6 +33,7 @@ export const projects: Project[] = [
         color: 'from-orange-500 to-amber-600',
         image: '/assets/sistemas/miranda.png',
         video: '/assets/videos/mirandavideo.mp4',
+        liveUrl: 'https://erp.importadoramiranda.com',
         features: [
             'Control de inventario por categoría y proveedor',
             'Cuadernos digitales de venta con flujo de aprobación',
@@ -52,6 +55,7 @@ export const projects: Project[] = [
         color: 'from-blue-500 to-indigo-600',
         image: '/assets/sistemas/shopmiranda.png',
         video: '/assets/videos/shopvideo.mp4',
+        liveUrl: 'https://shop.importadoramiranda.com',
         features: [
             'Catálogo con búsqueda y filtros en tiempo real',
             'Carrito persistente y checkout multi-paso',

@@ -34,7 +34,7 @@ export const FeaturedProjects = () => {
   return (
     <section
       id="portfolio"
-      className="pt-24 bg-background relative overflow-hidden"
+      className="pt-6 bg-background relative overflow-hidden"
     >
       {/* Background Decorative Elements */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none overflow-hidden">

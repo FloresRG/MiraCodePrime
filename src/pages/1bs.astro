@@ -1,0 +1,12 @@
+---
+import Main from "../layouts/main.astro";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
+import { PricingPlans } from "@/components/PricingPlans";
+---
+
+<Main title="MiraCode | Planes y Precios — 1 Bs. por Pedido" description="Elige el plan mensual perfecto para tu negocio. Con comisión de solo 1 Bs. por pedido registrado.">
+  <Navbar client:load />
+  <PricingPlans client:load />
+  <Footer />
+</Main>
