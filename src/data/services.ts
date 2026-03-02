@@ -8,7 +8,7 @@ export const services = [
       "Aplicaciones web modernas, rápidas y escalables utilizando las últimas tecnologías.",
     icon: Globe,
     tags: ["React", "Astro", "Next.js"],
-    image: "/src/assets/logo.png",
+    image: "/assets/logo.png",
     steps: [
       {
         date: "2024-03-01",
@@ -37,7 +37,7 @@ export const services = [
       "Soluciones nativas y multiplataforma para iOS y Android con alto rendimiento.",
     icon: Smartphone,
     tags: ["React Native", "Flutter"],
-    image: "/src/assets/loginmiranda.png",
+    image: "/assets/logo.png",
     steps: [
       {
         date: "2024-02-01",
@@ -66,7 +66,7 @@ export const services = [
       "Diseño de sistemas robustos, microservicios y soluciones en la nube.",
     icon: Cpu,
     tags: ["AWS", "Docker", "Kubernetes"],
-    image: "/src/assets/admus.png",
+    image: "/assets/logo.png",
     steps: [
       {
         date: "2024-01-01",
@@ -95,7 +95,7 @@ export const services = [
       "Interfaces intuitivas y experiencias de usuario diseñadas para convertir.",
     icon: Layout,
     tags: ["Figma", "Prototyping"],
-    image: "/src/assets/prueba.png",
+    image: "/assets/logo.png",
     steps: [
       {
         date: "2024-03-01",
@@ -124,7 +124,7 @@ export const services = [
       "Desarrollo de APIs seguras y eficientes para conectar tus servicios.",
     icon: Database,
     tags: ["Node.js", "Go", "Python"],
-    image: "/src/assets/logomiracode.webp",
+    image: "/assets/logo.png",
     steps: [
       {
         date: "2024-02-01",
@@ -153,7 +153,7 @@ export const services = [
       "Asesoramiento estratégico para la transformación digital de tu empresa.",
     icon: Code2,
     tags: ["Estrategia", "Scalability"],
-    image: "/src/assets/logo.png",
+    image: "/assets/logo.png",
     steps: [
       {
         date: "2024-01-10",
