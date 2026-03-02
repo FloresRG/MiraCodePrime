@@ -60,22 +60,6 @@ const coverVideo = project.video ?? project.image;
             style="display: none;"
           />
 
-          <!-- Botones overlay: play / stop placed at the same spot and toggled via JS -->
-          <button
-            id="btn-play-overlay"
-            style="display: none;"
-            class="absolute top-4 right-4 z-30 inline-flex items-center gap-2 px-3 py-2 rounded-full bg-background/80 backdrop-blur-md border border-border/40 text-sm text-foreground hover:bg-background/90"
-          >
-            Ver video
-          </button>
-
-          <button
-            id="btn-stop-video"
-            style="display: none;"
-            class="absolute top-4 right-4 z-30 inline-flex items-center gap-2 px-3 py-2 rounded-full bg-background/60 backdrop-blur-md border border-border/40 text-sm text-foreground hover:bg-background/80"
-          >
-            Detener video
-          </button>
         </>
       ) : (
         <img
@@ -85,6 +69,44 @@ const coverVideo = project.video ?? project.image;
         />
       )}
     </div>
+
+    <!-- NUEVOS CONTROLES AISLADOS EN Z-50 -->
+    {project.video && (
+      <div id="video-controls" style="display: none;" class="absolute top-4 right-4 z-[100] flex gap-2">
+        <button
+          id="btn-fullscreen"
+          type="button"
+          class="inline-flex items-center justify-center p-3 md:px-4 md:py-2 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-sm text-white hover:bg-black/70 active:bg-black/80"
+          title="Pantalla Completa"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="md:mr-2"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
+          <span class="hidden md:inline font-medium">Fullscreen</span>
+        </button>
+
+        <button
+          id="btn-stop-video"
+          type="button"
+          class="inline-flex items-center justify-center p-3 md:px-4 md:py-2 rounded-full bg-red-600/60 backdrop-blur-md border border-red-500/50 text-sm text-white hover:bg-red-600/80 active:bg-red-600/90"
+          title="Cerrar Video"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="md:mr-2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          <span class="hidden md:inline font-medium">Detener</span>
+        </button>
+      </div>
+    )}
+
+    <!-- PLAY BUTTON PARA CELULAR Y PC -->
+    {project.video && (
+      <button
+        id="btn-play-overlay"
+        style="display: none;"
+        type="button"
+        class="absolute top-4 right-4 z-[100] inline-flex items-center gap-2 p-3 md:px-4 md:py-2 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-sm text-white hover:bg-black/80 active:bg-black/90"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+        <span class="hidden md:inline font-medium">Ver Video</span>
+      </button>
+    )}
 
     <!-- Nota flotante sobre la imagen -->
     <div class="container relative z-20 mx-auto px-6 pt-[56.25vw] md:pt-0 pb-20 md:pb-200">
@@ -150,9 +172,14 @@ const coverVideo = project.video ?? project.image;
               Solicitar cotización
             </a>
             {project.video && (
-              <>
-                <!-- Play button moved to video overlay for better mobile UX -->
-              </>
+              <button
+                id="btn-play-hero"
+                type="button"
+                class="inline-flex items-center justify-center gap-2 h-10 sm:h-16 px-4 sm:px-8 rounded-lg sm:rounded-2xl border border-white/20 bg-black/20 backdrop-blur-md text-white font-bold text-sm sm:text-lg hover:bg-white/10 transition-all duration-300 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.5)]"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                Ver Demo
+              </button>
             )}
           </div>
         </div>
@@ -160,12 +187,91 @@ const coverVideo = project.video ?? project.image;
     </div>
     </div>
     
-    <!-- Script cliente: control de reproducción del video cover (ejecutado dinámicamente para evitar chequeos TS) -->
+    <!-- JS NATIVO ROBUSTO PARA MOBILE/DESKTOP -->
     <script>
-      (function(){
-        const code = "document.addEventListener('DOMContentLoaded', function(){ var video = document.getElementById('project-cover-video'); if(!video) return; var poster = document.getElementById('project-cover-poster'); var playOverlay = document.getElementById('btn-play-overlay'); var stopBtn = document.getElementById('btn-stop-video'); var heroNote = document.getElementById('hero-note'); function showPoster(){ try{ video.style.display='none'; if(poster) poster.style.display='block'; if(stopBtn) stopBtn.style.display='none'; if(playOverlay) playOverlay.style.display='inline-flex'; if(heroNote) heroNote.style.display='block'; }catch(e){} } function showVideo(){ try{ if(poster) poster.style.display='none'; video.style.display='block'; if(stopBtn) stopBtn.style.display='inline-flex'; if(playOverlay) playOverlay.style.display='none'; if(heroNote) heroNote.style.display='none'; }catch(e){} } video.addEventListener('ended', showPoster); try{ if(video.play) { var p = video.play(); if(p && p.then) { p.then(function(){ showVideo(); }).catch(function(){ showPoster(); }); } else { showVideo(); } } }catch(e){ showPoster(); } if(playOverlay) playOverlay.addEventListener('click', function(e){ e.preventDefault(); try{ video.currentTime=0; video.muted=true; var p = video.play(); if(p && p.then) { p.catch(function(){}); } }catch(e){}; showVideo(); }); if(stopBtn) stopBtn.addEventListener('click', function(e){ e.preventDefault(); try{ if(video.pause) video.pause(); }catch(e){}; showPoster(); }); });";
-        new Function(code)();
-      })();
+      document.addEventListener('DOMContentLoaded', () => {
+        const video = document.getElementById('project-cover-video') as HTMLVideoElement;
+        if (!video) return;
+
+        const poster = document.getElementById('project-cover-poster') as HTMLImageElement;
+        const heroNote = document.getElementById('hero-note');
+        
+        const controlsGroup = document.getElementById('video-controls');
+        const btnPlaySmall = document.getElementById('btn-play-overlay');
+        const btnStop = document.getElementById('btn-stop-video');
+        const btnFullscreen = document.getElementById('btn-fullscreen');
+        const btnPlayBig = document.getElementById('btn-play-hero');
+
+        // Función para cambiar interfaz a "Video Reproduciéndose"
+        const showVideoPlaying = () => {
+          if (poster) poster.style.display = 'none';
+          video.style.display = 'block';
+          
+          if (heroNote) heroNote.style.display = 'none';     // Ocultamos la tarjeta molesta al 100%
+          if (btnPlaySmall) btnPlaySmall.style.display = 'none'; 
+          if (controlsGroup) controlsGroup.style.display = 'flex'; // Mostramos Stop y FS
+        };
+
+        // Función para cambiar interfaz a "Tarjeta Info" (Poster)
+        const showInfoCard = () => {
+          if (poster) poster.style.display = 'block';
+          video.style.display = 'none';
+          
+          if (heroNote) heroNote.style.display = 'block';
+          if (controlsGroup) controlsGroup.style.display = 'none';
+          if (btnPlaySmall) btnPlaySmall.style.display = 'inline-flex';
+        };
+
+        // Escuchar cuando el video se acaba
+        video.addEventListener('ended', showInfoCard);
+
+        // Auto-play (muchos celulares lo bloquean)
+        const p = video.play();
+        if (p !== undefined) {
+          p.then(() => showVideoPlaying()).catch(() => showInfoCard());
+        }
+
+        // --- BOTONES (usando click o pointerdown en vez de dudar) ---
+        
+        // Función general de binding para móviles
+        const bindButton = (el: HTMLElement | null, action: () => void) => {
+          if (!el) return;
+          // Prevenimos que toque dos veces rápido o doble fire
+          el.addEventListener('click', (e) => { e.preventDefault(); action(); });
+          el.addEventListener('touchstart', (e) => { e.preventDefault(); action(); }, { passive: false });
+        };
+
+        // Jugar desde los botones
+        const doPlay = () => {
+          video.currentTime = 0;
+          video.muted = false; // Intenta desmutear
+          video.play().then(showVideoPlaying).catch(()=>{});
+        };
+        
+        bindButton(btnPlayBig, doPlay);
+        bindButton(btnPlaySmall, doPlay);
+
+        // Detener video
+        const doStop = () => {
+          video.pause();
+          showInfoCard();
+          if (document.fullscreenElement) {
+            document.exitFullscreen().catch(()=>{});
+          }
+        };
+        bindButton(btnStop, doStop);
+
+        // Pantalla Completa
+        const doFullscreen = () => {
+          if (!document.fullscreenElement) {
+            if (video.requestFullscreen) video.requestFullscreen();
+            else if ((video as any).webkitRequestFullscreen) (video as any).webkitRequestFullscreen();
+          } else {
+            if (document.exitFullscreen) document.exitFullscreen();
+          }
+        };
+        bindButton(btnFullscreen, doFullscreen);
+      });
     </script>
   </section>
 
