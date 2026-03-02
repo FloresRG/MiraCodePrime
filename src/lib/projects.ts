@@ -38,8 +38,8 @@ export const projects: Project[] = [
             'Reportes de ventas por zona, departamento y vendedor',
         ],
         sections: [
-            { title: 'Gestión de inventario', description: 'Vista centralizada de productos importados con stock en tiempo real, alertas de stock mínimo y registro de entradas por proveedor.', imagePosition: 'left', badge: 'Inventario', image: '/assets/admus.png' },
-            { title: 'Cuadernos de venta digitales', description: 'Los vendedores registran pedidos desde el celular y los supervisores aprueban en el panel. El admin liquida con exportación a PDF.', imagePosition: 'right', badge: 'Logística', image: '/assets/admus.png' },
+            { title: 'Gestión de inventario', description: 'Vista centralizada de productos importados con stock en tiempo real, alertas de stock mínimo y registro de entradas por proveedor.', imagePosition: 'left', badge: 'Inventario', image: '/assets/imagenes/inventariomiranda.png' },
+            { title: 'Cuadernos de venta digitales', description: 'Los vendedores registran pedidos desde el celular y los supervisores aprueban en el panel. El admin liquida con exportación a PDF.', imagePosition: 'right', badge: 'Logística', image: '/assets/imagenes/cuadernomiranda.png' },
         ],
     },
     {
@@ -59,8 +59,8 @@ export const projects: Project[] = [
             'Historial de pedidos con rastreo de estado',
         ],
         sections: [
-            { title: 'Tienda y catálogo online', description: 'Catálogo filtrable por categoría, marca y precio. Búsqueda instantánea con resultados en tiempo real sin recargar la página.', imagePosition: 'left', badge: 'Catálogo', image: '/assets/admus.png' },
-            { title: 'Checkout y pagos QR', description: 'Proceso de pago simplificado: cliente genera QR, paga desde su banco y el sistema verifica la transacción automáticamente.', imagePosition: 'right', badge: 'Pagos', image: '/assets/admus.png' },
+            { title: 'Tienda y catálogo online', description: 'Catálogo filtrable por categoría, marca y precio. Búsqueda instantánea con resultados en tiempo real sin recargar la página.', imagePosition: 'left', badge: 'Catálogo', image: '/assets/imagenes/shopmiranda.png' },
+            { title: 'Checkout y pagos QR', description: 'Proceso de pago simplificado: cliente genera QR, paga desde su banco y el sistema verifica la transacción automáticamente.', imagePosition: 'right', badge: 'Pagos', image: '/assets/imagenes/pagomiranda.png' },
         ],
     },
     {
@@ -80,8 +80,8 @@ export const projects: Project[] = [
             'Portal de cliente para seguimiento y aprobaciones',
         ],
         sections: [
-            { title: 'Panel de proyectos', description: 'Vista kanban y lista de todos los proyectos activos, con estado, responsable, fecha de entrega y porcentaje de avance.', imagePosition: 'left', badge: 'Proyectos', image: '/assets/admus.png' },
-            { title: 'Control de presupuesto', description: 'Registro de gastos vs presupuesto aprobado por proyecto. Alertas automáticas cuando se supera el 80% del presupuesto.', imagePosition: 'right', badge: 'Finanzas', image: '/assets/admus.png' },
+            { title: 'Panel de proyectos', description: 'Vista kanban y lista de todos los proyectos activos, con estado, responsable, fecha de entrega y porcentaje de avance.', imagePosition: 'left', badge: 'Proyectos', image: '/assets/imagenes/dashadmus.png' },
+            { title: 'Control de presupuesto', description: 'Registro de gastos vs presupuesto aprobado por proyecto. Alertas automáticas cuando se supera el 80% del presupuesto.', imagePosition: 'right', badge: 'Finanzas', image: '/assets/imagenes/gestionadmus.png' },
         ],
     },
     {
@@ -101,8 +101,8 @@ export const projects: Project[] = [
             'Exportación e integración con Google Calendar',
         ],
         sections: [
-            { title: 'Vista de calendario interactivo', description: 'Drag & drop para mover grabaciones, colores por tipo de producción y vista de disponibilidad de recursos superpuesta.', imagePosition: 'left', badge: 'Calendario', image: '/assets/admus.png' },
-            { title: 'Gestión de recursos', description: 'Panel para ver qué equipos, cámaras y personal están disponibles en cada fecha, evitando conflictos de agenda.', imagePosition: 'right', badge: 'Recursos', image: '/assets/admus.png' },
+            { title: 'Vista de calendario interactivo', description: 'Drag & drop para mover grabaciones, colores por tipo de producción y vista de disponibilidad de recursos superpuesta.', imagePosition: 'left', badge: 'Calendario', image: '/assets/imagenes/calendarioadmus.png' },
+            { title: 'Gestión de recursos', description: 'Panel para ver qué equipos, cámaras y personal están disponibles en cada fecha, evitando conflictos de agenda.', imagePosition: 'right', badge: 'Recursos', image: '/assets/imagenes/calendarioinfo.png' },
         ],
     },
     {
@@ -122,8 +122,8 @@ export const projects: Project[] = [
             'Notificación automática al equipo de despacho',
         ],
         sections: [
-            { title: 'Flujo de conversación inteligente', description: 'El cliente escribe su pedido, el bot interpreta la intención, muestra disponibilidad y precios, y confirma el pedido sin formularios.', imagePosition: 'left', badge: 'NLU / IA', image: '/assets/admus.png' },
-            { title: 'Panel de pedidos recibidos', description: 'El equipo de despacho ve en tiempo real todos los pedidos confirmados por WhatsApp, con estado, dirección y método de pago.', imagePosition: 'right', badge: 'Admin', image: '/assets/admus.png' },
+            { title: 'Flujo de conversación inteligente', description: 'El cliente escribe su pedido, el bot interpreta la intención, muestra disponibilidad y precios, y confirma el pedido sin formularios.', imagePosition: 'left', badge: 'NLU / IA', image: '/assets/imagenes/inventariomiranda.png' },
+            { title: 'Panel de pedidos recibidos', description: 'El equipo de despacho ve en tiempo real todos los pedidos confirmados por WhatsApp, con estado, dirección y método de pago.', imagePosition: 'right', badge: 'Admin', image: '/assets/imagenes/inventariomiranda.png' },
         ],
     },
     {
@@ -143,8 +143,8 @@ export const projects: Project[] = [
             'Reportes de ventas, productos top y clientes frecuentes',
         ],
         sections: [
-            { title: 'Tienda pública de alta conversión', description: 'Diseño optimizado para ventas: búsqueda rápida, filtros, wishlist, reseñas y proceso de pago en 3 pasos.', imagePosition: 'left', badge: 'Tienda', image: '/assets/admus.png' },
-            { title: 'Panel de administración', description: 'Dashboard con métricas de ventas del día, gestión completa de catálogo y módulo de clientes con historial de compras.', imagePosition: 'right', badge: 'Admin', image: '/assets/admus.png' },
+            { title: 'Tienda pública de alta conversión', description: 'Diseño optimizado para ventas: búsqueda rápida, filtros, wishlist, reseñas y proceso de pago en 3 pasos.', imagePosition: 'left', badge: 'Tienda', image: '/assets/imagenes/inventariomiranda.png' },
+            { title: 'Panel de administración', description: 'Dashboard con métricas de ventas del día, gestión completa de catálogo y módulo de clientes con historial de compras.', imagePosition: 'right', badge: 'Admin', image: '/assets/imagenes/inventariomiranda.png' },
         ],
     },
     {
@@ -164,8 +164,8 @@ export const projects: Project[] = [
             'Backups automáticos y cifrado en reposo',
         ],
         sections: [
-            { title: 'Escritorio de nube corporativa', description: 'Interfaz familiar tipo Google Drive pero en servidor propio del cliente. Carpetas compartidas por departamento, permisos granulares y actividad de equipo.', imagePosition: 'left', badge: 'Archivos', image: '/assets/admus.png' },
-            { title: 'Colaboración y comunicación', description: 'Edición de documentos simultánea con OnlyOffice, videoconferencias sin salir de la plataforma y chat de equipo.', imagePosition: 'right', badge: 'Colaboración', image: '/assets/admus.png' },
+            { title: 'Escritorio de nube corporativa', description: 'Interfaz familiar tipo Google Drive pero en servidor propio del cliente. Carpetas compartidas por departamento, permisos granulares y actividad de equipo.', imagePosition: 'left', badge: 'Archivos', image: '/assets/imagenes/cloudadmus.png' },
+            { title: 'Colaboración y comunicación', description: 'Edición de documentos simultánea con OnlyOffice, videoconferencias sin salir de la plataforma y chat de equipo.', imagePosition: 'right', badge: 'Colaboración', image: '/assets/imagenes/cloudfiles.png' },
         ],
     },
     {
@@ -185,8 +185,8 @@ export const projects: Project[] = [
             'Panel de control: códigos activos, usados y vencidos',
         ],
         sections: [
-            { title: 'Compra y personalización de GiftCards', description: 'El comprador elige el monto, personaliza el mensaje y paga online. La tarjeta llega al destinatario con código QR y pin de seguridad.', imagePosition: 'left', badge: 'Venta', image: '/assets/admus.png' },
-            { title: 'Panel de validación y reportes', description: 'El admin ve en tiempo real qué códigos están activos, cuándo se canjearon y el valor total de tarjetas pendientes.', imagePosition: 'right', badge: 'Admin', image: '/assets/admus.png' },
+            { title: 'Compra y personalización de GiftCards', description: 'El comprador elige el monto, personaliza el mensaje y paga online. La tarjeta llega al destinatario con código QR y pin de seguridad.', imagePosition: 'left', badge: 'Venta', image: '/assets/imagenes/inventariomiranda.png' },
+            { title: 'Panel de validación y reportes', description: 'El admin ve en tiempo real qué códigos están activos, cuándo se canjearon y el valor total de tarjetas pendientes.', imagePosition: 'right', badge: 'Admin', image: '/assets/imagenes/inventariomiranda.png' },
         ],
     },
     {
@@ -206,8 +206,8 @@ export const projects: Project[] = [
             'Notificación instantánea de confirmación al equipo',
         ],
         sections: [
-            { title: 'Captura de notificaciones bancarias', description: 'App Android que escucha las notificaciones de los bancos instalados en el celular del cajero y las reenvía al servidor en tiempo real.', imagePosition: 'left', badge: 'Captura', image: '/assets/admus.png' },
-            { title: 'Verificación y confirmación automática', description: 'El sistema cruza los datos extraídos (monto, referencia, cédula) con los pedidos en espera y los marca como pagados automáticamente.', imagePosition: 'right', badge: 'Verificación', image: '/assets/admus.png' },
+            { title: 'Captura de notificaciones bancarias', description: 'App Android que escucha las notificaciones de los bancos instalados en el celular del cajero y las reenvía al servidor en tiempo real.', imagePosition: 'left', badge: 'Captura', image: '/assets/imagenes/inventariomiranda.png' },
+            { title: 'Verificación y confirmación automática', description: 'El sistema cruza los datos extraídos (monto, referencia, cédula) con los pedidos en espera y los marca como pagados automáticamente.', imagePosition: 'right', badge: 'Verificación', image: '/assets/imagenes/inventariomiranda.png' },
         ],
     },
     {
@@ -227,8 +227,8 @@ export const projects: Project[] = [
             'Pantalla de cocina con pedidos en tiempo real',
         ],
         sections: [
-            { title: 'Reservas y gestión de mesas', description: 'Los clientes reservan desde la web o Google. El maître ve el plano del restaurante con disponibilidad en tiempo real y asigna mesas.', imagePosition: 'left', badge: 'Reservas', image: '/assets/admus.png' },
-            { title: 'Comandas y cocina digital', description: 'Los mozos cargan pedidos desde tablet, la cocina los ve en pantalla con temporizador. Se eliminan los errores de comandas en papel.', imagePosition: 'right', badge: 'POS', image: '/assets/admus.png' },
+            { title: 'Reservas y gestión de mesas', description: 'Los clientes reservan desde la web o Google. El maître ve el plano del restaurante con disponibilidad en tiempo real y asigna mesas.', imagePosition: 'left', badge: 'Reservas', image: '/assets/imagenes/inventariomiranda.png' },
+            { title: 'Comandas y cocina digital', description: 'Los mozos cargan pedidos desde tablet, la cocina los ve en pantalla con temporizador. Se eliminan los errores de comandas en papel.', imagePosition: 'right', badge: 'POS', image: '/assets/imagenes/inventariomiranda.png' },
         ],
     },
     {
@@ -248,8 +248,8 @@ export const projects: Project[] = [
             'Reportes de ventas y medicamentos más vendidos',
         ],
         sections: [
-            { title: 'Inventario de medicamentos', description: 'Vista completa del stock con alertas de vencimiento próximo y stock mínimo. Registro de entradas por laboratorio y lote.', imagePosition: 'left', badge: 'Inventario', image: '/assets/admus.png' },
-            { title: 'Punto de venta farmacéutico', description: 'POS optimizado para farmacia: búsqueda instantánea, sustitutos disponibles, múltiples métodos de pago y emisión de comprobante.', imagePosition: 'right', badge: 'POS', image: '/assets/admus.png' },
+            { title: 'Inventario de medicamentos', description: 'Vista completa del stock con alertas de vencimiento próximo y stock mínimo. Registro de entradas por laboratorio y lote.', imagePosition: 'left', badge: 'Inventario', image: '/assets/imagenes/inventariomiranda.png' },
+            { title: 'Punto de venta farmacéutico', description: 'POS optimizado para farmacia: búsqueda instantánea, sustitutos disponibles, múltiples métodos de pago y emisión de comprobante.', imagePosition: 'right', badge: 'POS', image: '/assets/imagenes/inventariomiranda.png' },
         ],
     },
 ];
