@@ -39,7 +39,7 @@ import {
   GitCompare,
 } from "lucide-react";
 
-type Tier = "free" | "starter" | "pro" | "enterprise";
+type Tier = "basico" | "pro" | "ultra";
 
 interface Feature {
   id: string;
@@ -77,20 +77,8 @@ const categories: Category[] = [
     description:
       "Tu negocio en la web con un catálogo interactivo y contacto directo.",
     tiers: {
-      free: {
-        name: "Free",
-        price: 0,
-        description: "Básico para iniciar",
-        color: "from-slate-400 to-slate-500",
-        glow: "rgba(148,163,184,0.15)",
-        border: "border-slate-500/10",
-        bg: "bg-slate-500/5",
-        icon: Zap,
-        featureLimit: 1,
-        featureData: { productos: "10 Productos", personalizacion: "Básica" },
-      },
-      starter: {
-        name: "Starter",
+      basico: {
+        name: "Basico",
         price: 79.9,
         description: "Pequeños negocios",
         color: "from-sky-500 to-blue-600",
@@ -114,8 +102,8 @@ const categories: Category[] = [
         featureLimit: 5,
         featureData: { productos: "80 Productos", personalizacion: "Avanzada" },
       },
-      enterprise: {
-        name: "Enterprise",
+      ultra: {
+        name: "Ultra",
         price: 169.9,
         description: "Potencia ilimitada",
         color: "from-amber-400 to-orange-500",
@@ -139,20 +127,8 @@ const categories: Category[] = [
     description:
       "Gestión de pedidos en tiempo real con tienda online integrada.",
     tiers: {
-      free: {
-        name: "Free",
-        price: 0,
-        description: "Prueba gratis",
-        color: "from-slate-400 to-slate-500",
-        glow: "rgba(148,163,184,0.15)",
-        border: "border-slate-500/10",
-        bg: "bg-slate-500/5",
-        icon: Zap,
-        featureLimit: 1,
-        featureData: { productos: "10 Productos", usuarios: "1 Usuario" },
-      },
-      starter: {
-        name: "Starter",
+      basico: {
+        name: "Basico",
         price: 169.9,
         description: "Uso comercial",
         color: "from-emerald-500 to-teal-600",
@@ -176,8 +152,8 @@ const categories: Category[] = [
         featureLimit: 9,
         featureData: { productos: "80 Productos", usuarios: "5 Usuarios" },
       },
-      enterprise: {
-        name: "Enterprise",
+      ultra: {
+        name: "Ultra",
         price: 299.9,
         description: "Control total",
         color: "from-rose-500 to-pink-600",
@@ -200,24 +176,8 @@ const categories: Category[] = [
     icon: Boxes,
     description: "Punto de venta e inventarios para múltiples sucursales.",
     tiers: {
-      free: {
-        name: "Free",
-        price: 0,
-        description: "Control básico",
-        color: "from-slate-400 to-slate-500",
-        glow: "rgba(148,163,184,0.15)",
-        border: "border-slate-500/20",
-        bg: "bg-slate-500/5",
-        icon: Zap,
-        featureLimit: 2,
-        featureData: {
-          productos: "10 Productos",
-          historial: "7 días",
-          sucursales: "1 Sucursal",
-        },
-      },
-      starter: {
-        name: "Starter",
+      basico: {
+        name: "Basico",
         price: 169.9,
         description: "Gestión Pyme",
         color: "from-orange-500 to-red-600",
@@ -245,8 +205,8 @@ const categories: Category[] = [
         featureLimit: 10,
         featureData: { productos: "80 Productos", sucursales: "3 Sucursales" },
       },
-      enterprise: {
-        name: "Enterprise",
+      ultra: {
+        name: "Ultra",
         price: 299.9,
         description: "Sistemas masivos",
         color: "from-blue-600 to-indigo-700",
@@ -266,20 +226,8 @@ const categories: Category[] = [
     description:
       "Automatización de mensajes y atención al cliente vía WhatsApp.",
     tiers: {
-      free: {
-        name: "Free",
-        price: 0,
-        description: "Bot de prueba",
-        color: "from-slate-400 to-slate-500",
-        glow: "rgba(148,163,184,0.15)",
-        border: "border-slate-500/10",
-        bg: "bg-slate-500/5",
-        icon: Zap,
-        featureLimit: 1,
-        featureData: { mensajes: "2 msjs/día", personalizados: "3 msjs" },
-      },
-      starter: {
-        name: "Starter",
+      basico: {
+        name: "Basico",
         price: 79.9,
         description: "Automatización base",
         color: "from-lime-500 to-green-600",
@@ -303,8 +251,8 @@ const categories: Category[] = [
         featureLimit: 5,
         featureData: { mensajes: "60 msjs/día", personalizados: "25 msjs" },
       },
-      enterprise: {
-        name: "Enterprise",
+      ultra: {
+        name: "Ultra",
         price: 169.9,
         description: "Respuesta total",
         color: "from-amber-500 to-yellow-600",
@@ -497,7 +445,7 @@ export const PricingPlans = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6"
+                className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6"
               >
                 {Object.entries(category.tiers).map(([key, tier]) => {
                   const PlanIcon = tier.icon;
