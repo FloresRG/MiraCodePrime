@@ -144,7 +144,7 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    font-family: "Tektur", system-ui, sans-serif;
+    font-family: "Roboto", system-ui, sans-serif;
   }
 
   body {
