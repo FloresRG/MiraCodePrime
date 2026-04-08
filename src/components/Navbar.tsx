@@ -20,7 +20,6 @@ export const Navbar = () => {
     { name: "Servicios", href: "/#services" },
     { name: "Portafolio", href: "/#portfolio" },
     { name: "Proyectos", href: "/proyectos" },
-    { name: "Sobre Nosotros", href: "/#about" },
     // contacto se abre en WhatsApp por ahora
     { name: "Contacto", href: "https://wa.me/59169867332?text=Hola%20MiraCode!%20Me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios%20%F0%9F%91%8B" },
     { name: "Precios", href: "/precios" },
