@@ -63,11 +63,6 @@ const {
     <slot />
 
     <script is:inline>
-      // Restore the smooth transition after the initial render to prevent FOUC
-      setTimeout(() => {
-        document.body.classList.add("transition-colors", "duration-500");
-      }, 100);
-
       // Hide the loader quickly once DOM is ready
       document.addEventListener("DOMContentLoaded", () => {
         const loader = document.getElementById("global-loader");

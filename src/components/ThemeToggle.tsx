@@ -26,7 +26,28 @@ export const ThemeToggle = () => {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
+    const newTheme = theme === "light" ? "dark" : "light";
+    
+    // Fallback if browser doesn't support View Transitions
+    // @ts-ignore - Document.startViewTransition might not be in the exact TS definitions yet
+    if (!document.startViewTransition) {
+      setTheme(newTheme);
+      return;
+    }
+
+    // @ts-ignore
+    document.startViewTransition(() => {
+      // Direct DOM update ensures the new state is captured synchronously by the API
+      const root = window.document.documentElement;
+      if (newTheme === "dark") {
+        root.classList.add("dark");
+      } else {
+        root.classList.remove("dark");
+      }
+      
+      // Update React state
+      setTheme(newTheme);
+    });
   };
 
   return (
