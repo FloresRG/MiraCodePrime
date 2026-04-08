@@ -145,12 +145,12 @@ export const Hero = () => {
               </motion.a>
 
               <motion.a
-                href="/1bs"
+                href="/precios"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-primary/40 bg-primary/10 text-foreground font-bold text-sm md:text-base hover:bg-primary/20 hover:border-primary/70 transition-all duration-300"
               >
-                1 Bs.
+                Planes.
               </motion.a>
             </div>
           </motion.div>

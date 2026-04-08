@@ -405,10 +405,6 @@ export const PricingPlans = () => {
               Soluciones
             </span>
           </h1>
-
-          <p className="text-foreground/40 text-base md:text-xl max-w-2xl mx-auto mb-10 font-bold uppercase tracking-wide text-balance">
-            Evoluciona tu negocio con nuestras herramientas acumulativas
-          </p>
         </motion.div>
       </div>
 
