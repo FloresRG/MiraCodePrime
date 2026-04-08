@@ -50,8 +50,43 @@ const {
     </script>
   </head>
   <body
-    class="min-h-screen bg-background text-foreground font-['Tektur',sans-serif] selection:bg-primary/20 selection:text-primary transition-colors duration-500"
+    class="min-h-screen bg-background text-foreground font-['Tektur',sans-serif] selection:bg-primary/20 selection:text-primary"
   >
+    <!-- Global Loader Overlay -->
+    <div id="global-loader" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-background transition-opacity duration-500">
+      <div class="custom-loader mb-8"></div>
+      <h2 class="text-3xl sm:text-4xl font-black tracking-[0.2em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-blue-400 animate-pulse drop-shadow-[0_0_15px_rgba(31,44,187,0.5)]">
+        MiraCode
+      </h2>
+    </div>
+
     <slot />
+
+    <script is:inline>
+      // Restore the smooth transition after the initial render to prevent FOUC
+      setTimeout(() => {
+        document.body.classList.add("transition-colors", "duration-500");
+      }, 100);
+
+      // Hide the loader quickly once DOM is ready
+      document.addEventListener("DOMContentLoaded", () => {
+        const loader = document.getElementById("global-loader");
+        if (loader) {
+          loader.classList.add("opacity-0", "pointer-events-none");
+          setTimeout(() => {
+            loader.remove();
+          }, 300);
+        }
+      });
+      
+      // Failsafe in case DOMContentLoaded already fired before script execution
+      if (document.readyState === 'interactive' || document.readyState === 'complete') {
+        const loader = document.getElementById("global-loader");
+        if (loader && !loader.classList.contains("opacity-0")) {
+          loader.classList.add("opacity-0", "pointer-events-none");
+          setTimeout(() => loader.remove(), 300);
+        }
+      }
+    </script>
   </body>
 </html>
