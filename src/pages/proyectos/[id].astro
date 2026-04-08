@@ -20,7 +20,7 @@ const project = getProject(id!);
 if (!project) return Astro.redirect("/404");
 
 // Imagen placeholder para el logo si no hay uno específico
-import logoImg from "@/assets/logo.png";
+import logoImg from "@/assets/logo.webp";
 
 // Preferir video si existe, sino usar imagen como fallback
 const coverVideo = project.video ?? project.image;

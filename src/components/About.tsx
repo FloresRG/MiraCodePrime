@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Users, Target, Shield, Zap } from "lucide-react";
-import logoImg from "@/assets/logo.png";
+import logoImg from "@/assets/logo.webp";
 
 const values = [
     {

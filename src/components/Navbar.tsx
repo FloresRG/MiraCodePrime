@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Code2, ArrowDown } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
-import logoImg from "@/assets/logo.png";
+import logoImg from "@/assets/logo.webp";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
