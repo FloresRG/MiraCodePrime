@@ -8,7 +8,8 @@ import {
   X, Zap, Star, Crown, ArrowRight, MapPin, MessageCircle, Palette,
   Headphones, Boxes, Store, Truck, MessageSquare, Image as ImageIcon,
   Users, Smartphone, Globe, Wallet, Receipt, Search, Activity,
-  GitCompare, ChevronDown, ChevronUp, Send, PieChart
+  GitCompare, ChevronDown, ChevronUp, Send, PieChart, Lock, 
+  Share2, TrendingUp, Clock, ListOrdered, Download
 } from "lucide-react";
 
 // --- Tipos y Estructura ---
@@ -54,8 +55,13 @@ const categories: Category[] = [
         border: "border-slate-500/30",
         bg: "bg-slate-500/5",
         icon: Zap,
-        featureLimit: 1,
-        featureData: { productos: "6 Productos", personalizacion: "Básica" },
+        featureLimit: 7,
+        featureData: { 
+          productos: "6 Productos", 
+          personalizacion: "Básica",
+          pedidos: "30 pedidos/mes",
+          enlace: "Enlace único"
+        },
         externalLink: "https://free.miracode.tech/login"
       },
       basico: {
@@ -67,12 +73,17 @@ const categories: Category[] = [
         border: "border-sky-500/30",
         bg: "bg-sky-500/5",
         icon: Zap,
-        featureLimit: 3,
-        featureData: { productos: "30 Productos", personalizacion: "Estándar" },
+        featureLimit: 11,
+        featureData: { 
+          productos: "30 Productos", 
+          personalizacion: "Estándar",
+          pedidos: "250 pedidos/mes",
+          enlace: "dominio.miracode.tech"
+        },
       },
       pro: {
         name: "Pro",
-        price: 119.9,
+        price: 149.9,
         description: "Crecimiento real",
         color: "from-violet-500 to-purple-600",
         glow: "rgba(139,92,246,0.3)",
@@ -80,24 +91,35 @@ const categories: Category[] = [
         bg: "bg-violet-500/10",
         icon: Star,
         popular: true,
-        featureLimit: 5,
-        featureData: { productos: "80 Productos", personalizacion: "Avanzada" },
+        featureLimit: 13,
+        featureData: { 
+          productos: "100 Productos", 
+          personalizacion: "Avanzada",
+          pedidos: "500 pedidos/mes",
+          enlace: "dominio.miracode.tech"
+        },
       },
       ultra: {
-        name: "Ultra",
-        price: 169.9,
+        name: "Empresarial",
+        price: 229.9,
         description: "Potencia ilimitada",
         color: "from-amber-400 to-orange-500",
         glow: "rgba(251,191,36,0.25)",
         border: "border-amber-500/40",
         bg: "bg-amber-500/5",
         icon: Crown,
-        featureLimit: 7,
-        featureData: { productos: "Ilimitados", personalizacion: "Completa", soporte: "24/7 Dedicado" },
+        featureLimit: 16,
+        featureData: { 
+          productos: "Ilimitados", 
+          personalizacion: "Completa", 
+          soporte: "24/7 Dedicado",
+          pedidos: "Ilimitados",
+          enlace: "dominio.miracode.tech"
+        },
       },
     },
   },
-  {
+  /* {
     id: "live",
     name: "Live-Cuaderno",
     icon: BookOpen,
@@ -186,7 +208,7 @@ const categories: Category[] = [
         featureData: { productos: "Ilimitados", sucursales: "Ilimitadas" },
       },
     },
-  },
+  }, */
   {
     id: "bot",
     name: "WhatsApp Bot",
@@ -237,12 +259,22 @@ const categories: Category[] = [
 const categoryFeatures: Record<string, any[]> = {
   catalogo: [
     { id: "productos", label: "Productos", icon: Package },
-    { id: "dominio", label: "Dominio web", icon: Globe },
-    { id: "ubicacion", label: "Ubicación", icon: MapPin },
+    { id: "enlace", label: "Subdominio", icon: Link2 },
+    { id: "carrito", label: "Carrito de compras", icon: ShoppingCart },
+    { id: "pedidos", label: "Pedidos", icon: ListOrdered },
+    { id: "registropedidos", label: "Registro de Pedidos", icon: ListOrdered },
+    { id: "catalogo", label: "Catálogo Online 24/7", icon: Clock },
     { id: "whatsapp", label: "Contacto WhatsApp", icon: MessageCircle },
     { id: "personalizacion", label: "Personalización", icon: Palette },
-    { id: "reportes", label: "Reportes estadísticos", icon: BarChart3 },
+    { id: "ssl", label: "Seguridad SSL", icon: Lock },
+    { id: "pdf", label: "Manual Usuario PDF", icon: Download },
+    { id: "responsive", label: "Diseño movil adaptativo ", icon: Smartphone },
     { id: "soporte", label: "Soporte técnico", icon: Headphones },
+    { id: "seo", label: "Optimización SEO", icon: TrendingUp },
+    { id: "ubicacion", label: "Ubicación", icon: MapPin },
+    { id: "redes", label: "Enlaces Redes sociales", icon: Share2 },
+    { id: "reportes", label: "Reportes estadísticos", icon: BarChart3 },
+    
   ],
   live: [
     { id: "productos", label: "Productos", icon: Package },
@@ -291,20 +323,20 @@ const FeatureRow = ({ feat, included, tierData }: { feat: any, included: boolean
   const Icon = feat.icon;
 
   return (
-    <div className={`flex items-center gap-4 transition-opacity ${included ? "opacity-100" : "opacity-25"}`}>
-      <div className={`size-7 xl:size-9 rounded-xl flex items-center justify-center flex-shrink-0 ${included ? "bg-primary/20" : "bg-white/5"}`}>
-        <Icon className={`size-4 xl:size-5 ${included ? "text-primary" : "text-foreground/40"}`} />
+    <div className={`flex items-center gap-3 transition-opacity ${included ? "opacity-100" : "opacity-25"}`}>
+      <div className={`size-6 md:size-8 rounded-lg flex items-center justify-center flex-shrink-0 ${included ? "bg-primary/20" : "bg-white/5"}`}>
+        <Icon className={`size-3.5 md:size-4 ${included ? "text-primary" : "text-foreground/40"}`} />
       </div>
       <div className="flex flex-col flex-1 min-w-0">
-        <span className="text-sm xl:text-lg font-bold truncate leading-snug">{feat.label}</span>
+        <span className="text-xs md:text-sm font-semibold truncate leading-tight">{feat.label}</span>
         {customValue && included && (
-          <span className="text-[10px] xl:text-[12px] font-black text-primary uppercase tracking-wider">{customValue}</span>
+          <span className="text-[9px] md:text-[10px] font-bold text-primary uppercase tracking-wide">{customValue}</span>
         )}
       </div>
       {included ? (
-        <Check className="size-5 text-emerald-500 stroke-[4]" />
+        <Check className="size-4 text-emerald-500 stroke-[4]" />
       ) : (
-        <X className="size-4 text-foreground/20" />
+        <X className="size-3.5 text-foreground/20" />
       )}
     </div>
   );
@@ -319,48 +351,48 @@ const PricingCard = ({ tier, categoryId, categoryName }: { tier: PlanTier, categ
   return (
     <motion.div 
       layout
-      className={`relative flex flex-col w-full max-w-sm xl:max-w-md rounded-[2.5rem] border-2 transition-all duration-300 backdrop-blur-xl
-      ${tier.border} ${tier.bg} ${tier.popular ? "ring-2 ring-primary/40 shadow-2xl" : "shadow-xl"}`}
+      className={`relative flex flex-col w-full max-w-xs md:max-w-sm rounded-2xl border-2 transition-all duration-300 backdrop-blur-xl
+      ${tier.border} ${tier.bg} ${tier.popular ? "ring-2 ring-primary/40 shadow-xl" : "shadow-lg"}`}
     >
       {tier.popular && (
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-          <span className="flex items-center gap-2 px-6 py-2 rounded-full bg-primary text-white text-[12px] xl:text-[14px] font-black uppercase tracking-[0.2em] shadow-lg">
-            <Star className="size-4 fill-white" /> POPULAR
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
+          <span className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-primary text-white text-[10px] md:text-xs font-bold uppercase tracking-wider shadow-lg">
+            <Star className="size-3 fill-white" /> POPULAR
           </span>
         </div>
       )}
 
-      <div className="p-8 xl:p-10 text-center space-y-6 border-b border-white/5">
-        <div className={`size-16 xl:size-20 mx-auto rounded-3xl bg-gradient-to-br ${tier.color} flex items-center justify-center shadow-lg`}>
-          <PlanIcon className="size-10 xl:size-12 text-white" />
+      <div className="p-4 md:p-6 text-center space-y-4 border-b border-white/5">
+        <div className={`size-12 md:size-16 mx-auto rounded-2xl bg-gradient-to-br ${tier.color} flex items-center justify-center shadow-lg`}>
+          <PlanIcon className="size-7 md:size-9 text-white" />
         </div>
         <div>
-          <h3 className="text-3xl xl:text-4xl font-black tracking-tighter uppercase leading-none">{tier.name}</h3>
-          <p className="text-[12px] xl:text-[14px] text-foreground/60 font-black uppercase tracking-[0.3em] mt-2">{tier.description}</p>
+          <h3 className="text-xl md:text-2xl font-bold tracking-tight uppercase leading-none">{tier.name}</h3>
+          <p className="text-[10px] md:text-xs text-foreground/60 font-semibold uppercase tracking-wider mt-1.5">{tier.description}</p>
         </div>
       </div>
 
-      <div className="py-8 xl:py-12 flex flex-col items-center bg-white/5">
-        <div className="flex items-baseline gap-2">
-          <span className={`text-6xl xl:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-br ${tier.color} leading-none`}>
+      <div className="flex flex-col items-center bg-white/5">
+        <div className="flex items-baseline gap-1.5">
+          <span className={`text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br ${tier.color} leading-none`}>
             {tier.price}
           </span>
-          <span className="text-lg xl:text-xl font-black text-foreground/40 uppercase">Bs.</span>
+          <span className="text-sm md:text-base font-semibold text-foreground/40 uppercase">Bs.</span>
         </div>
       </div>
 
-      <div className="flex-1 p-8 xl:p-10 space-y-6">
+      <div className="flex-1 p-6 md:p-8 space-y-4">
         {/* BOTÓN DE FLECHA (SOLO MÓVIL) */}
         <button 
           onClick={() => setIsExpanded(!isExpanded)}
-          className="lg:hidden w-full flex items-center justify-between p-5 bg-primary/10 rounded-2xl border border-primary/20"
+          className="md:hidden w-full flex items-center justify-between p-4 bg-primary/10 rounded-xl border border-primary/20"
         >
-          <span className="font-black text-[12px] uppercase tracking-widest text-primary">Ver Beneficios</span>
-          {isExpanded ? <ChevronUp className="text-primary size-5" /> : <ChevronDown className="text-primary size-5" />}
+          <span className="font-bold text-[10px] uppercase tracking-wide text-primary">Ver Beneficios</span>
+          {isExpanded ? <ChevronUp className="text-primary size-4" /> : <ChevronDown className="text-primary size-4" />}
         </button>
 
         {/* LISTA DESKTOP (SIEMPRE VISIBLE) */}
-        <div className="hidden lg:block space-y-4 xl:space-y-5">
+        <div className="hidden md:block space-y-3">
           {features.map((feat, idx) => (
             <FeatureRow key={feat.id} feat={feat} included={idx < tier.featureLimit} tierData={tier.featureData} />
           ))}
@@ -373,7 +405,7 @@ const PricingCard = ({ tier, categoryId, categoryName }: { tier: PlanTier, categ
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              className="lg:hidden overflow-hidden space-y-4 pt-2"
+              className="md:hidden overflow-hidden space-y-3 pt-1"
             >
               {features.map((feat, idx) => (
                 <FeatureRow key={feat.id} feat={feat} included={idx < tier.featureLimit} tierData={tier.featureData} />
@@ -383,14 +415,14 @@ const PricingCard = ({ tier, categoryId, categoryName }: { tier: PlanTier, categ
         </AnimatePresence>
       </div>
 
-      <div className="p-8 xl:p-10 pt-0">
+      <div className="p-6 md:p-8 pt-0">
         <a
           href={tier.externalLink || waLink}
           target={tier.externalLink ? "_self" : "_blank"}
-          className={`group flex items-center justify-center gap-3 w-full py-5 xl:py-6 rounded-3xl bg-gradient-to-r ${tier.color} text-white font-black text-xs xl:text-sm uppercase tracking-[0.25em] transition-all hover:scale-[1.02] active:scale-95 shadow-xl`}
+          className={`group flex items-center justify-center gap-2 w-full py-4 md:py-5 rounded-2xl bg-gradient-to-r ${tier.color} text-white font-bold text-[10px] md:text-xs uppercase tracking-wider transition-all hover:scale-[1.02] active:scale-95 shadow-lg`}
         >
           {tier.price === 0 ? "Comenzar" : "Seleccionar"}
-          <ArrowRight className="size-5 group-hover:translate-x-1 transition-transform" />
+          <ArrowRight className="size-4 group-hover:translate-x-0.5 transition-transform" />
         </a>
       </div>
     </motion.div>
@@ -399,22 +431,22 @@ const PricingCard = ({ tier, categoryId, categoryName }: { tier: PlanTier, categ
 
 export const PricingPlans = () => {
   return (
-    <section className="relative min-h-screen py-20 px-6 xl:px-12 overflow-hidden ">
+    <section className="relative min-h-screen py-12 md:py-16 px-4 md:px-8 overflow-hidden">
       {/* Luces de Fondo */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div className="absolute top-[-10%] left-1/4 w-[1000px] h-[800px] rounded-full bg-primary/10 blur-[180px]" />
-        <div className="absolute bottom-[-5%] right-0 w-[700px] h-[700px] rounded-full bg-violet-600/10 blur-[150px]" />
+        <div className="absolute top-[-10%] left-1/4 w-[600px] md:w-[1000px] h-[400px] md:h-[800px] rounded-full bg-primary/10 blur-[100px] md:blur-[180px]" />
+        <div className="absolute bottom-[-5%] right-0 w-[400px] md:w-[700px] h-[400px] md:h-[700px] rounded-full bg-violet-600/10 blur-[80px] md:blur-[150px]" />
       </div>
 
       {/* Header */}
-      <div className="text-center mb-32 max-w-7xl mx-auto space-y-10">
+      <div className="text-center mb-4 md:mb-6 max-w-5xl mx-auto ">
         <motion.span 
           initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}
-          className="inline-block px-8 py-3 rounded-full border border-primary/40 bg-primary/10 text-primary text-[12px] xl:text-[14px] font-black tracking-[0.6em] uppercase"
+          className="inline-block px-4 md:px-6 py-2 md:py-2.5 rounded-full border border-primary/40 bg-primary/10 text-primary text-[9px] md:text-xs font-bold tracking-wider uppercase"
         >
           MiraCode 
         </motion.span>
-        <h1 className="text-6xl sm:text-8xl md:text-9xl xl:text-[12rem] font-black tracking-tighter leading-[0.8] uppercase italic">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight uppercase italic">
           Nuestras <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-violet-400 to-blue-400">
             Soluciones
@@ -422,23 +454,23 @@ export const PricingPlans = () => {
         </h1>
       </div>
 
-      <div className="max-w-[1600px] mx-auto space-y-32">
+      <div className="max-w-7xl mx-auto space-y-20 md:space-y-24">
         {categories.map((category) => (
-          <div key={category.id} className="space-y-16">
-            <div className="flex flex-col items-center text-center space-y-8">
-              <div className="size-20 xl:size-28 rounded-[2.5rem] bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center border border-primary/20 shadow-2xl">
-                <category.icon className="size-10 xl:size-14 text-primary" />
+          <div key={category.id} className="space-y-8 md:space-y-10">
+            <div className="flex flex-col items-center text-center space-y-4 md:space-y-6">
+              <div className="size-14 md:size-20 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center border border-primary/20 shadow-xl">
+                <category.icon className="size-7 md:size-10 text-primary" />
               </div>
-              <div className="space-y-4">
-                <h2 className="text-5xl xl:text-7xl font-black uppercase tracking-tighter italic leading-none">{category.name}</h2>
-                <p className="text-foreground/60 text-lg xl:text-2xl max-w-4xl font-medium mx-auto">{category.description}</p>
+              <div className="space-y-2 md:space-y-3">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold uppercase tracking-tight italic leading-none">{category.name}</h2>
+                <p className="text-foreground/60 text-sm md:text-base max-w-3xl font-medium mx-auto">{category.description}</p>
               </div>
             </div>
 
             {/* CONTENEDOR CENTRADO DINÁMICO */}
-            <div className="flex flex-wrap justify-center gap-8 xl:gap-10">
+            <div className="flex flex-wrap justify-center gap-4 md:gap-6">
               {Object.entries(category.tiers).map(([key, tier]) => (
-                <div key={key} className="w-full md:w-[calc(50%-1rem)] xl:w-[calc(25%-1.875rem)] min-w-[320px] max-w-[400px]">
+                <div key={key} className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)] min-w-[260px] max-w-[320px]">
                   <PricingCard tier={tier as PlanTier} categoryId={category.id} categoryName={category.name} />
                 </div>
               ))}
@@ -447,9 +479,9 @@ export const PricingPlans = () => {
         ))}
       </div>
 
-      <footer className="mt-64 text-center space-y-10 pb-20">
-        <div className="h-px w-full max-w-4xl mx-auto bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-        <p className="text-[12px] xl:text-[14px] text-foreground/40 font-black uppercase tracking-[0.6em]">
+      <footer className="mt-40 md:mt-52 text-center space-y-6 md:space-y-8 pb-12 md:pb-16">
+        <div className="h-px w-full max-w-3xl mx-auto bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        <p className="text-[9px] md:text-xs text-foreground/40 font-bold uppercase tracking-wider">
           MiraCode © 2026 • Bolivia
         </p>
       </footer>
