@@ -330,7 +330,7 @@ const FeatureRow = ({ feat, included, tierData }: { feat: any, included: boolean
       <div className="flex flex-col flex-1 min-w-0">
         <span className="text-xs md:text-sm font-semibold truncate leading-tight">{feat.label}</span>
         {customValue && included && (
-          <span className="text-[9px] md:text-[10px] font-bold text-primary uppercase tracking-wide">{customValue}</span>
+          <span className="text-[11px] md:text-[12px] font-bold text-primary tracking-wide">{customValue}</span>
         )}
       </div>
       {included ? (
