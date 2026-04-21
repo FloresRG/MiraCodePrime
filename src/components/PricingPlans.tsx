@@ -78,7 +78,7 @@ const categories: Category[] = [
           productos: "30 Productos", 
           personalizacion: "Estándar",
           pedidos: "250 pedidos/mes",
-          enlace: "dominio.miracode.tech"
+          enlace: "tu-negocio.miracode.tech"
         },
       },
       pro: {
@@ -96,7 +96,7 @@ const categories: Category[] = [
           productos: "100 Productos", 
           personalizacion: "Avanzada",
           pedidos: "500 pedidos/mes",
-          enlace: "dominio.miracode.tech"
+          enlace: "tu-negocio.miracode.tech"
         },
       },
       ultra: {
@@ -114,7 +114,7 @@ const categories: Category[] = [
           personalizacion: "Completa", 
           soporte: "24/7 Dedicado",
           pedidos: "Ilimitados",
-          enlace: "dominio.miracode.tech"
+          enlace: "tu-negocio.miracode.tech"
         },
       },
     },
@@ -372,7 +372,17 @@ const PricingCard = ({ tier, categoryId, categoryName }: { tier: PlanTier, categ
         </div>
       </div>
 
-      <div className="flex flex-col items-center bg-white/5">
+      <div className="flex flex-col items-center justify-center py-6 bg-white/5 space-y-1">
+        {typeof tier.price === 'number' && (
+          <div className="flex items-center gap-3">
+            <span className="text-lg md:text-xl text-foreground/50 line-through decoration-red-500 decoration-2 font-medium">
+              {tier.price === 0 ? "9.9" : Math.round(tier.price * 1.4)} Bs.
+            </span>
+            <span className={`px-3 py-1 rounded-full bg-gradient-to-r ${tier.color} text-[10px] md:text-xs font-black text-white uppercase tracking-tight shadow-md`}>
+               -{tier.price === 0 ? "100" : "30"}% OFF
+            </span>
+          </div>
+        )}
         <div className="flex items-baseline gap-1.5">
           <span className={`text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br ${tier.color} leading-none`}>
             {tier.price}
