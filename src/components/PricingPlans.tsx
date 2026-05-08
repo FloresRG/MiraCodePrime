@@ -83,7 +83,7 @@ const categories: Category[] = [
       },
       pro: {
         name: "Pro",
-        price: 149.9,
+        price: 299.9,
         description: "Crecimiento real",
         color: "from-violet-500 to-purple-600",
         glow: "rgba(139,92,246,0.3)",
@@ -101,7 +101,7 @@ const categories: Category[] = [
       },
       ultra: {
         name: "Empresarial",
-        price: 229.9,
+        price: 499.9,
         description: "Potencia ilimitada",
         color: "from-amber-400 to-orange-500",
         glow: "rgba(251,191,36,0.25)",
@@ -119,15 +119,60 @@ const categories: Category[] = [
       },
     },
   },
-  /* {
+  {
+    id: "bot",
+    name: "WhatsApp Bot Pedidos",
+    icon: MessageSquare,
+    description: "Automatización de mensajes y atención al cliente vía WhatsApp.",
+    tiers: {
+      basico: {
+        name: "Basico",
+        price: 139.9,
+        description: "Automatización base",
+        color: "from-lime-500 to-green-600",
+        glow: "rgba(132,204,22,0.25)",
+        border: "border-lime-500/30",
+        bg: "bg-lime-500/5",
+        icon: Zap,
+        featureLimit: 3,
+        featureData: { mensajes: "30 msjs/día", personalizados: "15 msjs" },
+      },
+      pro: {
+        name: "Pro",
+        price: 289.9,
+        description: "Atención avanzada",
+        color: "from-cyan-500 to-blue-500",
+        glow: "rgba(6,182,212,0.3)",
+        border: "border-cyan-500/50",
+        bg: "bg-cyan-500/10",
+        icon: Star,
+        popular: true,
+        featureLimit: 5,
+        featureData: { mensajes: "60 msjs/día", personalizados: "25 msjs" },
+      },
+      ultra: {
+        name: "Ultra",
+        price: 529.9,
+        description: "Respuesta total",
+        color: "from-amber-500 to-yellow-600",
+        glow: "rgba(245,158,11,0.25)",
+        border: "border-amber-500/40",
+        bg: "bg-amber-500/5",
+        icon: Crown,
+        featureLimit: 7,
+        featureData: { mensajes: "100 msjs/día", personalizados: "30 msjs" },
+      },
+    },
+  },
+  {
     id: "live",
-    name: "Live-Cuaderno",
+    name: "Chatboot-Catalogo-Cuaderno",
     icon: BookOpen,
     description: "Gestión de pedidos en tiempo real con tienda online integrada.",
     tiers: {
       basico: {
         name: "Basico",
-        price: 169.9,
+        price: 219.9,
         description: "Uso comercial",
         color: "from-emerald-500 to-teal-600",
         glow: "rgba(16,185,129,0.25)",
@@ -139,7 +184,7 @@ const categories: Category[] = [
       },
       pro: {
         name: "Pro",
-        price: 229.9,
+        price: 519.9,
         description: "Gestión avanzada",
         color: "from-indigo-500 to-blue-700",
         glow: "rgba(79,70,229,0.3)",
@@ -152,7 +197,7 @@ const categories: Category[] = [
       },
       ultra: {
         name: "Ultra",
-        price: 299.9,
+        price: 989.9,
         description: "Control total",
         color: "from-rose-500 to-pink-600",
         glow: "rgba(244,63,94,0.25)",
@@ -164,7 +209,7 @@ const categories: Category[] = [
       },
     },
   },
-  {
+  /* {
     id: "venta",
     name: "Venta-Inventario",
     icon: Boxes,
@@ -209,51 +254,7 @@ const categories: Category[] = [
       },
     },
   }, */
-  {
-    id: "bot",
-    name: "WhatsApp Bot",
-    icon: MessageSquare,
-    description: "Automatización de mensajes y atención al cliente vía WhatsApp.",
-    tiers: {
-      basico: {
-        name: "Basico",
-        price: 79.9,
-        description: "Automatización base",
-        color: "from-lime-500 to-green-600",
-        glow: "rgba(132,204,22,0.25)",
-        border: "border-lime-500/30",
-        bg: "bg-lime-500/5",
-        icon: Zap,
-        featureLimit: 3,
-        featureData: { mensajes: "30 msjs/día", personalizados: "15 msjs" },
-      },
-      pro: {
-        name: "Pro",
-        price: 119.9,
-        description: "Atención avanzada",
-        color: "from-cyan-500 to-blue-500",
-        glow: "rgba(6,182,212,0.3)",
-        border: "border-cyan-500/50",
-        bg: "bg-cyan-500/10",
-        icon: Star,
-        popular: true,
-        featureLimit: 5,
-        featureData: { mensajes: "60 msjs/día", personalizados: "25 msjs" },
-      },
-      ultra: {
-        name: "Ultra",
-        price: 169.9,
-        description: "Respuesta total",
-        color: "from-amber-500 to-yellow-600",
-        glow: "rgba(245,158,11,0.25)",
-        border: "border-amber-500/40",
-        bg: "bg-amber-500/5",
-        icon: Crown,
-        featureLimit: 7,
-        featureData: { mensajes: "100 msjs/día", personalizados: "30 msjs" },
-      },
-    },
-  },
+  
 ];
 
 const categoryFeatures: Record<string, any[]> = {
